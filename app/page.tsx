@@ -192,7 +192,7 @@ export default function LandingPage() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="max-w-2xl mx-auto text-lg md:text-xl text-slate-200 font-medium mb-10"
           >
-            Professional garbage bin, dumpster, and power washing services. We keep your residential and commercial spaces clean, safe, and odor-free.
+            Professional garbage bin, dumpster, and power washing services. We keep your residential and commercial spaces clean, safe, and odor-free in Champaign-Urbana, IL, and surrounding areas.
           </motion.p>
           
           <motion.div 
@@ -479,7 +479,7 @@ export default function LandingPage() {
               Funk Away <span className="text-cyan-500">GCS</span>
             </span>
           </div>
-          <p className="max-w-md mx-auto mb-8 font-medium">Hello, We&apos;re ROB & RAY. Thanks for visiting our booking site.</p>
+          <p className="max-w-md mx-auto mb-8 font-medium">Hello, We&apos;re ROB & RAY. Thanks for visiting our booking site. Proudly serving Champaign-Urbana, IL, and the surrounding Central Illinois communities.</p>
           <div className="flex justify-center gap-6 mb-8 text-sm font-bold tracking-wider">
             <a href="mailto:funkaway_gcs@yahoo.com" className="hover:text-cyan-400 transition-colors">funkaway_gcs@yahoo.com</a>
             <span className="text-slate-700">|</span>
