@@ -95,22 +95,9 @@ export function BubbleOverlay() {
                 y: [0, -10, 0]
               }}
               transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-              className="mb-8 relative w-72 h-72 sm:w-80 sm:h-80 md:w-[400px] md:h-[400px] flex items-center justify-center drop-shadow-2xl"
+              className="relative w-72 h-72 sm:w-80 sm:h-80 md:w-[400px] md:h-[400px] flex items-center justify-center drop-shadow-2xl"
             >
-              <Image src="/funkawaymascots.png" alt="Company Logo" fill className="object-contain" priority />
-            </motion.div>
-            <div className="text-3xl md:text-5xl font-black font-display text-cyan-700 uppercase tracking-widest drop-shadow-sm flex flex-col items-center gap-2">
-              <span className="opacity-90">Washing The</span>
-              <span className="text-cyan-500">Funk Away</span>
-            </div>
-            <motion.div 
-              className="mt-8 flex gap-3"
-              animate={{ opacity: [0.5, 1, 0.5] }}
-              transition={{ repeat: Infinity, duration: 1.5 }}
-            >
-              <div className="w-3 h-3 bg-cyan-400 rounded-full" />
-              <div className="w-3 h-3 bg-cyan-400 rounded-full" />
-              <div className="w-3 h-3 bg-cyan-400 rounded-full" />
+              <Image src="/robray.png" alt="Rob & Ray" fill className="object-contain" priority />
             </motion.div>
           </motion.div>
         </motion.div>
