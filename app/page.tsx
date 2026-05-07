@@ -31,7 +31,8 @@ export default function LandingPage() {
       description: 'Disinfect and power wash your home garbage bins to eliminate odors and bacteria.',
       price: '$40 first bin',
       subPrice: '+$12.99 per additional bin',
-      features: ['Deep penetrating vapor wash', 'Odor elimination', 'Bacteria and germ removal', 'Optional pest strips ($10)']
+      features: ['Deep penetrating vapor wash', 'Odor elimination', 'Bacteria and germ removal', 'Optional pest strips ($10)'],
+      url: 'https://FunkAwayGCS.as.me/?appointmentType=45588183'
     },
     {
       title: 'Commercial Dumpsters',
@@ -39,7 +40,8 @@ export default function LandingPage() {
       description: 'Keep your business clean and smelling fresh with our commercial dumpster sanitization.',
       price: 'From $175',
       subPrice: '3-8 yard commercial or roll-off',
-      features: ['3-8 yard dumpsters ($175)', 'Roll-off commercial ($250)', 'Dumpster pad cleaning available', 'Custom contracts available']
+      features: ['3-8 yard dumpsters ($175)', 'Roll-off commercial ($250)', 'Dumpster pad cleaning available', 'Custom contracts available'],
+      url: 'https://FunkAwayGCS.as.me/?appointmentType=45596308'
     },
     {
       title: 'Power Washing',
@@ -47,7 +49,8 @@ export default function LandingPage() {
       description: 'Soft wash and power wash for homes, pavement areas, side panels, and more.',
       price: 'Custom Quote',
       subPrice: 'Depends on area size',
-      features: ['Home exterior soft wash', 'Driveways & pavements', 'Dumpster pad areas ($145-$400)', 'Siding and decks']
+      features: ['Home exterior soft wash', 'Driveways & pavements', 'Dumpster pad areas ($145-$400)', 'Siding and decks'],
+      url: '#contact'
     }
   ];
 
@@ -106,9 +109,9 @@ export default function LandingPage() {
           </div>
           
           <div className="hidden md:flex items-center gap-8">
-            <Link href="#services" className="text-sm font-medium hover:text-cyan-600 transition-colors text-slate-600">Services</Link>
-            <Link href="#pricing" className="text-sm font-medium hover:text-cyan-600 transition-colors text-slate-600">Plans</Link>
-            <Link href="#about" className="text-sm font-medium hover:text-cyan-600 transition-colors text-slate-600">About</Link>
+            <a href="#services" className="text-sm font-medium hover:text-cyan-600 transition-colors text-slate-600">Services</a>
+            <a href="#pricing" className="text-sm font-medium hover:text-cyan-600 transition-colors text-slate-600">Plans</a>
+            <a href="#contact" className="text-sm font-medium hover:text-cyan-600 transition-colors text-slate-600">Contact</a>
             
             <div className="flex items-center gap-4">
               <div className="flex flex-col items-end">
@@ -117,9 +120,6 @@ export default function LandingPage() {
                   (217) 552-6182
                 </a>
               </div>
-              <Link href="#contact" className="bg-gradient-to-br from-orange-400 to-orange-600 shadow-lg shadow-orange-200/50 hover:scale-105 active:scale-95 text-white px-5 py-2.5 rounded-2xl font-bold transition-all text-sm uppercase tracking-wider">
-                Book Quote
-              </Link>
             </div>
           </div>
 
@@ -139,18 +139,16 @@ export default function LandingPage() {
             className="fixed inset-0 z-40 bg-[#F0F9FF] pt-24 px-6 md:hidden"
           >
             <div className="flex flex-col gap-6 text-lg">
-              <Link href="#services" onClick={() => setIsMobileMenuOpen(false)} className="font-medium text-slate-900 border-b border-cyan-100 pb-4">Services</Link>
-              <Link href="#pricing" onClick={() => setIsMobileMenuOpen(false)} className="font-medium text-slate-900 border-b border-cyan-100 pb-4">Plans & Pricing</Link>
-              <Link href="#about" onClick={() => setIsMobileMenuOpen(false)} className="font-medium text-slate-900 border-b border-cyan-100 pb-4">About Us</Link>
+              <a href="#services" onClick={() => setIsMobileMenuOpen(false)} className="font-medium text-slate-900 border-b border-cyan-100 pb-4">Services</a>
+              <a href="#pricing" onClick={() => setIsMobileMenuOpen(false)} className="font-medium text-slate-900 border-b border-cyan-100 pb-4">Plans & Pricing</a>
+              <a href="#faq" onClick={() => setIsMobileMenuOpen(false)} className="font-medium text-slate-900 border-b border-cyan-100 pb-4">FAQ</a>
+              <a href="#contact" onClick={() => setIsMobileMenuOpen(false)} className="font-medium text-slate-900 border-b border-cyan-100 pb-4">Contact</a>
               <a href="tel:2175526182" className="flex items-center gap-3 font-bold text-cyan-700 mt-4">
                 <div className="w-10 h-10 bg-cyan-100 rounded-2xl flex items-center justify-center">
                   <Phone className="w-5 h-5" />
                 </div>
                 (217) 552-6182
               </a>
-              <Link href="#contact" onClick={() => setIsMobileMenuOpen(false)} className="bg-gradient-to-br from-orange-400 to-orange-600 shadow-lg shadow-orange-200 text-white text-center py-4 rounded-2xl font-black mt-4 uppercase tracking-wider">
-                Book an Appointment
-              </Link>
             </div>
           </motion.div>
         )}
@@ -256,7 +254,7 @@ export default function LandingPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
-                className="bg-white rounded-[40px] p-8 shadow-[0_10px_25px_-5px_rgba(8,145,178,0.1)] border border-cyan-50 relative overflow-hidden group"
+                className="bg-white rounded-[40px] p-8 shadow-[0_10px_25px_-5px_rgba(8,145,178,0.1)] border border-cyan-50 relative overflow-hidden group flex flex-col"
               >
                 <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-cyan-400 to-blue-500 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
                 <div className="w-16 h-16 rounded-2xl bg-cyan-50 text-cyan-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
@@ -270,7 +268,7 @@ export default function LandingPage() {
                   <div className="text-xs text-slate-400 font-bold uppercase tracking-tighter mt-1">{service.subPrice}</div>
                 </div>
 
-                <ul className="space-y-3 mb-8">
+                <ul className="space-y-3 mb-8 flex-grow">
                   {service.features.map((feature, fIdx) => (
                     <li key={fIdx} className="flex items-start gap-3 text-slate-600 text-sm font-medium">
                       <CheckCircle className="w-5 h-5 text-cyan-500 flex-shrink-0" />
@@ -278,6 +276,15 @@ export default function LandingPage() {
                     </li>
                   ))}
                 </ul>
+
+                <a 
+                  href={service.url} 
+                  target={service.url.startsWith('http') ? '_blank' : '_self'} 
+                  rel={service.url.startsWith('http') ? 'noopener noreferrer' : ''} 
+                  className="w-full mt-auto block text-center py-4 bg-cyan-50 hover:bg-cyan-100 text-cyan-700 font-bold rounded-2xl transition-colors tracking-wider uppercase text-sm"
+                >
+                  Book Now
+                </a>
               </motion.div>
             ))}
           </div>
@@ -448,29 +455,46 @@ export default function LandingPage() {
               </div>
             </div>
             
-            <div className="md:w-1/2 p-2 sm:p-8 md:p-12 bg-white">
-              <h3 className="font-display text-2xl font-black text-slate-900 mb-2 uppercase tracking-wide">Book Direct & Pay Securely</h3>
-              <p className="text-slate-500 mb-6 text-sm font-medium">Select your service, choose a time, and pay securely via Square directly through our booking calendar below.</p>
+            <div className="md:w-1/2 p-8 md:p-12 bg-white flex flex-col justify-center">
+              <h3 className="font-display text-2xl md:text-3xl font-black text-slate-900 mb-2 uppercase tracking-wide">Book Direct & Pay Securely</h3>
+              <p className="text-slate-500 mb-8 max-w-sm text-sm md:text-base font-medium">Select your service type below to continue to our secure booking and payment portal via Acuity / Square.</p>
               
-              <div className="w-full h-full min-h-[800px] rounded-2xl overflow-hidden border border-cyan-100 shadow-inner bg-slate-50 relative">
-                {mounted ? (
-                  <>
-                    <iframe 
-                      src="https://app.acuityscheduling.com/schedule.php?owner=29063580&ref=embedded_csp" 
-                      title="Schedule Appointment" 
-                      width="100%" 
-                      height="800" 
-                      frameBorder="0"
-                      allow="payment"
-                      className="absolute inset-0 w-full h-full"
-                    ></iframe>
-                    <Script src="https://embed.acuityscheduling.com/js/embed.js" />
-                  </>
-                ) : (
-                  <div className="absolute inset-0 flex items-center justify-center bg-slate-100">
-                    <span className="text-slate-400 font-medium">Loading booking portal...</span>
+              <div className="flex flex-col gap-4">
+                <a 
+                  href="https://FunkAwayGCS.as.me/?appointmentType=45588183"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-between p-6 bg-cyan-50 hover:bg-cyan-100 border-2 border-cyan-100 hover:border-cyan-300 rounded-2xl transition-all group shadow-sm hover:shadow-md cursor-pointer"
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center border border-cyan-100 shadow-sm text-cyan-600 group-hover:scale-110 transition-transform">
+                      <Home className="w-6 h-6" />
+                    </div>
+                    <div className="text-left">
+                      <h4 className="font-display font-black text-slate-900 text-lg uppercase tracking-tight">Residential Booking</h4>
+                      <p className="text-sm text-cyan-700 font-bold tracking-wide">Bin Cleaning & Maintenance</p>
+                    </div>
                   </div>
-                )}
+                  <ArrowRight className="w-6 h-6 text-cyan-400 group-hover:text-cyan-600 group-hover:translate-x-1 transition-all" />
+                </a>
+
+                <a 
+                  href="https://FunkAwayGCS.as.me/?appointmentType=45596308"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-between p-6 bg-slate-50 hover:bg-slate-100 border-2 border-slate-100 hover:border-slate-300 rounded-2xl transition-all group shadow-sm hover:shadow-md cursor-pointer"
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center border border-slate-200 shadow-sm text-slate-600 group-hover:scale-110 transition-transform">
+                      <Trash2 className="w-6 h-6" />
+                    </div>
+                    <div className="text-left">
+                      <h4 className="font-display font-black text-slate-900 text-lg uppercase tracking-tight">Commercial Booking</h4>
+                      <p className="text-sm text-slate-500 font-bold tracking-wide">Dumpsters & Fleet Washing</p>
+                    </div>
+                  </div>
+                  <ArrowRight className="w-6 h-6 text-slate-400 group-hover:text-slate-600 group-hover:translate-x-1 transition-all" />
+                </a>
               </div>
             </div>
           </div>
