@@ -5,8 +5,10 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Phone, ShieldCheck, Mail, Droplets, Trash2, Home, Star, ChevronRight, Menu, X, CheckCircle, ArrowRight, MapPin } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import Script from 'next/script';
 
 import { BubbleOverlay } from '@/components/BubbleOverlay';
+import { TiktokCarousel } from '@/components/TiktokCarousel';
 
 export default function LandingPage() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -398,32 +400,17 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Before / After Gallery (Placeholder) */}
-      <section className="py-24 bg-cyan-950 text-white border-t border-cyan-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
+      {/* TikTok Showcase Carousel */}
+      <section className="py-24 bg-cyan-950 text-white border-t border-cyan-900 overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center max-w-3xl mx-auto mb-16 px-4">
             <h2 className="font-display text-4xl md:text-6xl font-black mb-6 tracking-tight uppercase"><span className="text-cyan-400">The Proof</span> is in the Wash</h2>
             <p className="text-lg text-cyan-200 font-medium">
-              But wait! We don&apos;t stop there at just power washing garbage bins and dumpsters. We power wash pavement areas, home siding, and anything else you need.
+              Check out our recent work! We don&apos;t stop at just power washing garbage bins and dumpsters. We power wash pavement areas, home siding, and anything else you need.
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {/* Gallery Images using high quality unsplash images representing cleaning/power washing */}
-            {[
-              "https://images.unsplash.com/photo-1558227691-41ea78d1f631?q=80&w=600&auto=format&fit=crop",
-              "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=600&auto=format&fit=crop",
-              "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?q=80&w=600&auto=format&fit=crop",
-              "https://images.unsplash.com/photo-1563453392212-326f5e854473?q=80&w=600&auto=format&fit=crop"
-            ].map((src, i) => (
-              <div key={i} className="relative aspect-square rounded-[40px] overflow-hidden group border border-cyan-800">
-                <Image src={src} alt="Cleaning results" fill className="object-cover group-hover:scale-110 transition-transform duration-500" referrerPolicy="no-referrer" />
-                <div className="absolute inset-0 bg-gradient-to-t from-cyan-950/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-                  <span className="text-white font-black tracking-wider uppercase">Sparkling Clean</span>
-                </div>
-              </div>
-            ))}
-          </div>
+          <TiktokCarousel />
         </div>
       </section>
 
@@ -465,34 +452,25 @@ export default function LandingPage() {
               <h3 className="font-display text-2xl font-black text-slate-900 mb-2 uppercase tracking-wide">Book Direct & Pay Securely</h3>
               <p className="text-slate-500 mb-6 text-sm font-medium">Select your service, choose a time, and pay securely via Square directly through our booking calendar below.</p>
               
-              <div className="w-full h-full min-h-[600px] rounded-2xl overflow-hidden border border-cyan-100 shadow-inner bg-slate-50 relative">
-                {/* INSTRUCTIONS: Replace the src below with your actual Acuity Scheduling URL */}
+              <div className="w-full h-full min-h-[800px] rounded-2xl overflow-hidden border border-cyan-100 shadow-inner bg-slate-50 relative">
                 {mounted ? (
-                  <iframe 
-                    src="https://app.acuityscheduling.com/schedule.php?owner=YOUR_ACUITY_OWNER_ID" 
-                    title="Schedule Appointment" 
-                    width="100%" 
-                    height="100%" 
-                    frameBorder="0"
-                    className="absolute inset-0 w-full h-full"
-                  ></iframe>
+                  <>
+                    <iframe 
+                      src="https://app.acuityscheduling.com/schedule.php?owner=29063580&ref=embedded_csp" 
+                      title="Schedule Appointment" 
+                      width="100%" 
+                      height="800" 
+                      frameBorder="0"
+                      allow="payment"
+                      className="absolute inset-0 w-full h-full"
+                    ></iframe>
+                    <Script src="https://embed.acuityscheduling.com/js/embed.js" />
+                  </>
                 ) : (
                   <div className="absolute inset-0 flex items-center justify-center bg-slate-100">
                     <span className="text-slate-400 font-medium">Loading booking portal...</span>
                   </div>
                 )}
-                
-                {/* Fallback overlay in case of missing ID, to make it look good in preview */}
-                <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center p-8 text-center bg-white/80 backdrop-blur-sm z-10 border-2 border-dashed border-cyan-300 rounded-2xl">
-                  <div className="w-16 h-16 bg-cyan-100 rounded-2xl flex items-center justify-center mb-4">
-                    <Trash2 className="w-8 h-8 text-cyan-500" />
-                  </div>
-                  <h4 className="font-bold text-slate-900 text-lg mb-2">Acuity Scheduling Portal</h4>
-                  <p className="text-slate-500 text-sm mb-4">Your interactive scheduling calendar will appear here.</p>
-                  <div className="bg-orange-100 text-orange-800 text-xs font-bold px-3 py-1.5 rounded-lg border border-orange-200">
-                    Replace 'YOUR_ACUITY_OWNER_ID' with your Acuity ID in the code!
-                  </div>
-                </div>
               </div>
             </div>
           </div>
