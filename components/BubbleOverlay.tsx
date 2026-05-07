@@ -8,9 +8,22 @@ import Image from 'next/image';
 export function BubbleOverlay() {
   const [isVisible, setIsVisible] = useState(true);
   const [mounted, setMounted] = useState(false);
+  const [bubbles, setBubbles] = useState<Array<{ id: number; size: number; left: number; delay: number; duration: number }>>([]);
 
   useEffect(() => {
     setMounted(true);
+    
+    // Reduce bubble count on mobile to improve animation performance
+    const count = typeof window !== 'undefined' && window.innerWidth < 768 ? 25 : 50;
+    const initialBubbles = Array.from({ length: count }).map((_, i) => {
+      const size = Math.random() * 80 + 20; // 20px to 100px
+      const left = Math.random() * 100; // 0% to 100%
+      const delay = Math.random() * 1.5; // 0s to 1.5s delay
+      const duration = Math.random() * 2 + 1.5; // 1.5s to 3.5s duration
+      return { id: i, size, left, delay, duration };
+    });
+    setBubbles(initialBubbles);
+
     // Hide the overlay after a short delay to simulate suds clearing away
     const timer = setTimeout(() => {
       setIsVisible(false);
@@ -23,16 +36,6 @@ export function BubbleOverlay() {
       {/* SSR placeholder */}
     </div>
   );
-
-  // Generate random bubbles with stable values strictly on the client
-  const bubbleCount = 60;
-  const bubbles = Array.from({ length: bubbleCount }).map((_, i) => {
-    const size = Math.random() * 100 + 20; // 20px to 120px
-    const left = Math.random() * 100; // 0% to 100%
-    const delay = Math.random() * 1.5; // 0s to 1.5s delay
-    const duration = Math.random() * 2 + 1.5; // 1.5s to 3.5s duration
-    return { id: i, size, left, delay, duration };
-  });
 
   return (
     <AnimatePresence>
@@ -51,7 +54,7 @@ export function BubbleOverlay() {
           {bubbles.map((bubble) => (
             <motion.div
               key={bubble.id}
-              className="absolute rounded-full border border-cyan-300/60 bg-white/40 backdrop-blur-[3px] shadow-[inset_0_0_15px_rgba(66,130,168,0.3),_0_4px_12px_rgba(0,0,0,0.08)] flex items-center justify-center overflow-hidden"
+              className="absolute rounded-full border border-cyan-300/60 bg-white/40 shadow-[inset_0_0_15px_rgba(66,130,168,0.3),_0_4px_12px_rgba(0,0,0,0.08)] flex items-center justify-center overflow-hidden"
               style={{
                 width: bubble.size,
                 height: bubble.size,
