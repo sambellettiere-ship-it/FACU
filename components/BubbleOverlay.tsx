@@ -27,7 +27,7 @@ export function BubbleOverlay() {
     // Hide the overlay after a short delay to simulate suds clearing away
     const timer = setTimeout(() => {
       setIsVisible(false);
-    }, 2800);
+    }, 4500);
     return () => clearTimeout(timer);
   }, []);
 
