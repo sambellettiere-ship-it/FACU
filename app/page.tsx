@@ -96,22 +96,31 @@ export default function LandingPage() {
     }
   ];
 
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+    setIsMobileMenuOpen(false);
+  };
+
   return (
     <div className="min-h-screen bg-[#F0F9FF]">
       <BubbleOverlay />
       {/* Navigation */}
       <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-md shadow-md py-4' : 'bg-white py-6 shadow-sm'}`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-          <div className="flex items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center relative">
+          <div className="flex items-center pointer-events-none">
             <div className="relative w-72 h-20 sm:w-80 sm:h-24 md:w-96 md:h-28 flex items-center justify-start">
               <Image src="/funkawaytext.png" alt="Funk Away Logo" fill className="object-contain object-left scale-[3] sm:scale-[3.5] md:scale-[4] lg:scale-[4.5] origin-left" priority />
             </div>
           </div>
           
-          <div className="hidden md:flex items-center gap-8">
-            <a href="#services" className="text-sm font-medium hover:text-cyan-600 transition-colors text-slate-600">Services</a>
-            <a href="#pricing" className="text-sm font-medium hover:text-cyan-600 transition-colors text-slate-600">Plans</a>
-            <a href="#contact" className="text-sm font-medium hover:text-cyan-600 transition-colors text-slate-600">Contact</a>
+          <div className="hidden md:flex items-center gap-8 relative z-10">
+            <a href="#services" onClick={(e) => scrollToSection(e, 'services')} className="text-sm font-medium hover:text-cyan-600 transition-colors text-slate-600">Services</a>
+            <a href="#pricing" onClick={(e) => scrollToSection(e, 'pricing')} className="text-sm font-medium hover:text-cyan-600 transition-colors text-slate-600">Plans</a>
+            <a href="#contact" onClick={(e) => scrollToSection(e, 'contact')} className="text-sm font-medium hover:text-cyan-600 transition-colors text-slate-600">Contact</a>
             
             <div className="flex items-center gap-4">
               <div className="flex flex-col items-end">
@@ -123,7 +132,7 @@ export default function LandingPage() {
             </div>
           </div>
 
-          <button className="md:hidden text-cyan-600" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+          <button className="md:hidden text-cyan-600 relative z-10" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
             {isMobileMenuOpen ? <X /> : <Menu className="text-cyan-900" />}
           </button>
         </div>
@@ -139,10 +148,10 @@ export default function LandingPage() {
             className="fixed inset-0 z-40 bg-[#F0F9FF] pt-24 px-6 md:hidden"
           >
             <div className="flex flex-col gap-6 text-lg">
-              <a href="#services" onClick={() => setIsMobileMenuOpen(false)} className="font-medium text-slate-900 border-b border-cyan-100 pb-4">Services</a>
-              <a href="#pricing" onClick={() => setIsMobileMenuOpen(false)} className="font-medium text-slate-900 border-b border-cyan-100 pb-4">Plans & Pricing</a>
-              <a href="#faq" onClick={() => setIsMobileMenuOpen(false)} className="font-medium text-slate-900 border-b border-cyan-100 pb-4">FAQ</a>
-              <a href="#contact" onClick={() => setIsMobileMenuOpen(false)} className="font-medium text-slate-900 border-b border-cyan-100 pb-4">Contact</a>
+              <a href="#services" onClick={(e) => scrollToSection(e, 'services')} className="font-medium text-slate-900 border-b border-cyan-100 pb-4">Services</a>
+              <a href="#pricing" onClick={(e) => scrollToSection(e, 'pricing')} className="font-medium text-slate-900 border-b border-cyan-100 pb-4">Plans & Pricing</a>
+              <a href="#faq" onClick={(e) => scrollToSection(e, 'faq')} className="font-medium text-slate-900 border-b border-cyan-100 pb-4">FAQ</a>
+              <a href="#contact" onClick={(e) => scrollToSection(e, 'contact')} className="font-medium text-slate-900 border-b border-cyan-100 pb-4">Contact</a>
               <a href="tel:2175526182" className="flex items-center gap-3 font-bold text-cyan-700 mt-4">
                 <div className="w-10 h-10 bg-cyan-100 rounded-2xl flex items-center justify-center">
                   <Phone className="w-5 h-5" />
@@ -203,12 +212,12 @@ export default function LandingPage() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
-            <Link href="#contact" className="w-full sm:w-auto bg-gradient-to-br from-orange-400 to-orange-600 hover:scale-105 active:scale-95 text-white px-8 py-4 rounded-2xl font-black text-lg uppercase tracking-wider transition-all flex items-center justify-center shadow-lg shadow-orange-500/30">
+            <a href="#contact" onClick={(e) => scrollToSection(e, 'contact')} className="w-full sm:w-auto bg-gradient-to-br from-orange-400 to-orange-600 hover:scale-105 active:scale-95 text-white px-8 py-4 rounded-2xl font-black text-lg uppercase tracking-wider transition-all flex items-center justify-center shadow-lg shadow-orange-500/30">
               Book Now
-            </Link>
-            <Link href="#services" className="w-full sm:w-auto bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white border border-white/20 px-8 py-4 rounded-2xl font-bold text-lg uppercase tracking-wider transition-all flex items-center justify-center">
+            </a>
+            <a href="#services" onClick={(e) => scrollToSection(e, 'services')} className="w-full sm:w-auto bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white border border-white/20 px-8 py-4 rounded-2xl font-bold text-lg uppercase tracking-wider transition-all flex items-center justify-center">
               View Pricing
-            </Link>
+            </a>
           </motion.div>
         </div>
       </section>
@@ -281,6 +290,11 @@ export default function LandingPage() {
                   href={service.url} 
                   target={service.url.startsWith('http') ? '_blank' : '_self'} 
                   rel={service.url.startsWith('http') ? 'noopener noreferrer' : ''} 
+                  onClick={(e) => {
+                    if (service.url.startsWith('#')) {
+                      scrollToSection(e, service.url.substring(1));
+                    }
+                  }}
                   className="w-full mt-auto block text-center py-4 bg-cyan-50 hover:bg-cyan-100 text-cyan-700 font-bold rounded-2xl transition-colors tracking-wider uppercase text-sm"
                 >
                   Book Now
@@ -299,9 +313,9 @@ export default function LandingPage() {
                 <p className="text-slate-600 text-sm">Prevents infestation with a deep penetrating vapor. Add to any bin cleaning for just <strong className="text-slate-900">$10 per bin</strong>.</p>
               </div>
             </div>
-            <Link href="#contact" className="bg-white border-2 border-orange-200 text-orange-600 hover:bg-orange-100 hover:border-orange-300 px-6 py-3 rounded-2xl font-bold whitespace-nowrap transition-colors">
+            <a href="#contact" onClick={(e) => scrollToSection(e, 'contact')} className="bg-white border-2 border-orange-200 text-orange-600 hover:bg-orange-100 hover:border-orange-300 px-6 py-3 rounded-2xl font-bold whitespace-nowrap transition-colors">
               Request Add-on
-            </Link>
+            </a>
           </div>
         </div>
       </section>
@@ -353,8 +367,9 @@ export default function LandingPage() {
                   <p className={`text-xs mt-4 mb-6 italic ${plan.popular ? 'text-cyan-400' : 'text-slate-500'}`}>{plan.note}</p>
                 )}
 
-                <Link 
+                <a 
                   href="#contact" 
+                  onClick={(e) => scrollToSection(e, 'contact')}
                   className={`w-full block text-center py-4 rounded-2xl font-black transition-all mt-auto tracking-wider uppercase text-sm ${
                     plan.popular 
                       ? 'bg-gradient-to-br from-orange-400 to-orange-600 text-white shadow-lg shadow-orange-500/30 hover:scale-105 active:scale-95' 
@@ -362,7 +377,7 @@ export default function LandingPage() {
                   }`}
                 >
                   Choose {plan.name}
-                </Link>
+                </a>
               </motion.div>
             ))}
           </div>
