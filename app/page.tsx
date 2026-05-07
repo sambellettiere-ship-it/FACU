@@ -6,11 +6,15 @@ import { Phone, ShieldCheck, Mail, Droplets, Trash2, Home, Star, ChevronRight, M
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { BubbleOverlay } from '@/components/BubbleOverlay';
+
 export default function LandingPage() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
@@ -89,27 +93,25 @@ export default function LandingPage() {
 
   return (
     <div className="min-h-screen bg-[#F0F9FF]">
+      <BubbleOverlay />
       {/* Navigation */}
-      <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-[#F0F9FF]/95 backdrop-blur-md shadow-sm py-4' : 'bg-transparent py-6'}`}>
+      <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-md shadow-md py-4' : 'bg-white py-6 shadow-sm'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-          <div className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-cyan-600 rounded-2xl flex items-center justify-center">
-              <Trash2 className="w-6 h-6 text-white" />
+          <div className="flex items-center">
+            <div className="relative w-64 h-16 md:w-80 md:h-20 flex items-center justify-start">
+              <Image src="/funkawaytext.png" alt="Funk Away Logo" fill className="object-contain object-left scale-[2] md:scale-[3] lg:scale-[4] origin-left" priority />
             </div>
-            <span className={`font-display font-black text-xl tracking-tight uppercase ${isScrolled ? 'text-cyan-900' : 'text-white'}`}>
-              Funk Away
-            </span>
           </div>
           
           <div className="hidden md:flex items-center gap-8">
-            <Link href="#services" className={`text-sm font-medium hover:text-cyan-600 transition-colors ${isScrolled ? 'text-slate-600' : 'text-slate-200'}`}>Services</Link>
-            <Link href="#pricing" className={`text-sm font-medium hover:text-cyan-600 transition-colors ${isScrolled ? 'text-slate-600' : 'text-slate-200'}`}>Plans</Link>
-            <Link href="#about" className={`text-sm font-medium hover:text-cyan-600 transition-colors ${isScrolled ? 'text-slate-600' : 'text-slate-200'}`}>About</Link>
+            <Link href="#services" className="text-sm font-medium hover:text-cyan-600 transition-colors text-slate-600">Services</Link>
+            <Link href="#pricing" className="text-sm font-medium hover:text-cyan-600 transition-colors text-slate-600">Plans</Link>
+            <Link href="#about" className="text-sm font-medium hover:text-cyan-600 transition-colors text-slate-600">About</Link>
             
             <div className="flex items-center gap-4">
               <div className="flex flex-col items-end">
-                <span className={`text-[10px] uppercase font-bold tracking-widest ${isScrolled ? 'text-slate-400' : 'text-slate-300'}`}>Call Rob & Ray</span>
-                <a href="tel:2175526182" className={`text-sm font-bold ${isScrolled ? 'text-cyan-900' : 'text-white'}`}>
+                <span className="text-[10px] uppercase font-bold tracking-widest text-slate-400">Call Rob & Ray</span>
+                <a href="tel:2175526182" className="text-sm font-bold text-cyan-900">
                   (217) 552-6182
                 </a>
               </div>
@@ -120,7 +122,7 @@ export default function LandingPage() {
           </div>
 
           <button className="md:hidden text-cyan-600" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-            {isMobileMenuOpen ? <X /> : <Menu className={isScrolled ? 'text-slate-900' : 'text-white'} />}
+            {isMobileMenuOpen ? <X /> : <Menu className="text-cyan-900" />}
           </button>
         </div>
       </nav>
@@ -171,9 +173,9 @@ export default function LandingPage() {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
-            className="w-20 h-20 md:w-28 md:h-28 bg-gradient-to-br from-cyan-400 to-cyan-600 rounded-3xl flex items-center justify-center mb-8 shadow-2xl shadow-cyan-900/50 border border-cyan-300/30"
+            className="w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 relative flex items-center justify-center mb-4 drop-shadow-2xl"
           >
-            <Trash2 className="w-10 h-10 md:w-14 md:h-14 text-white" />
+            <Image src="/funkawaymascots.png" alt="Funk Away Mascots" fill className="object-contain" priority />
           </motion.div>
           
           <motion.h1 
@@ -182,8 +184,8 @@ export default function LandingPage() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="font-display text-5xl md:text-7xl font-black tracking-tight text-white mb-6 leading-[0.95] uppercase"
           >
-            Funk Away <br/>
-            <span className="text-cyan-400">Garbage Cleaning</span>
+        
+            <span className="text-cyan-400">Commercial & Residential Pressure Washing</span>
           </motion.h1>
 
           <motion.p 
@@ -192,7 +194,7 @@ export default function LandingPage() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="max-w-2xl mx-auto text-lg md:text-xl text-slate-200 font-medium mb-10"
           >
-            Professional garbage bin, dumpster, and power washing services. We keep your residential and commercial spaces clean, safe, and odor-free in Champaign-Urbana, IL, and surrounding areas.
+            Professional garbage bin, dumpster, and power washing services. We keep your residential and commercial spaces clean, safe, and odor-free in Champaign-Urbana, IL and surrounding areas.
           </motion.p>
           
           <motion.div 
@@ -359,6 +361,43 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* FAQ Section */}
+      <section id="faq" className="py-24 bg-white relative z-20">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="font-display text-4xl md:text-5xl font-black text-slate-900 mb-6 tracking-tight uppercase"><span className="text-cyan-600">Frequently</span> Asked Questions</h2>
+            <p className="text-lg text-slate-500 font-medium">
+              Have questions about our service? Here are some of the most common answers.
+            </p>
+          </div>
+          <div className="space-y-6">
+            {[
+              {
+                q: "Do I need to be home for the cleaning?",
+                a: "No, you do not need to be home. Just leave your bins or dumpster out and accessible on your scheduled cleaning day."
+              },
+              {
+                q: "What if there is trash in my bin on cleaning day?",
+                a: "Bins must be completely empty of all trash bags and debris before we can clean them. If they are not empty, we may have to reschedule your service."
+              },
+              {
+                q: "Do you use eco-friendly products?",
+                a: "Yes! Our cleaning process uses eco-friendly, biodegradable solutions that are safe for the environment, your family, and pets."
+              },
+              {
+                q: "How often should I have my bins cleaned?",
+                a: "We recommend a monthly cleaning to keep odors, bacteria, and pests away. We offer maintenance plans to make this easy and affordable."
+              }
+            ].map((faq, i) => (
+              <div key={i} className="bg-[#F0F9FF] rounded-3xl p-8 border border-cyan-100 shadow-sm hover:shadow-md transition-shadow">
+                <h3 className="font-bold text-slate-900 text-lg mb-3">{faq.q}</h3>
+                <p className="text-slate-600">{faq.a}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Before / After Gallery (Placeholder) */}
       <section className="py-24 bg-cyan-950 text-white border-t border-cyan-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -422,47 +461,39 @@ export default function LandingPage() {
               </div>
             </div>
             
-            <div className="md:w-1/2 p-12">
-              <h3 className="font-display text-2xl font-black text-slate-900 mb-2 uppercase tracking-wide">Request Service</h3>
-              <p className="text-slate-500 mb-8 text-sm font-medium">Please inform us if you have additional garbage bins that need disinfecting.</p>
+            <div className="md:w-1/2 p-2 sm:p-8 md:p-12 bg-white">
+              <h3 className="font-display text-2xl font-black text-slate-900 mb-2 uppercase tracking-wide">Book Direct & Pay Securely</h3>
+              <p className="text-slate-500 mb-6 text-sm font-medium">Select your service, choose a time, and pay securely via Square directly through our booking calendar below.</p>
               
-              <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); alert("Thanks for your interest! In production, this would send your message directly to our team."); }}>
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-wider ml-2 mb-1.5">First Name</label>
-                    <input type="text" data-lpignore="true" required className="w-full bg-[#F0F9FF] border-0 rounded-2xl px-4 py-3 focus:ring-2 ring-cyan-500 outline-none transition-all text-slate-900" />
+              <div className="w-full h-full min-h-[600px] rounded-2xl overflow-hidden border border-cyan-100 shadow-inner bg-slate-50 relative">
+                {/* INSTRUCTIONS: Replace the src below with your actual Acuity Scheduling URL */}
+                {mounted ? (
+                  <iframe 
+                    src="https://app.acuityscheduling.com/schedule.php?owner=YOUR_ACUITY_OWNER_ID" 
+                    title="Schedule Appointment" 
+                    width="100%" 
+                    height="100%" 
+                    frameBorder="0"
+                    className="absolute inset-0 w-full h-full"
+                  ></iframe>
+                ) : (
+                  <div className="absolute inset-0 flex items-center justify-center bg-slate-100">
+                    <span className="text-slate-400 font-medium">Loading booking portal...</span>
                   </div>
-                  <div>
-                    <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-wider ml-2 mb-1.5">Last Name</label>
-                    <input type="text" data-lpignore="true" required className="w-full bg-[#F0F9FF] border-0 rounded-2xl px-4 py-3 focus:ring-2 ring-cyan-500 outline-none transition-all text-slate-900" />
+                )}
+                
+                {/* Fallback overlay in case of missing ID, to make it look good in preview */}
+                <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center p-8 text-center bg-white/80 backdrop-blur-sm z-10 border-2 border-dashed border-cyan-300 rounded-2xl">
+                  <div className="w-16 h-16 bg-cyan-100 rounded-2xl flex items-center justify-center mb-4">
+                    <Trash2 className="w-8 h-8 text-cyan-500" />
+                  </div>
+                  <h4 className="font-bold text-slate-900 text-lg mb-2">Acuity Scheduling Portal</h4>
+                  <p className="text-slate-500 text-sm mb-4">Your interactive scheduling calendar will appear here.</p>
+                  <div className="bg-orange-100 text-orange-800 text-xs font-bold px-3 py-1.5 rounded-lg border border-orange-200">
+                    Replace 'YOUR_ACUITY_OWNER_ID' with your Acuity ID in the code!
                   </div>
                 </div>
-                <div>
-                  <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-wider ml-2 mb-1.5">Phone Number</label>
-                  <input type="tel" data-lpignore="true" required className="w-full bg-[#F0F9FF] border-0 rounded-2xl px-4 py-3 focus:ring-2 ring-cyan-500 outline-none transition-all text-slate-900" />
-                </div>
-                <div>
-                  <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-wider ml-2 mb-1.5">Service Needed</label>
-                  <select className="w-full bg-[#F0F9FF] border-0 rounded-2xl px-4 py-3 focus:ring-2 ring-cyan-500 outline-none transition-all text-slate-900" required>
-                    <option value="">Select a service...</option>
-                    <option value="residential">Residential Bin Cleaning</option>
-                    <option value="commercial">Commercial Dumpsters</option>
-                    <option value="powerwashing">Power Wash (Home/Pavement)</option>
-                    <option value="basic_plan">Basic Maintenance Plan</option>
-                    <option value="premium_plan">Premium Maintenance Plan</option>
-                    <option value="vip_plan">VIP Maintenance Plan</option>
-                  </select>
-                </div>
-                <div className="pt-4">
-                  <div className="text-[11px] text-orange-700 bg-orange-50 p-4 rounded-2xl mb-6 border border-orange-100 flex gap-2 items-start font-bold">
-                    <Trash2 className="w-4 h-4 flex-shrink-0 mt-0.5" />
-                    Please make sure there isn&apos;t any trash bags inside of your garbage bins or dumpsters the day of your scheduled cleaning service.
-                  </div>
-                  <button type="submit" className="w-full bg-gradient-to-br from-orange-400 to-orange-600 shadow-lg shadow-orange-200 text-white font-black uppercase tracking-widest py-4 px-4 rounded-2xl transition-all hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2">
-                    Submit Request <ArrowRight className="w-5 h-5" />
-                  </button>
-                </div>
-              </form>
+              </div>
             </div>
           </div>
         </div>
@@ -471,9 +502,9 @@ export default function LandingPage() {
       {/* Footer */}
       <footer className="bg-slate-900 py-12 text-center text-slate-400 border-t border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-center gap-2 mb-6 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all cursor-pointer">
-            <div className="w-10 h-10 bg-cyan-600 rounded-2xl flex items-center justify-center">
-              <Trash2 className="w-6 h-6 text-white" />
+          <div className="flex items-center justify-center gap-3 mb-6 opacity-80 hover:opacity-100 transition-all cursor-pointer">
+            <div className="relative w-16 h-16 flex items-center justify-center">
+              <Image src="/funkawaymascots.png" alt="Company Logo" fill className="object-contain" />
             </div>
             <span className="font-display font-black text-2xl tracking-tight text-white uppercase">
               Funk Away <span className="text-cyan-500">GCS</span>

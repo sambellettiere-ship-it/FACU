@@ -1,1 +1,46 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+
+@theme {
+  /* Brand Blue: #174e7b overrides cyan */
+  --color-cyan-50: #eef6fc;
+  --color-cyan-100: #ccdff0;
+  --color-cyan-200: #abc8e3;
+  --color-cyan-300: #88b1d7;
+  --color-cyan-400: #649abc;
+  --color-cyan-500: #4282a8;
+  --color-cyan-600: #174e7b; /* BRAND BLUE */
+  --color-cyan-700: #113c5f;
+  --color-cyan-800: #0c2a44;
+  --color-cyan-900: #071929;
+  --color-cyan-950: #030c14;
+
+  /* Brand Brown: #794c2f overrides orange */
+  --color-orange-50: #f5eee9;
+  --color-orange-100: #ebdcd2;
+  --color-orange-200: #d6b8a2;
+  --color-orange-300: #c1916e;
+  --color-orange-400: #a76f47;
+  --color-orange-500: #935d39;
+  --color-orange-600: #794c2f; /* BRAND BROWN */
+  --color-orange-700: #5e3b24;
+  --color-orange-800: #442a1a;
+  --color-orange-900: #291910;
+  --color-orange-950: #140d08;
+
+  /* Brand Dark/Gray: #323a48 & #999595 override slate */
+  --color-slate-50: #f8f8f9;
+  --color-slate-100: #eef0f2;
+  --color-slate-200: #dadddf;
+  --color-slate-300: #c1c1c1;
+  --color-slate-400: #aba8a8;
+  --color-slate-500: #999595; /* BRAND GRAY */
+  --color-slate-600: #777d8a;
+  --color-slate-700: #586377;
+  --color-slate-800: #434d5f;
+  --color-slate-900: #323a48; /* BRAND DARK */
+  --color-slate-950: #1d222b;
+
+  /* Brand Green: #678340 overrides emerald */
+  --color-emerald-500: #678340; /* BRAND GREEN */
+}
