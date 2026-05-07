@@ -157,7 +157,7 @@ export default function LandingPage() {
       </AnimatePresence>
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+      <section className="relative pt-24 pb-12 lg:pt-32 lg:pb-20 overflow-hidden">
         <div className="absolute inset-0 z-0 bg-cyan-900">
           <Image 
             src="/hero-background.jpg" 
@@ -175,7 +175,7 @@ export default function LandingPage() {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
-            className="w-72 h-72 sm:w-80 sm:h-80 md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px] xl:w-[600px] xl:h-[600px] relative flex items-center justify-center mb-4 drop-shadow-2xl"
+            className="-mt-8 md:-mt-16 w-72 h-72 sm:w-80 sm:h-80 md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px] xl:w-[600px] xl:h-[600px] relative flex items-center justify-center -mb-8 lg:-mb-12 drop-shadow-2xl"
           >
             <Image src="/funkawaymascots.png" alt="Funk Away Mascots" fill className="object-contain" priority />
           </motion.div>
