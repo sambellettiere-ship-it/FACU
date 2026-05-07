@@ -51,7 +51,7 @@ export function BubbleOverlay() {
           {bubbles.map((bubble) => (
             <motion.div
               key={bubble.id}
-              className="absolute rounded-full border border-white/80 bg-white/30 backdrop-blur-[2px] shadow-[inset_0_0_20px_rgba(255,255,255,0.9)] flex items-center justify-center overflow-hidden"
+              className="absolute rounded-full border border-cyan-300/60 bg-white/40 backdrop-blur-[3px] shadow-[inset_0_0_15px_rgba(66,130,168,0.3),_0_4px_12px_rgba(0,0,0,0.08)] flex items-center justify-center overflow-hidden"
               style={{
                 width: bubble.size,
                 height: bubble.size,
@@ -75,8 +75,9 @@ export function BubbleOverlay() {
                 ease: "linear"
               }}
             >
-              {/* Inner highlight to make it look like a soap bubble */}
-              <div className="absolute top-[15%] left-[20%] w-[30%] h-[30%] rounded-full bg-white/80 blur-[2px]" />
+              {/* Inner highlights to make it look like a soap bubble */}
+              <div className="absolute top-[15%] left-[20%] w-[35%] h-[35%] rounded-full bg-white/90 blur-[1px] rotate-45" />
+              <div className="absolute bottom-[10%] right-[15%] w-[40%] h-[20%] rounded-full bg-cyan-300/40 blur-[3px] -rotate-12" />
             </motion.div>
           ))}
 
