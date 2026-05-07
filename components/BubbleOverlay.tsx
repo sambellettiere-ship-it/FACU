@@ -91,7 +91,7 @@ export function BubbleOverlay() {
                 y: [0, -10, 0]
               }}
               transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-              className="mb-8 relative w-48 h-48 md:w-64 md:h-64 flex items-center justify-center drop-shadow-2xl"
+              className="mb-8 relative w-72 h-72 sm:w-80 sm:h-80 md:w-[400px] md:h-[400px] flex items-center justify-center drop-shadow-2xl"
             >
               <Image src="/funkawaymascots.png" alt="Company Logo" fill className="object-contain" priority />
             </motion.div>

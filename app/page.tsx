@@ -98,8 +98,8 @@ export default function LandingPage() {
       <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-md shadow-md py-4' : 'bg-white py-6 shadow-sm'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
           <div className="flex items-center">
-            <div className="relative w-64 h-16 md:w-80 md:h-20 flex items-center justify-start">
-              <Image src="/funkawaytext.png" alt="Funk Away Logo" fill className="object-contain object-left scale-[2] md:scale-[3] lg:scale-[4] origin-left" priority />
+            <div className="relative w-72 h-20 sm:w-80 sm:h-24 md:w-96 md:h-28 flex items-center justify-start">
+              <Image src="/funkawaytext.png" alt="Funk Away Logo" fill className="object-contain object-left scale-[3] sm:scale-[3.5] md:scale-[4] lg:scale-[4.5] origin-left" priority />
             </div>
           </div>
           
@@ -173,7 +173,7 @@ export default function LandingPage() {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
-            className="w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 relative flex items-center justify-center mb-4 drop-shadow-2xl"
+            className="w-72 h-72 sm:w-80 sm:h-80 md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px] xl:w-[600px] xl:h-[600px] relative flex items-center justify-center mb-4 drop-shadow-2xl"
           >
             <Image src="/funkawaymascots.png" alt="Funk Away Mascots" fill className="object-contain" priority />
           </motion.div>
