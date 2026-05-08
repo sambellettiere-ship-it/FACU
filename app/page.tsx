@@ -29,8 +29,8 @@ export default function LandingPage() {
       title: 'Residential Bin Cleaning',
       icon: <Trash2 className="w-8 h-8 text-emerald-500" />,
       description: 'Disinfect and power wash your home garbage bins to eliminate odors and bacteria.',
-      price: '$40 first bin',
-      subPrice: '+$12.99 per additional bin',
+      price: '$48 first bin',
+      subPrice: '+$14.99 per additional bin',
       features: ['Deep penetrating vapor wash', 'Odor elimination', 'Bacteria and germ removal', 'Optional pest strips ($10)'],
       url: 'https://FunkAwayGCS.as.me/?appointmentType=45588183'
     },
@@ -57,7 +57,7 @@ export default function LandingPage() {
   const plans = [
     {
       name: 'Basic Plan',
-      price: '$55',
+      price: '$65',
       frequency: '/ month',
       description: 'Keep your bins fresh and odor-free.',
       features: [
@@ -69,7 +69,7 @@ export default function LandingPage() {
     },
     {
       name: 'Premium Plan',
-      price: '$70',
+      price: '$85',
       frequency: '/ month',
       description: 'Ideal for large families or frequent odor issues.',
       features: [
@@ -82,7 +82,7 @@ export default function LandingPage() {
     },
     {
       name: 'VIP Plan',
-      price: '$100',
+      price: '$120',
       frequency: '/ month',
       description: 'The ultimate cleanliness standard.',
       features: [
