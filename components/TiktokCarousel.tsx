@@ -68,6 +68,7 @@ export function TiktokCarousel() {
                 src={`https://www.tiktok.com/embed/v2/${videoId}?lang=en-US`}
                 allow="encrypted-media;"
                 frameBorder="0"
+                scrolling="no"
                 title={`TikTok Video ${index + 1}`}
               ></iframe>
             </div>
