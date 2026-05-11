@@ -60,11 +60,11 @@ export function TiktokCarousel() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
             viewport={{ once: true, margin: "-50px" }}
-            className="snap-center shrink-0 w-[325px] flex justify-center bg-cyan-900/50 rounded-3xl overflow-hidden border border-cyan-800 shadow-2xl relative"
+            className="snap-center shrink-0 w-[325px] h-[580px] flex justify-center bg-cyan-900/50 rounded-3xl overflow-hidden border border-cyan-800 shadow-2xl relative"
           >
-            <div className="w-full relative pt-[177%]"> {/* approx 16:9 vertical ratio */}
+            <div className="w-full h-full relative">
               <iframe
-                className="absolute top-0 left-0 w-full h-full"
+                className="absolute top-0 left-0 w-full h-[800px] pointer-events-auto"
                 src={`https://www.tiktok.com/embed/v2/${videoId}?lang=en-US`}
                 allow="encrypted-media;"
                 frameBorder="0"
@@ -78,6 +78,9 @@ export function TiktokCarousel() {
               <div className="w-12 h-12 bg-cyan-900/50 rounded-full animate-pulse mb-4"></div>
               <span className="text-sm font-bold uppercase tracking-wider">Loading TikTok...</span>
             </div>
+            
+            {/* We also add a transparent overlay specifically to capture scrolls and drag events so the carousel remains draggable */}
+            <div className="absolute inset-0 z-10 pointer-events-none"></div>
           </motion.div>
         ))}
       </div>

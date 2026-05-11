@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Phone, ShieldCheck, Mail, Droplets, Trash2, Home, Star, ChevronRight, Menu, X, CheckCircle, ArrowRight, MapPin } from 'lucide-react';
+import { Phone, ShieldCheck, Mail, Droplets, Trash2, Home, Star, ChevronRight, Menu, X, CheckCircle, ArrowRight, MapPin, Facebook } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import Script from 'next/script';
@@ -313,14 +313,28 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* TikTok Showcase Carousel */}
+      {/* TikTok Showcase Carousel & Socials */}
       <section className="py-24 bg-cyan-950 text-white border-t border-cyan-900 overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-3xl mx-auto mb-16 px-4">
             <h2 className="font-display text-4xl md:text-6xl font-black mb-6 tracking-tight uppercase"><span className="text-cyan-400">The Proof</span> is in the Wash</h2>
-            <p className="text-lg text-cyan-200 font-medium">
+            <p className="text-lg text-cyan-200 font-medium mb-10">
               Check out our recent work! We don&apos;t stop at just power washing garbage bins and dumpsters. We power wash pavement areas, home siding, and anything else you need.
             </p>
+            
+            <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 mb-12">
+              <a href="https://www.facebook.com/FunkAwayGCS7434" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-3 px-8 py-4 rounded-2xl bg-[#1877F2] text-white hover:scale-105 active:scale-95 transition-all font-bold text-lg uppercase tracking-wider shadow-lg shadow-blue-500/20">
+                <Facebook className="w-6 h-6" />
+                <span>Follow on Facebook</span>
+              </a>
+              <a href="https://nextdoor.com/page/funk-away-garbage-cleaning-service-llc-westville-il?init_source=search&query=funk+away+gcs&referrer=nextdoor" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-3 px-8 py-4 rounded-2xl bg-[#8ED081] hover:bg-[#7cc170] text-slate-900 hover:scale-105 active:scale-95 transition-all font-bold text-lg uppercase tracking-wider shadow-lg shadow-green-500/20">
+                <div className="relative w-6 h-6 flex items-center justify-center">
+                  <Home className="w-6 h-6 absolute opacity-30" />
+                  <span className="font-bold text-[10px] z-10 tracking-tighter">ND</span>
+                </div>
+                <span>Find on Nextdoor</span>
+              </a>
+            </div>
           </div>
 
           <TiktokCarousel />
@@ -432,6 +446,15 @@ export default function LandingPage() {
             <a href="mailto:funkaway_gcs@yahoo.com" className="hover:text-cyan-400 transition-colors">funkaway_gcs@yahoo.com</a>
             <span className="text-slate-700">|</span>
             <a href="tel:2175526182" className="hover:text-cyan-400 transition-colors">(217) 552-6182</a>
+          </div>
+          <div className="flex justify-center gap-4 mb-8">
+            <a href="https://www.facebook.com/FunkAwayGCS7434" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-[#1877F2] hover:text-white transition-colors" title="Facebook">
+              <Facebook className="w-5 h-5" />
+            </a>
+            <a href="https://nextdoor.com/page/funk-away-garbage-cleaning-service-llc-westville-il?init_source=search&query=funk+away+gcs&referrer=nextdoor" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-[#8ED081] hover:text-white transition-colors" title="Nextdoor">
+              <Home className="w-5 h-5 absolute opacity-20" />
+              <span className="font-bold text-xs z-10 text-slate-400 group-hover:text-white tracking-tighter">ND</span>
+            </a>
           </div>
           <p className="text-xs text-slate-600 whitespace-nowrap">
             &copy; {new Date().getFullYear()} Funk Away Garbage Cleaning Service. All rights reserved.
