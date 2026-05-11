@@ -54,48 +54,6 @@ export default function LandingPage() {
     }
   ];
 
-  const plans = [
-    {
-      name: 'Basic Plan',
-      price: '$65',
-      frequency: '/ month',
-      description: 'Keep your bins fresh and odor-free.',
-      features: [
-        'One cleaning per month',
-        'Disinfect & deodorize',
-        'Exterior & interior spray'
-      ],
-      popular: false,
-    },
-    {
-      name: 'Premium Plan',
-      price: '$85',
-      frequency: '/ month',
-      description: 'Ideal for large families or frequent odor issues.',
-      features: [
-        'Two cleanings per month',
-        'Disinfect & deodorize',
-        '10% off soft/power washing for home',
-        'Priority scheduling'
-      ],
-      popular: true,
-    },
-    {
-      name: 'VIP Plan',
-      price: '$120',
-      frequency: '/ month',
-      description: 'The ultimate cleanliness standard.',
-      features: [
-        'Four cleanings per month',
-        'Disinfect & deodorize',
-        'One FREE soft wash per year*',
-        'Includes garbage guard pest strips'
-      ],
-      note: '*Requires active subscription for 150 days.',
-      popular: false,
-    }
-  ];
-
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault();
     const element = document.getElementById(id);
@@ -119,7 +77,6 @@ export default function LandingPage() {
           
           <div className="hidden md:flex items-center gap-8 relative z-10">
             <a href="#services" onClick={(e) => scrollToSection(e, 'services')} className="text-sm font-medium hover:text-cyan-600 transition-colors text-slate-600">Services</a>
-            <a href="#pricing" onClick={(e) => scrollToSection(e, 'pricing')} className="text-sm font-medium hover:text-cyan-600 transition-colors text-slate-600">Plans</a>
             <a href="#contact" onClick={(e) => scrollToSection(e, 'contact')} className="text-sm font-medium hover:text-cyan-600 transition-colors text-slate-600">Contact</a>
             
             <div className="flex items-center gap-4">
@@ -149,7 +106,6 @@ export default function LandingPage() {
           >
             <div className="flex flex-col gap-6 text-lg">
               <a href="#services" onClick={(e) => scrollToSection(e, 'services')} className="font-medium text-slate-900 border-b border-cyan-100 pb-4">Services</a>
-              <a href="#pricing" onClick={(e) => scrollToSection(e, 'pricing')} className="font-medium text-slate-900 border-b border-cyan-100 pb-4">Plans & Pricing</a>
               <a href="#faq" onClick={(e) => scrollToSection(e, 'faq')} className="font-medium text-slate-900 border-b border-cyan-100 pb-4">FAQ</a>
               <a href="#contact" onClick={(e) => scrollToSection(e, 'contact')} className="font-medium text-slate-900 border-b border-cyan-100 pb-4">Contact</a>
               <a href="tel:2175526182" className="flex items-center gap-3 font-bold text-cyan-700 mt-4">
@@ -216,7 +172,7 @@ export default function LandingPage() {
               Book Now
             </a>
             <a href="#services" onClick={(e) => scrollToSection(e, 'services')} className="w-full sm:w-auto bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white border border-white/20 px-8 py-4 rounded-2xl font-bold text-lg uppercase tracking-wider transition-all flex items-center justify-center">
-              View Pricing
+              View Services
             </a>
           </motion.div>
         </div>
@@ -320,71 +276,6 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Subscription Plans */}
-      <section id="pricing" className="py-24 bg-white relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="font-display text-4xl md:text-6xl font-black text-slate-900 mb-6 tracking-tight uppercase">Maintenance <span className="text-cyan-600">Plans</span></h2>
-            <p className="text-lg text-slate-500 font-medium">
-              Save money and never worry about dirty bins again. Choose a monthly plan that fits your needs.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {plans.map((plan, idx) => (
-              <motion.div 
-                key={idx}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                className={`relative rounded-[40px] p-8 transition-transform duration-300 ${plan.popular ? 'bg-cyan-900 text-white shadow-2xl shadow-cyan-900/20 scale-105 z-10' : 'bg-white border border-cyan-100 shadow-[0_10px_25px_-5px_rgba(8,145,178,0.1)] hover:scale-[1.02]'}`}
-              >
-                {plan.popular && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-yellow-400 text-yellow-900 px-4 py-1.5 rounded-2xl text-xs font-black tracking-wider uppercase shadow-md rotate-3">
-                    Most Popular
-                  </div>
-                )}
-                
-                <h3 className={`font-display text-2xl font-black mb-2 ${plan.popular ? 'text-white' : 'text-slate-900'}`}>{plan.name}</h3>
-                <p className={`text-sm mb-6 min-h-[40px] font-medium ${plan.popular ? 'text-cyan-200' : 'text-slate-500'}`}>{plan.description}</p>
-                
-                <div className="flex items-baseline gap-1 mb-8">
-                  <span className={`font-display text-5xl font-black ${plan.popular ? 'text-white' : 'text-cyan-600'}`}>{plan.price}</span>
-                  <span className={`font-bold text-xs uppercase tracking-widest ${plan.popular ? 'text-cyan-400' : 'text-slate-400'}`}>{plan.frequency}</span>
-                </div>
-
-                <ul className="space-y-4 mb-8">
-                  {plan.features.map((feature, fIdx) => (
-                    <li key={fIdx} className="flex items-start gap-3">
-                      <CheckCircle className={`w-5 h-5 flex-shrink-0 ${plan.popular ? 'text-cyan-400' : 'text-cyan-500'}`} />
-                      <span className={`text-sm font-medium ${plan.popular ? 'text-slate-200' : 'text-slate-600'}`}>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                {plan.note && (
-                  <p className={`text-xs mt-4 mb-6 italic ${plan.popular ? 'text-cyan-400' : 'text-slate-500'}`}>{plan.note}</p>
-                )}
-
-                <a 
-                  href="#contact" 
-                  onClick={(e) => scrollToSection(e, 'contact')}
-                  className={`w-full block text-center py-4 rounded-2xl font-black transition-all mt-auto tracking-wider uppercase text-sm ${
-                    plan.popular 
-                      ? 'bg-gradient-to-br from-orange-400 to-orange-600 text-white shadow-lg shadow-orange-500/30 hover:scale-105 active:scale-95' 
-                      : 'bg-cyan-50 hover:bg-cyan-100 text-cyan-700'
-                  }`}
-                >
-                  Choose {plan.name}
-                </a>
-              </motion.div>
-            ))}
-          </div>
-
-        </div>
-      </section>
-
       {/* FAQ Section */}
       <section id="faq" className="py-24 bg-white relative z-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -467,6 +358,15 @@ export default function LandingPage() {
                     <a href="mailto:funkaway_gcs@yahoo.com" className="text-lg font-bold text-white hover:text-cyan-100 transition-colors">funkaway_gcs@yahoo.com</a>
                   </div>
                 </div>
+              </div>
+
+              <div className="mt-12 bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 relative z-10">
+                <h4 className="font-bold text-white text-lg mb-2 flex items-center gap-2">
+                  <Star className="w-5 h-5 text-yellow-400" /> Subscription Plans
+                </h4>
+                <p className="text-cyan-50 text-sm leading-relaxed">
+                  Interested in regular maintenance? Contact us via text message, email, or any of our social media accounts to sign up for a subscription plan!
+                </p>
               </div>
             </div>
             
