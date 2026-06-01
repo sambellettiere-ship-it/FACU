@@ -76,7 +76,9 @@ export default function LandingPage() {
           </div>
           
           <div className="hidden md:flex items-center gap-8 relative z-10">
+            <a href="#about" onClick={(e) => scrollToSection(e, 'about')} className="text-sm font-medium hover:text-cyan-600 transition-colors text-slate-600">About Us</a>
             <a href="#services" onClick={(e) => scrollToSection(e, 'services')} className="text-sm font-medium hover:text-cyan-600 transition-colors text-slate-600">Services</a>
+            <Link href="/additional-services" className="text-sm font-medium hover:text-cyan-600 transition-colors text-slate-600">Additional Services</Link>
             <a href="#contact" onClick={(e) => scrollToSection(e, 'contact')} className="text-sm font-medium hover:text-cyan-600 transition-colors text-slate-600">Contact</a>
             
             <div className="flex items-center gap-4">
@@ -105,7 +107,9 @@ export default function LandingPage() {
             className="fixed inset-0 z-40 bg-[#F0F9FF] pt-24 px-6 md:hidden"
           >
             <div className="flex flex-col gap-6 text-lg">
+              <a href="#about" onClick={(e) => scrollToSection(e, 'about')} className="font-medium text-slate-900 border-b border-cyan-100 pb-4">About Us</a>
               <a href="#services" onClick={(e) => scrollToSection(e, 'services')} className="font-medium text-slate-900 border-b border-cyan-100 pb-4">Services</a>
+              <Link href="/additional-services" className="font-medium text-slate-900 border-b border-cyan-100 pb-4">Additional Services</Link>
               <a href="#faq" onClick={(e) => scrollToSection(e, 'faq')} className="font-medium text-slate-900 border-b border-cyan-100 pb-4">FAQ</a>
               <a href="#contact" onClick={(e) => scrollToSection(e, 'contact')} className="font-medium text-slate-900 border-b border-cyan-100 pb-4">Contact</a>
               <a href="tel:2175526182" className="flex items-center gap-3 font-bold text-cyan-700 mt-4">
@@ -200,6 +204,63 @@ export default function LandingPage() {
           </div>
         </div>
       </div>
+
+      {/* About Us Section */}
+      <section id="about" className="py-24 bg-white relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col lg:flex-row items-center gap-16">
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="w-full lg:w-1/2 relative flex justify-center"
+            >
+              <div className="w-full max-w-sm aspect-[9/16] relative rounded-[40px] overflow-hidden shadow-2xl border-4 border-cyan-50">
+                <Image src="/aboutus.png" alt="Rob and Ray" fill className="object-cover" />
+              </div>
+            </motion.div>
+            
+            <motion.div 
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="w-full lg:w-1/2"
+            >
+              <h2 className="font-display text-4xl md:text-5xl font-black text-slate-900 mb-6 tracking-tight uppercase">
+                Hey yall, we're <span className="text-cyan-600">ROB & RAY</span>
+              </h2>
+              
+              <div className="space-y-4 text-lg text-slate-600 font-medium">
+                <p>
+                  ONE thing for certain and TWO things for sure. Nobody likes to clean their Garbage bins especially with maggots and those annoying flies.
+                </p>
+                <p>
+                  But have no fear ROB & RAY are here, we have garbage guard pest strips to get rid of those disgusting little critters. Also, nobody likes that trifling smell that lingers around.
+                </p>
+                <p className="text-xl font-bold text-slate-900 italic py-2">
+                  "Let us wash that STANK the FUNK AWAY"
+                </p>
+                <p>
+                  By cleaning and disinfecting your dumpsters and bins. We also clean and disinfect dumpster pad areas as well. We appreciate yall for stopping by and letting us inform you on what we offer, we can promise that you won't be disappointed.
+                </p>
+                <p className="font-bold text-cyan-800">
+                  Please book your appointment now and we will stop by and get the job done ASAP.
+                </p>
+              </div>
+
+              <div className="mt-8 pt-6 border-t border-slate-100">
+                <a 
+                  href="#contact" 
+                  onClick={(e) => scrollToSection(e, 'contact')} 
+                  className="inline-flex items-center gap-2 bg-gradient-to-br from-orange-400 to-orange-600 text-white px-8 py-4 rounded-2xl font-black text-lg uppercase tracking-wider transition-all shadow-lg shadow-orange-500/30 hover:scale-105 active:scale-95"
+                >
+                  Book Appointment Now <ArrowRight className="w-5 h-5" />
+                </a>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
 
       {/* Services Section */}
       <section id="services" className="py-24 bg-[#F0F9FF]">
