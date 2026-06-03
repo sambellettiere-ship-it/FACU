@@ -32,7 +32,8 @@ export default function LandingPage() {
       price: '$48 first bin',
       subPrice: '+$14.99 per additional bin',
       features: ['Deep penetrating vapor wash', 'Odor elimination', 'Bacteria and germ removal', 'Optional pest strips ($10)'],
-      url: 'https://FunkAwayGCS.as.me/?appointmentType=45588183'
+      url: 'https://FunkAwayGCS.as.me/?appointmentType=45588183',
+      learnMoreUrl: '/services/residential-bin-cleaning'
     },
     {
       title: 'Commercial Dumpsters',
@@ -41,7 +42,8 @@ export default function LandingPage() {
       price: 'From $175',
       subPrice: '3-8 yard commercial or roll-off',
       features: ['3-8 yard dumpsters ($175)', 'Roll-off commercial ($250)', 'Dumpster pad cleaning available', 'Custom contracts available'],
-      url: 'https://FunkAwayGCS.as.me/?appointmentType=45596308'
+      url: 'https://FunkAwayGCS.as.me/?appointmentType=45596308',
+      learnMoreUrl: '/services/commercial-dumpsters'
     },
     {
       title: 'Power Washing',
@@ -50,7 +52,8 @@ export default function LandingPage() {
       price: 'Custom Quote',
       subPrice: 'Depends on area size',
       features: ['Home exterior soft wash', 'Driveways & pavements', 'Dumpster pad areas ($145-$400)', 'Siding and decks'],
-      url: '#contact'
+      url: '#contact',
+      learnMoreUrl: '/services/power-washing'
     }
   ];
 
@@ -303,19 +306,27 @@ export default function LandingPage() {
                   ))}
                 </ul>
 
-                <a 
-                  href={service.url} 
-                  target={service.url.startsWith('http') ? '_blank' : '_self'} 
-                  rel={service.url.startsWith('http') ? 'noopener noreferrer' : ''} 
-                  onClick={(e) => {
-                    if (service.url.startsWith('#')) {
-                      scrollToSection(e, service.url.substring(1));
-                    }
-                  }}
-                  className="w-full mt-auto block text-center py-4 bg-cyan-50 hover:bg-cyan-100 text-cyan-700 font-bold rounded-2xl transition-colors tracking-wider uppercase text-sm"
-                >
-                  Book Now
-                </a>
+                <div className="mt-auto space-y-3">
+                  <a 
+                    href={service.url} 
+                    target={service.url.startsWith('http') ? '_blank' : '_self'} 
+                    rel={service.url.startsWith('http') ? 'noopener noreferrer' : ''} 
+                    onClick={(e) => {
+                      if (service.url.startsWith('#')) {
+                        scrollToSection(e, service.url.substring(1));
+                      }
+                    }}
+                    className="w-full block text-center py-4 bg-cyan-600 hover:bg-cyan-700 text-white font-bold rounded-2xl transition-colors tracking-wider uppercase text-sm shadow-md"
+                  >
+                    Book Now
+                  </a>
+                  <Link 
+                    href={service.learnMoreUrl} 
+                    className="w-full block text-center py-4 bg-cyan-50 hover:bg-cyan-100 text-cyan-700 font-bold rounded-2xl transition-colors tracking-wider uppercase text-sm"
+                  >
+                    Learn More
+                  </Link>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -517,6 +528,26 @@ export default function LandingPage() {
               <span className="font-bold text-xs z-10 text-slate-400 group-hover:text-white tracking-tighter">ND</span>
             </a>
           </div>
+          <div className="max-w-4xl mx-auto border-t border-slate-800 my-8 pt-8 text-center text-xs text-slate-500">
+            <h4 className="font-bold text-slate-400 uppercase tracking-widest mb-4">Service Areas</h4>
+            <div className="flex flex-wrap justify-center gap-x-6 gap-y-3">
+              {[
+                { slug: 'champaign-il', name: 'Champaign, IL' },
+                { slug: 'urbana-il', name: 'Urbana, IL' },
+                { slug: 'savoy-il', name: 'Savoy, IL' },
+                { slug: 'mahomet-il', name: 'Mahomet, IL' },
+                { slug: 'danville-il', name: 'Danville, IL' },
+                { slug: 'westville-il', name: 'Westville, IL' },
+                { slug: 'st-joseph-il', name: 'St. Joseph, IL' },
+                { slug: 'rantoul-il', name: 'Rantoul, IL' }
+              ].map(loc => (
+                <Link key={loc.slug} href={`/locations/${loc.slug}`} className="hover:text-cyan-400 transition-colors">
+                  {loc.name}
+                </Link>
+              ))}
+            </div>
+          </div>
+          
           <p className="text-xs text-slate-600 whitespace-nowrap">
             &copy; {new Date().getFullYear()} Funk Away Garbage Cleaning Service. All rights reserved.
           </p>

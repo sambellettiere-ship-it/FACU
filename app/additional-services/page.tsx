@@ -8,23 +8,28 @@ export default async function AdditionalServices() {
   const services = [
     {
       title: "Gutters",
-      description: "Keep your gutters clear of debris to prevent water damage and maintain proper drainage."
+      description: "Keep your gutters clear of debris to prevent water damage and maintain proper drainage.",
+      href: "/services/gutter-cleaning"
     },
     {
       title: "Interior & Exterior Windows",
-      description: "Crystal clear windows inside and out, improving your home's appearance and natural light."
+      description: "Crystal clear windows inside and out, improving your home's appearance and natural light.",
+      href: "/services/window-cleaning"
     },
     {
       title: "Patios and Decks (Cleaning & Staining)",
-      description: "Restore your outdoor living spaces with deep cleaning and high-quality protective staining."
+      description: "Restore your outdoor living spaces with deep cleaning and high-quality protective staining.",
+      href: "/services/patio-deck-cleaning"
     },
     {
       title: "Fence Cleaning & Staining",
-      description: "Revitalize your fence's look and extend its lifespan with professional cleaning and staining."
+      description: "Revitalize your fence's look and extend its lifespan with professional cleaning and staining.",
+      href: "/services/fence-cleaning-staining"
     },
     {
       title: "Roof & Solar Panel Cleaning",
-      description: "Remove moss, algae, and dirt carefully from your roof and maximize your solar panels' efficiency."
+      description: "Remove moss, algae, and dirt carefully from your roof and maximize your solar panels' efficiency.",
+      href: "/services/roof-solar-cleaning"
     }
   ];
 
@@ -92,13 +97,16 @@ export default async function AdditionalServices() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, idx) => (
-              <div key={idx} className="bg-white p-8 rounded-[32px] border border-cyan-100 shadow-[0_10px_25px_-5px_rgba(8,145,178,0.1)] hover:shadow-[0_20px_40px_-5px_rgba(8,145,178,0.15)] transition-all flex flex-col items-start hover:-translate-y-1">
+              <Link href={service.href} key={idx} className="bg-white p-8 rounded-[32px] border border-cyan-100 shadow-[0_10px_25px_-5px_rgba(8,145,178,0.1)] hover:shadow-[0_20px_40px_-5px_rgba(8,145,178,0.15)] transition-all flex flex-col items-start hover:-translate-y-1 group cursor-pointer block h-full">
                 <CheckCircle className="w-8 h-8 text-cyan-500 mb-6" />
-                <h3 className="font-display text-xl font-black text-slate-900 mb-3 tracking-tight">{service.title}</h3>
-                <p className="text-slate-600 leading-relaxed font-medium mb-6">
+                <h3 className="font-display text-xl font-black text-slate-900 mb-3 tracking-tight group-hover:text-cyan-700 transition-colors">{service.title}</h3>
+                <p className="text-slate-600 leading-relaxed font-medium mb-6 flex-grow">
                   {service.description}
                 </p>
-              </div>
+                <div className="flex items-center text-cyan-600 font-bold text-sm tracking-wider uppercase mt-auto">
+                  Learn More <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </Link>
             ))}
           </div>
         </div>
