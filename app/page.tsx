@@ -79,7 +79,7 @@ export default function LandingPage() {
           </div>
           
           <div className="hidden md:flex items-center gap-8 relative z-10">
-            <a href="#about" onClick={(e) => scrollToSection(e, 'about')} className="text-sm font-medium hover:text-cyan-600 transition-colors text-slate-600">About Us</a>
+            <Link href="/about" className="text-sm font-medium hover:text-cyan-600 transition-colors text-slate-600">About Us</Link>
             <a href="#services" onClick={(e) => scrollToSection(e, 'services')} className="text-sm font-medium hover:text-cyan-600 transition-colors text-slate-600">Services</a>
             <Link href="/additional-services" className="text-sm font-medium hover:text-cyan-600 transition-colors text-slate-600">Additional Services</Link>
             <a href="#contact" onClick={(e) => scrollToSection(e, 'contact')} className="text-sm font-medium hover:text-cyan-600 transition-colors text-slate-600">Contact</a>
@@ -110,7 +110,7 @@ export default function LandingPage() {
             className="fixed inset-0 z-40 bg-[#F0F9FF] pt-24 px-6 md:hidden"
           >
             <div className="flex flex-col gap-6 text-lg">
-              <a href="#about" onClick={(e) => scrollToSection(e, 'about')} className="font-medium text-slate-900 border-b border-cyan-100 pb-4">About Us</a>
+              <Link href="/about" className="font-medium text-slate-900 border-b border-cyan-100 pb-4">About Us</Link>
               <a href="#services" onClick={(e) => scrollToSection(e, 'services')} className="font-medium text-slate-900 border-b border-cyan-100 pb-4">Services</a>
               <Link href="/additional-services" className="font-medium text-slate-900 border-b border-cyan-100 pb-4">Additional Services</Link>
               <a href="#faq" onClick={(e) => scrollToSection(e, 'faq')} className="font-medium text-slate-900 border-b border-cyan-100 pb-4">FAQ</a>
@@ -238,24 +238,27 @@ export default function LandingPage() {
                   ONE thing for certain and TWO things for sure. Nobody likes to clean their Garbage bins especially with maggots and those annoying flies.
                 </p>
                 <p>
-                  But have no fear ROB & RAY are here, we have garbage guard pest strips to get rid of those disgusting little critters. Also, nobody likes that trifling smell that lingers around.
+                  But have no fear ROB & RAY are here! We started from the bottom and are proudly working our way up. 
                 </p>
-                <p className="text-xl font-bold text-slate-900 italic py-2">
-                  "Let us wash that STANK the FUNK AWAY"
+                <p className="border-l-4 border-cyan-500 pl-4 py-1 font-semibold text-slate-800 bg-cyan-50/50 pr-2">
+                  "We literally started out the trunk of our sedan with just that Sun Joe electric pressure washing equipment and a 30-gallon water tank."
                 </p>
                 <p>
-                  By cleaning and disinfecting your dumpsters and bins. We also clean and disinfect dumpster pad areas as well. We appreciate yall for stopping by and letting us inform you on what we offer, we can promise that you won't be disappointed.
-                </p>
-                <p className="font-bold text-cyan-800">
-                  Please book your appointment now and we will stop by and get the job done ASAP.
+                  Today, we are hitting new milestones, scaling up to keep all of our communities clean and completely odor-free. We promise that with Rob & Ray on the job, you won&apos;t be disappointed!
                 </p>
               </div>
 
-              <div className="mt-8 pt-6 border-t border-slate-100">
+              <div className="mt-8 pt-6 border-t border-slate-100 flex flex-wrap gap-4">
+                <Link 
+                  href="/about" 
+                  className="inline-flex items-center gap-2 bg-cyan-600 hover:bg-cyan-700 text-white px-8 py-4 rounded-xl font-black text-lg uppercase tracking-wider transition-all shadow-md shadow-cyan-600/20"
+                >
+                  Our Full Story <ArrowRight className="w-5 h-5" />
+                </Link>
                 <a 
                   href="#contact" 
                   onClick={(e) => scrollToSection(e, 'contact')} 
-                  className="inline-flex items-center gap-2 bg-gradient-to-br from-orange-400 to-orange-600 text-white px-8 py-4 rounded-2xl font-black text-lg uppercase tracking-wider transition-all shadow-lg shadow-orange-500/30 hover:scale-105 active:scale-95"
+                  className="inline-flex items-center gap-2 bg-gradient-to-br from-orange-400 to-orange-600 text-white px-8 py-4 rounded-xl font-black text-lg uppercase tracking-wider transition-all shadow-lg shadow-orange-500/30 hover:scale-105 active:scale-95"
                 >
                   Book Appointment Now <ArrowRight className="w-5 h-5" />
                 </a>
