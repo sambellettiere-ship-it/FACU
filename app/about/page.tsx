@@ -52,9 +52,9 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row items-center lg:items-start gap-16">
             
-            {/* Visual Column - Double Photo Layout */}
+            {/* Visual Column - Single Photo Layout */}
             <div className="w-full lg:w-1/2 space-y-8 flex flex-col items-center">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-2xl">
+              <div className="w-full max-w-sm">
                 {/* Photo 1: Vertical aboutus.png */}
                 <div className="flex flex-col items-center">
                   <span className="text-[10px] font-bold tracking-widest text-slate-400 uppercase mb-2">Rob & Ray ON THE JOB</span>
@@ -66,24 +66,6 @@ export default function AboutPage() {
                       className="object-cover hover:scale-105 transition-transform duration-500"
                       referrerPolicy="no-referrer"
                     />
-                  </div>
-                </div>
-
-                {/* Photo 2: robray.png */}
-                <div className="flex flex-col items-center justify-start sm:mt-12">
-                  <span className="text-[10px] font-bold tracking-widest text-slate-400 uppercase mb-2">At Your Service</span>
-                  <div className="w-full aspect-[4/5] sm:aspect-[3/4] relative rounded-[32px] overflow-hidden shadow-xl border-4 border-orange-50">
-                    <Image 
-                      src="/robray.png" 
-                      alt="Rob & Ray" 
-                      fill 
-                      className="object-cover hover:scale-105 transition-transform duration-500"
-                      referrerPolicy="no-referrer"
-                    />
-                  </div>
-                  <div className="mt-4 text-center">
-                    <p className="text-sm font-bold text-slate-800">Rob & Ray</p>
-                    <p className="text-xs text-slate-500 font-medium">Founders, Funk Away GCS</p>
                   </div>
                 </div>
               </div>
