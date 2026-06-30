@@ -39,21 +39,10 @@ export default async function AdditionalServices() {
     const files = fs.readdirSync(dirPath);
     galleryImages = files
       .filter(file => /\.(jpg|jpeg|png|webp|gif)$/i.test(file))
+      .sort()
       .map(file => `/addserv/${file}`);
   } catch (error) {
     // Directory might not exist yet
-  }
-
-  // Fallback images if directory is empty or missing so the user can see layout
-  if (galleryImages.length === 0) {
-     galleryImages = [
-       "/addserv/1.jpg", 
-       "/addserv/2.jpg", 
-       "/addserv/3.jpg",
-       "/addserv/4.jpg",
-       "/addserv/5.jpg",
-       "/addserv/6.jpg"
-     ];
   }
 
   return (
