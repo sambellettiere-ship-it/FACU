@@ -7,9 +7,16 @@ interface BeforeAfterSliderProps {
   beforeSrc: string;
   afterSrc: string;
   label?: string;
+  /**
+   * CSS aspect-ratio for the frame (e.g. '3 / 4', '9 / 16'). Defaults to a
+   * portrait 3:4. The photos are tall portraits, so pick a ratio close to the
+   * source images to avoid letterbox bars — `object-contain` guarantees the
+   * image is never cropped regardless.
+   */
+  aspectRatio?: string;
 }
 
-export function BeforeAfterSlider({ beforeSrc, afterSrc, label }: BeforeAfterSliderProps) {
+export function BeforeAfterSlider({ beforeSrc, afterSrc, label, aspectRatio = '3 / 4' }: BeforeAfterSliderProps) {
   const [position, setPosition] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -60,14 +67,15 @@ export function BeforeAfterSlider({ beforeSrc, afterSrc, label }: BeforeAfterSli
       onPointerCancel={handlePointerUp}
       // touch-none disables the browser's native pan/scroll on this element so
       // horizontal drags translate straight into slider movement.
-      className="aspect-square bg-slate-200 rounded-3xl overflow-hidden relative select-none cursor-ew-resize touch-none shadow-md group"
+      className="bg-slate-200 rounded-3xl overflow-hidden relative select-none cursor-ew-resize touch-none shadow-md group"
+      style={{ aspectRatio }}
     >
       {/* After image (base layer, revealed on the right) */}
       <img
         src={afterSrc}
         alt={label ? `${label} after` : 'After'}
         draggable={false}
-        className="block absolute inset-0 w-full h-full object-cover pointer-events-none"
+        className="block absolute inset-0 w-full h-full object-contain pointer-events-none"
       />
 
       {/* Before image (overlay, clipped to the left of the handle) */}
@@ -75,7 +83,7 @@ export function BeforeAfterSlider({ beforeSrc, afterSrc, label }: BeforeAfterSli
         src={beforeSrc}
         alt={label ? `${label} before` : 'Before'}
         draggable={false}
-        className="block absolute inset-0 w-full h-full object-cover pointer-events-none"
+        className="block absolute inset-0 w-full h-full object-contain pointer-events-none"
         style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
       />
 

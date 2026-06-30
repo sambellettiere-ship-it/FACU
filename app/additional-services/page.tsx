@@ -67,6 +67,14 @@ export default async function AdditionalServices() {
     // Directory might not exist yet
   }
 
+  // Pair the "patio" photo with the matching "Patios and Decks" service so it
+  // can be featured beside it. Every other photo stays in the gallery below.
+  const patioService = services.find(s => /patio/i.test(s.href) || /patio/i.test(s.title));
+  const patioPair = galleryPairs.find(p => /patio/i.test(p.label));
+  const featuredPatio = patioService && patioPair ? { service: patioService, pair: patioPair } : null;
+  const otherServices = featuredPatio ? services.filter(s => s !== patioService) : services;
+  const galleryRest = featuredPatio ? galleryPairs.filter(p => p !== patioPair) : galleryPairs;
+
   return (
     <div className="min-h-screen bg-slate-50 relative selection:bg-cyan-200 selection:text-cyan-900 font-sans">
       {/* Navigation */}
@@ -106,8 +114,32 @@ export default async function AdditionalServices() {
       {/* Service List */}
       <section className="py-16 bg-white relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Featured service with its before/after photo beside it */}
+          {featuredPatio && (
+            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-12 bg-white p-6 sm:p-8 rounded-[32px] border border-cyan-100 shadow-[0_10px_25px_-5px_rgba(8,145,178,0.1)]">
+              <div className="w-full max-w-md mx-auto lg:mx-0">
+                <BeforeAfterSlider
+                  beforeSrc={featuredPatio.pair.before}
+                  afterSrc={featuredPatio.pair.after}
+                  label={featuredPatio.pair.label}
+                  aspectRatio="3 / 4"
+                />
+              </div>
+              <div className="flex flex-col items-start">
+                <CheckCircle className="w-8 h-8 text-cyan-500 mb-6" />
+                <h3 className="font-display text-2xl font-black text-slate-900 mb-3 tracking-tight">{featuredPatio.service.title}</h3>
+                <p className="text-slate-600 leading-relaxed font-medium mb-6">
+                  {featuredPatio.service.description}
+                </p>
+                <Link href={featuredPatio.service.href} className="inline-flex items-center text-cyan-600 font-bold text-sm tracking-wider uppercase group">
+                  Learn More <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </div>
+            </div>
+          )}
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, idx) => (
+            {otherServices.map((service, idx) => (
               <Link href={service.href} key={idx} className="bg-white p-8 rounded-[32px] border border-cyan-100 shadow-[0_10px_25px_-5px_rgba(8,145,178,0.1)] hover:shadow-[0_20px_40px_-5px_rgba(8,145,178,0.15)] transition-all flex flex-col items-start hover:-translate-y-1 group cursor-pointer block h-full">
                 <CheckCircle className="w-8 h-8 text-cyan-500 mb-6" />
                 <h3 className="font-display text-xl font-black text-slate-900 mb-3 tracking-tight group-hover:text-cyan-700 transition-colors">{service.title}</h3>
@@ -135,13 +167,14 @@ export default async function AdditionalServices() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {galleryPairs.map((pair, index) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {galleryRest.map((pair, index) => (
               <div key={index}>
                 <BeforeAfterSlider
                   beforeSrc={pair.before}
                   afterSrc={pair.after}
                   label={pair.label}
+                  aspectRatio="9 / 16"
                 />
                 {pair.label && (
                   <p className="text-center text-slate-700 font-bold mt-3 tracking-wide">
