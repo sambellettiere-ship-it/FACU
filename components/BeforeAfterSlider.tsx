@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState, useCallback, useEffect } from 'react';
+import { useRef, useState, useCallback } from 'react';
 import { MoveHorizontal } from 'lucide-react';
 
 interface BeforeAfterSliderProps {
@@ -23,23 +23,25 @@ export function BeforeAfterSlider({ beforeSrc, afterSrc, label }: BeforeAfterSli
   }, []);
 
   const handlePointerDown = (e: React.PointerEvent) => {
+    // Capture the pointer so we keep receiving move/up events even if the
+    // finger or cursor leaves the element, and so the browser doesn't hand the
+    // gesture off to native scrolling mid-drag (the main cause of mobile jitter).
+    e.currentTarget.setPointerCapture(e.pointerId);
     setIsDragging(true);
     updatePosition(e.clientX);
   };
 
-  useEffect(() => {
+  const handlePointerMove = (e: React.PointerEvent) => {
     if (!isDragging) return;
+    updatePosition(e.clientX);
+  };
 
-    const handleMove = (e: PointerEvent) => updatePosition(e.clientX);
-    const handleUp = () => setIsDragging(false);
-
-    window.addEventListener('pointermove', handleMove);
-    window.addEventListener('pointerup', handleUp);
-    return () => {
-      window.removeEventListener('pointermove', handleMove);
-      window.removeEventListener('pointerup', handleUp);
-    };
-  }, [isDragging, updatePosition]);
+  const handlePointerUp = (e: React.PointerEvent) => {
+    if (e.currentTarget.hasPointerCapture(e.pointerId)) {
+      e.currentTarget.releasePointerCapture(e.pointerId);
+    }
+    setIsDragging(false);
+  };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'ArrowLeft') {
@@ -53,7 +55,12 @@ export function BeforeAfterSlider({ beforeSrc, afterSrc, label }: BeforeAfterSli
     <div
       ref={containerRef}
       onPointerDown={handlePointerDown}
-      className="aspect-square bg-slate-200 rounded-3xl overflow-hidden shadow-md relative select-none cursor-ew-resize group"
+      onPointerMove={handlePointerMove}
+      onPointerUp={handlePointerUp}
+      onPointerCancel={handlePointerUp}
+      // touch-none disables the browser's native pan/scroll on this element so
+      // horizontal drags translate straight into slider movement.
+      className="aspect-square bg-slate-200 rounded-3xl overflow-hidden relative select-none cursor-ew-resize touch-none shadow-md group"
     >
       {/* After image (base layer, revealed on the right) */}
       <img
@@ -93,8 +100,7 @@ export function BeforeAfterSlider({ beforeSrc, afterSrc, label }: BeforeAfterSli
           aria-valuemax={100}
           role="slider"
           onKeyDown={handleKeyDown}
-          onPointerDown={(e) => e.stopPropagation()}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white shadow-lg flex items-center justify-center text-cyan-700 pointer-events-auto cursor-ew-resize transition-transform group-hover:scale-110 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white shadow-lg flex items-center justify-center text-cyan-700 pointer-events-none cursor-ew-resize transition-transform group-hover:scale-110 focus:outline-none focus:ring-2 focus:ring-cyan-500"
         >
           <MoveHorizontal className="w-5 h-5" />
         </button>
