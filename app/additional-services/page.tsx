@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import fs from 'fs';
 import path from 'path';
+import { BeforeAfterSlider } from '@/components/BeforeAfterSlider';
 
 export default async function AdditionalServices() {
   const services = [
@@ -33,14 +34,35 @@ export default async function AdditionalServices() {
     }
   ];
 
-  let galleryImages: string[] = [];
+  // Build before/after pairs from files named like `1-patio-before.webp` and `2-patio-after.webp`.
+  // Files are grouped by the name between the numeric prefix and the `before`/`after` suffix.
+  type GalleryPair = { label: string; before: string; after: string };
+  const galleryPairs: GalleryPair[] = [];
   try {
     const dirPath = path.join(process.cwd(), 'public', 'addserv');
-    const files = fs.readdirSync(dirPath);
-    galleryImages = files
+    const files = fs.readdirSync(dirPath)
       .filter(file => /\.(jpg|jpeg|png|webp|gif)$/i.test(file))
-      .sort()
-      .map(file => `/addserv/${file}`);
+      .sort();
+
+    const groups = new Map<string, { before?: string; after?: string }>();
+    for (const file of files) {
+      const match = file.match(/^(?:\d+-)?(.+?)-(before|after)\.[a-z]+$/i);
+      if (!match) continue;
+      const [, rawName, kind] = match;
+      const key = rawName.toLowerCase();
+      const group = groups.get(key) ?? {};
+      group[kind.toLowerCase() as 'before' | 'after'] = `/addserv/${file}`;
+      groups.set(key, group);
+    }
+
+    for (const [key, group] of groups) {
+      if (group.before && group.after) {
+        const label = key
+          .replace(/[-_]+/g, ' ')
+          .replace(/\b\w/g, c => c.toUpperCase());
+        galleryPairs.push({ label, before: group.before, after: group.after });
+      }
+    }
   } catch (error) {
     // Directory might not exist yet
   }
@@ -109,22 +131,23 @@ export default async function AdditionalServices() {
               Our <span className="text-cyan-600">Gallery</span>
             </h2>
             <p className="text-slate-600 font-medium mt-4">
-              Here are some of the results we've delivered for our customers.
+              Drag the slider on each image to see the before and after results we've delivered for our customers.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {galleryImages.map((src, index) => (
-              <div key={index} className="aspect-square bg-slate-200 rounded-3xl overflow-hidden shadow-md relative group">
-                <div className="absolute inset-0 flex items-center justify-center text-slate-400 font-medium text-sm z-0">
-                  Image {index + 1}
-                </div>
-                {/* If the image loads, it will cover the background. Nextjs Image component has some issues if the src does not exist on build time if doing static exports, so regular img is safer for this dynamic usecase. */}
-                <img 
-                  src={src} 
-                  alt={`Gallery Image ${index + 1}`} 
-                  className="block absolute inset-0 z-10 w-full h-full object-cover transition-opacity duration-300 ease-in-out hover:scale-105"
+            {galleryPairs.map((pair, index) => (
+              <div key={index}>
+                <BeforeAfterSlider
+                  beforeSrc={pair.before}
+                  afterSrc={pair.after}
+                  label={pair.label}
                 />
+                {pair.label && (
+                  <p className="text-center text-slate-700 font-bold mt-3 tracking-wide">
+                    {pair.label}
+                  </p>
+                )}
               </div>
             ))}
           </div>
