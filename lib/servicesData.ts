@@ -86,15 +86,15 @@ export const servicesData = {
     icon: 'Home'
   },
   'fence-cleaning-staining': {
-    title: 'Fence Cleaning & Staining',
-    description: 'Revitalize your fence\'s look and extend its lifespan with professional cleaning and staining.',
+    title: 'Stripping & Staining',
+    description: 'Wood decks and fences — strip away years of weathering and grime, then protect them with a fresh coat of high-quality stain.',
     price: 'Custom Quote',
-    subPrice: 'Based on length and condition',
-    features: ['Wood fence restoration', 'Mold and mildew removal', 'Protective staining', 'Increases property value'],
+    subPrice: 'Based on size and condition',
+    features: ['Wood deck & fence restoration', 'Mold and mildew removal', 'Protective staining', 'Increases property value'],
     url: BOOKING_URL,
-    longDescription: 'A dirty, graying fence can detract from your property\'s curb appeal. Our fence cleaning service strips away years of weathering, dirt, and mold. We follow up with professional staining to protect the wood from UV rays and moisture, keeping it looking great for years.',
-    seoTitle: 'Fence Cleaning & Staining Services | Funk Away GCS',
-    seoDescription: 'Professional fence cleaning and staining in Champaign-Urbana. Restore your wood fence and protect it from the elements.',
+    longDescription: 'Dirty, graying wood decks and fences can detract from your property\'s curb appeal. Our stripping service removes years of weathering, dirt, mold, and old failing finish. We follow up with professional staining to protect the wood from UV rays and moisture, keeping it looking great for years.',
+    seoTitle: 'Wood Deck & Fence Stripping & Staining | Funk Away GCS',
+    seoDescription: 'Professional stripping and staining for wood decks and fences in Champaign-Urbana. Restore your wood and protect it from the elements.',
     icon: 'Home'
   },
   'roof-solar-cleaning': {
