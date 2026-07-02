@@ -8,7 +8,10 @@ const outfit = Outfit({ subsets: ['latin'], variable: '--font-sans' });
 export const metadata: Metadata = {
   title: 'Funk Away | Garbage & Power Washing in Champaign-Urbana, IL',
   description: 'Professional garbage bin cleaning, dumpster sanitization, and power washing services for residential and commercial properties in Champaign-Urbana, IL.',
-  keywords: 'Champaign Pressure Washing, Urbana Pressure Washing, garbage bin cleaning, dumpster sanitization, power washing, Champaign-Urbana IL, central Illinois cleaning services'
+  keywords: 'Champaign Pressure Washing, Urbana Pressure Washing, garbage bin cleaning, dumpster sanitization, power washing, Champaign-Urbana IL, central Illinois cleaning services',
+  icons: {
+    icon: '/icon.svg'
+  }
 };
 
 export default function RootLayout({children}: {children: React.ReactNode}) {
