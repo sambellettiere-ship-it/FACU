@@ -1,10 +1,11 @@
-import { ArrowLeft, Menu, X, Star, CheckCircle, ArrowRight } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import { SocialLinks } from '@/components/SocialLinks';
 import Image from 'next/image';
 import Link from 'next/link';
 import fs from 'fs';
 import path from 'path';
 import { BeforeAfterSlider } from '@/components/BeforeAfterSlider';
+import { AdditionalServicesCarousel, type CarouselSlide } from '@/components/AdditionalServicesCarousel';
 import { BOOKING_URL } from '@/lib/servicesData';
 
 export default async function AdditionalServices() {
@@ -35,6 +36,12 @@ export default async function AdditionalServices() {
       description: "Revitalize your fence's look and extend its lifespan with professional cleaning and staining.",
       href: "/services/fence-cleaning-staining",
       match: /fence/i
+    },
+    {
+      title: "Home Siding Cleaning",
+      description: "Soft wash away algae, dirt, and grime to make your home's siding look brand new.",
+      href: "/services/home-siding-cleaning",
+      match: /siding/i
     },
     {
       title: "Roof & Solar Panel Cleaning",
@@ -78,21 +85,22 @@ export default async function AdditionalServices() {
   }
 
   // Pair each service with its matching before/after photo (by the service's
-  // `match` pattern) so it can be featured beside it. Any service without a
-  // matching photo falls back to a plain card, and any leftover photos stay in
-  // the gallery below.
-  type Featured = { service: (typeof services)[number]; pair: GalleryPair };
-  const featured: Featured[] = [];
+  // `match` pattern) so it can be featured in the carousel. Services without a
+  // matching photo still appear as a slide, and any leftover photos stay in the
+  // gallery below.
   const usedPairs = new Set<GalleryPair>();
-  for (const service of services) {
-    if (!service.match) continue;
-    const pair = galleryPairs.find(p => !usedPairs.has(p) && service.match.test(p.label));
-    if (pair) {
-      usedPairs.add(pair);
-      featured.push({ service, pair });
-    }
-  }
-  const otherServices = services.filter(s => !featured.some(f => f.service === s));
+  const slides: CarouselSlide[] = services.map(service => {
+    const pair = service.match
+      ? galleryPairs.find(p => !usedPairs.has(p) && service.match!.test(p.label))
+      : undefined;
+    if (pair) usedPairs.add(pair);
+    return {
+      title: service.title,
+      description: service.description,
+      href: service.href,
+      pair: pair ? { before: pair.before, after: pair.after, label: pair.label } : undefined,
+    };
+  });
   const galleryRest = galleryPairs.filter(p => !usedPairs.has(p));
 
   return (
@@ -131,48 +139,11 @@ export default async function AdditionalServices() {
         </div>
       </section>
 
-      {/* Service List */}
+      {/* Service Carousel — auto-rotates through each service (10s each) so the
+          full list stays compact and visible without scrolling. */}
       <section className="py-16 bg-white relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Featured services, each with its before/after photo beside it.
-              The image side alternates left/right down the list for variety. */}
-          {featured.map(({ service, pair }, idx) => (
-            <div key={service.href} className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-12 bg-white p-6 sm:p-8 rounded-[32px] border border-cyan-100 shadow-[0_10px_25px_-5px_rgba(8,145,178,0.1)]">
-              <div className={`w-full max-w-md mx-auto lg:mx-0 ${idx % 2 === 1 ? 'lg:order-2 lg:ml-auto' : ''}`}>
-                <BeforeAfterSlider
-                  beforeSrc={pair.before}
-                  afterSrc={pair.after}
-                  label={pair.label}
-                  aspectRatio="3 / 4"
-                />
-              </div>
-              <div className={`flex flex-col items-start ${idx % 2 === 1 ? 'lg:order-1' : ''}`}>
-                <CheckCircle className="w-8 h-8 text-cyan-500 mb-6" />
-                <h3 className="font-display text-2xl font-black text-slate-900 mb-3 tracking-tight">{service.title}</h3>
-                <p className="text-slate-600 leading-relaxed font-medium mb-6">
-                  {service.description}
-                </p>
-                <Link href={service.href} className="inline-flex items-center text-cyan-600 font-bold text-sm tracking-wider uppercase group">
-                  Learn More <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
-                </Link>
-              </div>
-            </div>
-          ))}
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {otherServices.map((service, idx) => (
-              <Link href={service.href} key={idx} className="bg-white p-8 rounded-[32px] border border-cyan-100 shadow-[0_10px_25px_-5px_rgba(8,145,178,0.1)] hover:shadow-[0_20px_40px_-5px_rgba(8,145,178,0.15)] transition-all flex flex-col items-start hover:-translate-y-1 group cursor-pointer block h-full">
-                <CheckCircle className="w-8 h-8 text-cyan-500 mb-6" />
-                <h3 className="font-display text-xl font-black text-slate-900 mb-3 tracking-tight group-hover:text-cyan-700 transition-colors">{service.title}</h3>
-                <p className="text-slate-600 leading-relaxed font-medium mb-6 flex-grow">
-                  {service.description}
-                </p>
-                <div className="flex items-center text-cyan-600 font-bold text-sm tracking-wider uppercase mt-auto">
-                  Learn More <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
-                </div>
-              </Link>
-            ))}
-          </div>
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AdditionalServicesCarousel slides={slides} />
         </div>
       </section>
 
