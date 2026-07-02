@@ -32,10 +32,10 @@ export default async function AdditionalServices() {
       match: /patio|deck/i
     },
     {
-      title: "Fence Cleaning & Staining",
-      description: "Revitalize your fence's look and extend its lifespan with professional cleaning and staining.",
+      title: "Stripping & Staining",
+      description: "Wood decks and fences — strip away years of weathering and grime, then protect them with a fresh coat of high-quality stain.",
       href: "/services/fence-cleaning-staining",
-      match: /fence/i
+      match: /strip|fence/i
     },
     {
       title: "Home Siding Cleaning",
