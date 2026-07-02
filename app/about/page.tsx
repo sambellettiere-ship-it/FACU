@@ -1,7 +1,8 @@
-import { ArrowLeft, Home, Phone, Mail, CheckCircle, ArrowRight, Star, Heart, ShieldCheck, MapPin, Facebook } from 'lucide-react';
+import { ArrowLeft, Phone, Mail, CheckCircle, ArrowRight, Star, Heart, ShieldCheck, MapPin } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { BOOKING_URL } from '@/lib/servicesData';
+import { SocialLinks } from '@/components/SocialLinks';
 
 export const metadata = {
   title: 'Our Story - Rob & Ray | Funk Away GCS',
@@ -151,14 +152,7 @@ export default function AboutPage() {
       {/* Footer */}
       <footer className="bg-slate-900 py-12 text-center text-slate-400 border-t border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-center gap-4 mb-8">
-            <a href="https://www.facebook.com/FunkAwayGCS7434" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-[#1877F2] hover:text-white transition-colors" title="Facebook">
-              <Facebook className="w-5 h-5" />
-            </a>
-            <a href="https://nextdoor.com/page/funk-away-garbage-cleaning-service-llc-westville-il?init_source=search&query=funk+away+gcs&referrer=nextdoor" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-[#8ED081] hover:text-white transition-colors" title="Nextdoor">
-              <span className="font-bold text-xs tracking-tighter">ND</span>
-            </a>
-          </div>
+          <SocialLinks className="mb-8" />
           <p className="text-xs text-slate-600">
             &copy; {new Date().getFullYear()} Funk Away Garbage Cleaning Service. All rights reserved.
           </p>

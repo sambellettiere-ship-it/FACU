@@ -9,7 +9,6 @@ import {
   Star,
   Home,
   Building2,
-  Facebook,
   Gift,
   Repeat,
   Sparkles,
@@ -20,6 +19,7 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import { BOOKING_URL } from '@/lib/servicesData';
+import { SocialLinks } from '@/components/SocialLinks';
 
 type Plan = {
   name: string;
@@ -131,9 +131,6 @@ function PlanCard({ plan, accent }: { plan: Plan; accent: 'cyan' | 'slate' }) {
           : 'border-cyan-50'
       }`}
     >
-      {/* Top accent bar (kept inside the rounded corners, below the badge) */}
-      <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-t-[40px] z-0" />
-
       {plan.recommended && (
         <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-20 bg-gradient-to-br from-orange-400 to-orange-600 text-white text-xs font-black uppercase tracking-widest px-4 py-2 rounded-full shadow-lg shadow-orange-500/30 whitespace-nowrap">
           Recommended
@@ -412,15 +409,7 @@ export default function SubscriptionsPage() {
       {/* Footer (Simplified) */}
       <footer className="bg-slate-900 py-12 text-center text-slate-400 border-t border-slate-800 relative z-30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-center gap-4 mb-8">
-            <a href="https://www.facebook.com/FunkAwayGCS7434" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-[#1877F2] hover:text-white transition-colors" title="Facebook">
-              <Facebook className="w-5 h-5" />
-            </a>
-            <a href="https://nextdoor.com/page/funk-away-garbage-cleaning-service-llc-westville-il?init_source=search&query=funk+away+gcs&referrer=nextdoor" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-[#8ED081] hover:text-white transition-colors" title="Nextdoor">
-              <Home className="w-5 h-5 absolute opacity-20" />
-              <span className="font-bold text-xs z-10 text-slate-400 tracking-tighter">ND</span>
-            </a>
-          </div>
+          <SocialLinks className="mb-8" />
           <p className="text-xs text-slate-600 whitespace-nowrap">
             &copy; {new Date().getFullYear()} Funk Away Garbage Cleaning Service. All rights reserved.
           </p>
