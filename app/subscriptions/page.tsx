@@ -1,6 +1,7 @@
 'use client';
 
-import { motion } from 'motion/react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import {
   ArrowLeft,
   ArrowRight,
@@ -18,6 +19,7 @@ import {
   Snowflake,
 } from 'lucide-react';
 import Link from 'next/link';
+import { BOOKING_URL } from '@/lib/servicesData';
 
 type Plan = {
   name: string;
@@ -123,19 +125,20 @@ function PlanCard({ plan, accent }: { plan: Plan; accent: 'cyan' | 'slate' }) {
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className={`relative bg-white rounded-[40px] p-8 flex flex-col border shadow-[0_10px_25px_-5px_rgba(8,145,178,0.1)] ${
+      className={`relative bg-white rounded-[40px] p-8 pt-10 flex flex-col border shadow-[0_10px_25px_-5px_rgba(8,145,178,0.1)] ${
         plan.recommended
           ? 'border-orange-300 ring-2 ring-orange-200'
           : 'border-cyan-50'
       }`}
     >
+      {/* Top accent bar (kept inside the rounded corners, below the badge) */}
+      <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-t-[40px] z-0" />
+
       {plan.recommended && (
-        <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-br from-orange-400 to-orange-600 text-white text-xs font-black uppercase tracking-widest px-4 py-2 rounded-full shadow-lg shadow-orange-500/30 whitespace-nowrap">
+        <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-20 bg-gradient-to-br from-orange-400 to-orange-600 text-white text-xs font-black uppercase tracking-widest px-4 py-2 rounded-full shadow-lg shadow-orange-500/30 whitespace-nowrap">
           Recommended
         </div>
       )}
-
-      <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-t-[40px]" />
 
       <h3 className="font-display text-2xl font-black text-slate-900 mb-4 tracking-tight mt-2">
         {plan.name}
@@ -179,7 +182,9 @@ function PlanCard({ plan, accent }: { plan: Plan; accent: 'cyan' | 'slate' }) {
         </ul>
 
         <a
-          href="#enroll"
+          href={BOOKING_URL}
+          target="_blank"
+          rel="noopener noreferrer"
           className={`w-full block text-center py-4 font-bold rounded-2xl transition-colors tracking-wider uppercase text-sm shadow-md ${
             isCyan
               ? 'bg-cyan-600 hover:bg-cyan-700 text-white'
@@ -194,6 +199,9 @@ function PlanCard({ plan, accent }: { plan: Plan; accent: 'cyan' | 'slate' }) {
 }
 
 export default function SubscriptionsPage() {
+  const [planType, setPlanType] = useState<'residential' | 'commercial'>('residential');
+  const isResidential = planType === 'residential';
+
   return (
     <div className="min-h-screen bg-[#F0F9FF] relative selection:bg-cyan-200 selection:text-cyan-900 font-sans">
       {/* Navigation */}
@@ -211,7 +219,7 @@ export default function SubscriptionsPage() {
                 (217) 552-6182
               </a>
             </div>
-            <a href="#enroll" className="bg-gradient-to-br from-orange-400 to-orange-600 text-white px-6 py-2 rounded-xl font-bold uppercase tracking-wider text-xs hover:scale-105 active:scale-95 transition-all shadow-md shadow-orange-500/20">
+            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="bg-gradient-to-br from-orange-400 to-orange-600 text-white px-6 py-2 rounded-xl font-bold uppercase tracking-wider text-xs hover:scale-105 active:scale-95 transition-all shadow-md shadow-orange-500/20">
               Enroll Now
             </a>
           </div>
@@ -238,26 +246,82 @@ export default function SubscriptionsPage() {
         </div>
       </section>
 
-      {/* Residential Section */}
-      <section id="residential" className="py-20 bg-[#F0F9FF]">
+      {/* Plan Selector Section */}
+      <section id="plans" className="py-20 bg-[#F0F9FF]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-14">
-            <div className="inline-flex items-center gap-2 bg-cyan-100 text-cyan-700 px-4 py-2 rounded-full text-xs font-black uppercase tracking-widest mb-4">
-              <Home className="w-4 h-4" /> Residential Plans
-            </div>
-            <h2 className="font-display text-3xl md:text-5xl font-black text-slate-900 mb-4 tracking-tight uppercase">
-              For Your <span className="text-cyan-600">Home</span>
-            </h2>
-            <p className="text-lg text-slate-500 font-medium">
-              Choose the level of fresh that fits your household. Every residential plan includes sanitizing, deodorizing, and pest prevention.
+          {/* Residential / Commercial Toggle */}
+          <div className="text-center mb-10">
+            <p className="text-xs font-black uppercase tracking-widest text-slate-400 mb-4">
+              Who are we cleaning for?
             </p>
+            <div className="inline-flex items-center gap-1 p-1.5 bg-white rounded-2xl border border-cyan-100 shadow-[0_10px_25px_-5px_rgba(8,145,178,0.12)]">
+              <button
+                type="button"
+                onClick={() => setPlanType('residential')}
+                aria-pressed={isResidential}
+                className={`flex items-center gap-2 px-6 sm:px-8 py-3 rounded-xl font-black uppercase tracking-wider text-xs sm:text-sm transition-all ${
+                  isResidential
+                    ? 'bg-cyan-600 text-white shadow-md shadow-cyan-600/30'
+                    : 'text-slate-500 hover:text-cyan-700'
+                }`}
+              >
+                <Home className="w-4 h-4" /> Residential
+              </button>
+              <button
+                type="button"
+                onClick={() => setPlanType('commercial')}
+                aria-pressed={!isResidential}
+                className={`flex items-center gap-2 px-6 sm:px-8 py-3 rounded-xl font-black uppercase tracking-wider text-xs sm:text-sm transition-all ${
+                  !isResidential
+                    ? 'bg-slate-800 text-white shadow-md shadow-slate-800/30'
+                    : 'text-slate-500 hover:text-slate-800'
+                }`}
+              >
+                <Building2 className="w-4 h-4" /> Commercial
+              </button>
+            </div>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 md:gap-6 lg:gap-8 items-start">
-            {residentialPlans.map((plan) => (
-              <PlanCard key={plan.name} plan={plan} accent="cyan" />
-            ))}
-          </div>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={planType}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="text-center max-w-3xl mx-auto mb-14">
+                <div
+                  className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-black uppercase tracking-widest mb-4 ${
+                    isResidential ? 'bg-cyan-100 text-cyan-700' : 'bg-slate-100 text-slate-700'
+                  }`}
+                >
+                  {isResidential ? <Home className="w-4 h-4" /> : <Building2 className="w-4 h-4" />}
+                  {isResidential ? 'Residential Plans' : 'Commercial Plans'}
+                </div>
+                <h2 className="font-display text-3xl md:text-5xl font-black text-slate-900 mb-4 tracking-tight uppercase">
+                  For Your <span className="text-cyan-600">{isResidential ? 'Home' : 'Business'}</span>
+                </h2>
+                <p className="text-lg text-slate-500 font-medium">
+                  {isResidential
+                    ? 'Choose the level of fresh that fits your household. Every residential plan includes sanitizing, deodorizing, and pest prevention.'
+                    : 'Keep your property clean, compliant, and odor-free. Commercial plans are fully customizable with contracts tailored to your volume and schedule.'}
+                </p>
+              </div>
+
+              <div className="grid md:grid-cols-3 gap-8 md:gap-6 lg:gap-8 items-start pt-4">
+                {(isResidential ? residentialPlans : commercialPlans).map((plan) => (
+                  <PlanCard key={plan.name} plan={plan} accent={isResidential ? 'cyan' : 'slate'} />
+                ))}
+              </div>
+
+              {!isResidential && (
+                <p className="text-center text-slate-500 font-medium mt-10 text-sm">
+                  Pricing starts at the listed rates and is customized based on the number of dumpsters, bin sizes, and service frequency. Contact us for a tailored commercial quote.
+                </p>
+              )}
+            </motion.div>
+          </AnimatePresence>
         </div>
       </section>
 
@@ -314,33 +378,6 @@ export default function SubscriptionsPage() {
         </div>
       </section>
 
-      {/* Commercial Section */}
-      <section id="commercial" className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-14">
-            <div className="inline-flex items-center gap-2 bg-slate-100 text-slate-700 px-4 py-2 rounded-full text-xs font-black uppercase tracking-widest mb-4">
-              <Building2 className="w-4 h-4" /> Commercial Plans
-            </div>
-            <h2 className="font-display text-3xl md:text-5xl font-black text-slate-900 mb-4 tracking-tight uppercase">
-              For Your <span className="text-cyan-600">Business</span>
-            </h2>
-            <p className="text-lg text-slate-500 font-medium">
-              Keep your property clean, compliant, and odor-free. Commercial plans are fully customizable with contracts tailored to your volume and schedule.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8 md:gap-6 lg:gap-8 items-start">
-            {commercialPlans.map((plan) => (
-              <PlanCard key={plan.name} plan={plan} accent="slate" />
-            ))}
-          </div>
-
-          <p className="text-center text-slate-500 font-medium mt-10 text-sm">
-            Pricing starts at the listed rates and is customized based on the number of dumpsters, bin sizes, and service frequency. Contact us for a tailored commercial quote.
-          </p>
-        </div>
-      </section>
-
       {/* Enroll / CTA */}
       <section id="enroll" className="py-20 bg-[#F0F9FF]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -350,20 +387,22 @@ export default function SubscriptionsPage() {
               Ready to Sign Up?
             </h2>
             <p className="text-cyan-50 font-medium mb-8 max-w-lg mx-auto relative z-10">
-              Contact Rob & Ray to pick your plan and lock in your loyalty rewards. Call, text, or email us to get started today!
+              Book your plan online in seconds and lock in your loyalty rewards — or reach out to Rob & Ray directly to get started today!
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center relative z-10">
               <a
-                href="tel:2175526182"
-                className="bg-white text-cyan-700 hover:scale-105 active:scale-95 px-8 py-4 rounded-2xl font-black text-lg uppercase tracking-wider transition-all shadow-lg"
+                href={BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-white text-cyan-700 hover:scale-105 active:scale-95 px-8 py-4 rounded-2xl font-black text-lg uppercase tracking-wider transition-all shadow-lg flex items-center justify-center gap-2"
               >
-                Call (217) 552-6182
+                Book Online <ArrowRight className="w-5 h-5" />
               </a>
               <a
-                href="mailto:funkaway_gcs@yahoo.com"
+                href="tel:2175526182"
                 className="bg-cyan-950/30 hover:bg-cyan-950/50 backdrop-blur-sm text-white border border-white/30 px-8 py-4 rounded-2xl font-bold text-lg uppercase tracking-wider transition-all flex items-center justify-center gap-2"
               >
-                Email Us <ArrowRight className="w-5 h-5" />
+                Call (217) 552-6182
               </a>
             </div>
           </div>

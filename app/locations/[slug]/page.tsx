@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft, CheckCircle, ShieldCheck, Mail, Phone, MapPin, ArrowRight, Star, Quote, Sparkles, Building2, UserCheck, ShieldAlert, Facebook, Home } from 'lucide-react';
-import { servicesData } from '@/lib/servicesData';
+import { servicesData, BOOKING_URL } from '@/lib/servicesData';
 
 interface LocationInfo {
   city: string;
@@ -201,9 +201,9 @@ export default async function LocationPage({ params }: Props) {
                 (217) 552-6182
               </a>
             </div>
-            <Link href="/#contact" className="bg-gradient-to-br from-orange-400 to-orange-600 text-white px-6 py-2 rounded-xl font-bold uppercase tracking-wider text-xs hover:scale-105 active:scale-95 transition-all shadow-md shadow-orange-500/20">
+            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="bg-gradient-to-br from-orange-400 to-orange-600 text-white px-6 py-2 rounded-xl font-bold uppercase tracking-wider text-xs hover:scale-105 active:scale-95 transition-all shadow-md shadow-orange-500/20">
               Book Now
-            </Link>
+            </a>
           </div>
         </div>
       </nav>
