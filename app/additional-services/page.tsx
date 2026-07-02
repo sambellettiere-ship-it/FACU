@@ -4,6 +4,7 @@ import Link from 'next/link';
 import fs from 'fs';
 import path from 'path';
 import { BeforeAfterSlider } from '@/components/BeforeAfterSlider';
+import { BOOKING_URL } from '@/lib/servicesData';
 
 export default async function AdditionalServices() {
   const services = [
@@ -92,7 +93,7 @@ export default async function AdditionalServices() {
                 (217) 552-6182
               </a>
             </div>
-            <a href="https://FunkAwayGCS.as.me/" target="_blank" rel="noopener noreferrer" className="bg-gradient-to-br from-orange-400 to-orange-600 text-white px-6 py-2 rounded-xl font-bold uppercase tracking-wider text-xs hover:scale-105 active:scale-95 transition-all shadow-md shadow-orange-500/20">
+            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="bg-gradient-to-br from-orange-400 to-orange-600 text-white px-6 py-2 rounded-xl font-bold uppercase tracking-wider text-xs hover:scale-105 active:scale-95 transition-all shadow-md shadow-orange-500/20">
               Book Now
             </a>
           </div>

@@ -1,6 +1,7 @@
 import { ArrowLeft, Home, Phone, Mail, CheckCircle, ArrowRight, Star, Heart, ShieldCheck, MapPin, Facebook } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { BOOKING_URL } from '@/lib/servicesData';
 
 export const metadata = {
   title: 'Our Story - Rob & Ray | Funk Away GCS',
@@ -25,9 +26,9 @@ export default function AboutPage() {
                 (217) 552-6182
               </a>
             </div>
-            <Link href="/#contact" className="bg-gradient-to-br from-orange-400 to-orange-600 text-white px-6 py-2 rounded-xl font-bold uppercase tracking-wider text-xs hover:scale-105 active:scale-95 transition-all shadow-md shadow-orange-500/20">
+            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="bg-gradient-to-br from-orange-400 to-orange-600 text-white px-6 py-2 rounded-xl font-bold uppercase tracking-wider text-xs hover:scale-105 active:scale-95 transition-all shadow-md shadow-orange-500/20">
               Book Now
-            </Link>
+            </a>
           </div>
         </div>
       </nav>
@@ -126,12 +127,14 @@ export default function AboutPage() {
               </div>
 
               <div className="mt-12 pt-8 border-t border-slate-100 flex flex-col sm:flex-row gap-4">
-                <Link 
-                  href="/#contact" 
+                <a
+                  href={BOOKING_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 bg-gradient-to-br from-orange-400 to-orange-600 text-white px-8 py-4 rounded-2xl font-black text-lg uppercase tracking-wider transition-all shadow-lg shadow-orange-500/30 hover:scale-105 active:scale-95"
                 >
                   Book Appointments <ArrowRight className="w-5 h-5" />
-                </Link>
+                </a>
                 <Link 
                   href="/additional-services" 
                   className="inline-flex items-center justify-center gap-2 bg-[#F0F9FF] border border-cyan-100 text-cyan-800 px-8 py-4 rounded-2xl font-black text-lg uppercase tracking-wider transition-all hover:bg-cyan-100/50"

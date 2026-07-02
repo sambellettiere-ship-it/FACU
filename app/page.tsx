@@ -9,6 +9,7 @@ import Script from 'next/script';
 
 import { BubbleOverlay } from '@/components/BubbleOverlay';
 import { TiktokCarousel } from '@/components/TiktokCarousel';
+import { BOOKING_URL } from '@/lib/servicesData';
 
 export default function LandingPage() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -32,7 +33,7 @@ export default function LandingPage() {
       price: '$48 first bin',
       subPrice: '+$14.99 per additional bin',
       features: ['Deep penetrating vapor wash', 'Odor elimination', 'Bacteria and germ removal', 'Optional pest strips ($10)'],
-      url: 'https://FunkAwayGCS.as.me/?appointmentType=45588183',
+      url: BOOKING_URL,
       learnMoreUrl: '/services/residential-bin-cleaning'
     },
     {
@@ -42,7 +43,7 @@ export default function LandingPage() {
       price: 'From $175',
       subPrice: '3-8 yard commercial or roll-off',
       features: ['3-8 yard dumpsters ($175)', 'Roll-off commercial ($250)', 'Dumpster pad cleaning available', 'Custom contracts available'],
-      url: 'https://FunkAwayGCS.as.me/?appointmentType=45596308',
+      url: BOOKING_URL,
       learnMoreUrl: '/services/commercial-dumpsters'
     },
     {
@@ -52,7 +53,7 @@ export default function LandingPage() {
       price: 'Custom Quote',
       subPrice: 'Depends on area size',
       features: ['Home exterior soft wash', 'Driveways & pavements', 'Dumpster pad areas ($145-$400)', 'Siding and decks'],
-      url: '#contact',
+      url: BOOKING_URL,
       learnMoreUrl: '/services/power-washing'
     }
   ];
@@ -177,7 +178,7 @@ export default function LandingPage() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
-            <a href="#contact" onClick={(e) => scrollToSection(e, 'contact')} className="w-full sm:w-auto bg-gradient-to-br from-orange-400 to-orange-600 hover:scale-105 active:scale-95 text-white px-8 py-4 rounded-2xl font-black text-lg uppercase tracking-wider transition-all flex items-center justify-center shadow-lg shadow-orange-500/30">
+            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto bg-gradient-to-br from-orange-400 to-orange-600 hover:scale-105 active:scale-95 text-white px-8 py-4 rounded-2xl font-black text-lg uppercase tracking-wider transition-all flex items-center justify-center shadow-lg shadow-orange-500/30">
               Book Now
             </a>
             <a href="#services" onClick={(e) => scrollToSection(e, 'services')} className="w-full sm:w-auto bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white border border-white/20 px-8 py-4 rounded-2xl font-bold text-lg uppercase tracking-wider transition-all flex items-center justify-center">
@@ -260,9 +261,10 @@ export default function LandingPage() {
                 >
                   Our Full Story <ArrowRight className="w-5 h-5" />
                 </Link>
-                <a 
-                  href="#contact" 
-                  onClick={(e) => scrollToSection(e, 'contact')} 
+                <a
+                  href={BOOKING_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 bg-gradient-to-br from-orange-400 to-orange-600 text-white px-8 py-4 rounded-xl font-black text-lg uppercase tracking-wider transition-all shadow-lg shadow-orange-500/30 hover:scale-105 active:scale-95"
                 >
                   Book Appointment Now <ArrowRight className="w-5 h-5" />
@@ -315,15 +317,10 @@ export default function LandingPage() {
                 </ul>
 
                 <div className="mt-auto space-y-3">
-                  <a 
-                    href={service.url} 
-                    target={service.url.startsWith('http') ? '_blank' : '_self'} 
-                    rel={service.url.startsWith('http') ? 'noopener noreferrer' : ''} 
-                    onClick={(e) => {
-                      if (service.url.startsWith('#')) {
-                        scrollToSection(e, service.url.substring(1));
-                      }
-                    }}
+                  <a
+                    href={service.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="w-full block text-center py-4 bg-cyan-600 hover:bg-cyan-700 text-white font-bold rounded-2xl transition-colors tracking-wider uppercase text-sm shadow-md"
                   >
                     Book Now
@@ -488,8 +485,8 @@ export default function LandingPage() {
               <p className="text-slate-500 mb-8 max-w-sm text-sm md:text-base font-medium">Select your service type below to continue to our secure booking and payment portal via Acuity / Square.</p>
               
               <div className="flex flex-col gap-4">
-                <a 
-                  href="https://FunkAwayGCS.as.me/?appointmentType=45588183"
+                <a
+                  href={BOOKING_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-between p-6 bg-cyan-50 hover:bg-cyan-100 border-2 border-cyan-100 hover:border-cyan-300 rounded-2xl transition-all group shadow-sm hover:shadow-md cursor-pointer"
@@ -506,8 +503,8 @@ export default function LandingPage() {
                   <ArrowRight className="w-6 h-6 text-cyan-400 group-hover:text-cyan-600 group-hover:translate-x-1 transition-all" />
                 </a>
 
-                <a 
-                  href="https://FunkAwayGCS.as.me/?appointmentType=45596308"
+                <a
+                  href={BOOKING_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-between p-6 bg-slate-50 hover:bg-slate-100 border-2 border-slate-100 hover:border-slate-300 rounded-2xl transition-all group shadow-sm hover:shadow-md cursor-pointer"
