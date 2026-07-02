@@ -81,6 +81,7 @@ export default function LandingPage() {
           <div className="hidden md:flex items-center gap-8 relative z-10">
             <Link href="/about" className="text-sm font-medium hover:text-cyan-600 transition-colors text-slate-600">About Us</Link>
             <a href="#services" onClick={(e) => scrollToSection(e, 'services')} className="text-sm font-medium hover:text-cyan-600 transition-colors text-slate-600">Services</a>
+            <Link href="/subscriptions" className="text-sm font-medium hover:text-cyan-600 transition-colors text-slate-600">Subscriptions</Link>
             <Link href="/additional-services" className="text-sm font-medium hover:text-cyan-600 transition-colors text-slate-600">Additional Services</Link>
             <a href="#contact" onClick={(e) => scrollToSection(e, 'contact')} className="text-sm font-medium hover:text-cyan-600 transition-colors text-slate-600">Contact</a>
             
@@ -112,6 +113,7 @@ export default function LandingPage() {
             <div className="flex flex-col gap-6 text-lg">
               <Link href="/about" className="font-medium text-slate-900 border-b border-cyan-100 pb-4">About Us</Link>
               <a href="#services" onClick={(e) => scrollToSection(e, 'services')} className="font-medium text-slate-900 border-b border-cyan-100 pb-4">Services</a>
+              <Link href="/subscriptions" className="font-medium text-slate-900 border-b border-cyan-100 pb-4">Subscriptions</Link>
               <Link href="/additional-services" className="font-medium text-slate-900 border-b border-cyan-100 pb-4">Additional Services</Link>
               <a href="#faq" onClick={(e) => scrollToSection(e, 'faq')} className="font-medium text-slate-900 border-b border-cyan-100 pb-4">FAQ</a>
               <a href="#contact" onClick={(e) => scrollToSection(e, 'contact')} className="font-medium text-slate-900 border-b border-cyan-100 pb-4">Contact</a>
@@ -181,6 +183,9 @@ export default function LandingPage() {
             <a href="#services" onClick={(e) => scrollToSection(e, 'services')} className="w-full sm:w-auto bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white border border-white/20 px-8 py-4 rounded-2xl font-bold text-lg uppercase tracking-wider transition-all flex items-center justify-center">
               View Services
             </a>
+            <Link href="/subscriptions" className="w-full sm:w-auto bg-cyan-500 hover:bg-cyan-400 hover:scale-105 active:scale-95 text-white px-8 py-4 rounded-2xl font-bold text-lg uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-lg shadow-cyan-500/30">
+              <Star className="w-5 h-5" /> Subscription Plans
+            </Link>
           </motion.div>
         </div>
       </section>
@@ -348,6 +353,22 @@ export default function LandingPage() {
               Request Add-on
             </a>
           </div>
+
+          <div className="mt-8 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-3xl p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden shadow-lg shadow-cyan-500/20">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2" />
+            <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 text-center sm:text-left relative z-10">
+              <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center flex-shrink-0">
+                <Star className="w-6 h-6 text-yellow-300" />
+              </div>
+              <div>
+                <h4 className="font-black text-white text-xl mb-1 uppercase tracking-tight">Save With a Subscription Plan</h4>
+                <p className="text-cyan-50 text-sm max-w-md">Recurring residential & commercial plans starting at <strong className="text-white">$39/month</strong>. Members earn a free surprise seasonal service every 3 months!</p>
+              </div>
+            </div>
+            <Link href="/subscriptions" className="bg-white text-cyan-700 hover:scale-105 active:scale-95 px-8 py-4 rounded-2xl font-black uppercase tracking-wider whitespace-nowrap transition-all shadow-md flex items-center gap-2 relative z-10">
+              View Plans <ArrowRight className="w-5 h-5" />
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -453,9 +474,12 @@ export default function LandingPage() {
                 <h4 className="font-bold text-white text-lg mb-2 flex items-center gap-2">
                   <Star className="w-5 h-5 text-yellow-400" /> Subscription Plans
                 </h4>
-                <p className="text-cyan-50 text-sm leading-relaxed">
-                  Interested in regular maintenance? Contact us via text message, email, or any of our social media accounts to sign up for a subscription plan!
+                <p className="text-cyan-50 text-sm leading-relaxed mb-4">
+                  Interested in regular maintenance? Explore our residential & commercial subscription plans — members earn a free surprise seasonal service every 3 months!
                 </p>
+                <Link href="/subscriptions" className="inline-flex items-center gap-2 bg-white text-cyan-700 hover:scale-105 active:scale-95 px-5 py-2.5 rounded-xl font-bold text-sm uppercase tracking-wide transition-all shadow-md">
+                  View Subscription Plans <ArrowRight className="w-4 h-4" />
+                </Link>
               </div>
             </div>
             
