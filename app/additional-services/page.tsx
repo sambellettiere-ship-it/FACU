@@ -8,31 +8,39 @@ import { BeforeAfterSlider } from '@/components/BeforeAfterSlider';
 import { BOOKING_URL } from '@/lib/servicesData';
 
 export default async function AdditionalServices() {
+  // Each service can be paired with a before/after photo. Drop images named like
+  // `11-gutter-before.webp` / `12-gutter-after.webp` into `public/addserv/` and the
+  // matching service (via `match`) will automatically feature the slider beside it.
   const services = [
     {
       title: "Gutters",
       description: "Keep your gutters clear of debris to prevent water damage and maintain proper drainage.",
-      href: "/services/gutter-cleaning"
+      href: "/services/gutter-cleaning",
+      match: /gutter/i
     },
     {
       title: "Interior & Exterior Windows",
       description: "Crystal clear windows inside and out, improving your home's appearance and natural light.",
-      href: "/services/window-cleaning"
+      href: "/services/window-cleaning",
+      match: /window/i
     },
     {
       title: "Patios and Decks (Cleaning & Staining)",
       description: "Restore your outdoor living spaces with deep cleaning and high-quality protective staining.",
-      href: "/services/patio-deck-cleaning"
+      href: "/services/patio-deck-cleaning",
+      match: /patio|deck/i
     },
     {
       title: "Fence Cleaning & Staining",
       description: "Revitalize your fence's look and extend its lifespan with professional cleaning and staining.",
-      href: "/services/fence-cleaning-staining"
+      href: "/services/fence-cleaning-staining",
+      match: /fence/i
     },
     {
       title: "Roof & Solar Panel Cleaning",
       description: "Remove moss, algae, and dirt carefully from your roof and maximize your solar panels' efficiency.",
-      href: "/services/roof-solar-cleaning"
+      href: "/services/roof-solar-cleaning",
+      match: /roof|solar/i
     }
   ];
 
@@ -69,13 +77,23 @@ export default async function AdditionalServices() {
     // Directory might not exist yet
   }
 
-  // Pair the "patio" photo with the matching "Patios and Decks" service so it
-  // can be featured beside it. Every other photo stays in the gallery below.
-  const patioService = services.find(s => /patio/i.test(s.href) || /patio/i.test(s.title));
-  const patioPair = galleryPairs.find(p => /patio/i.test(p.label));
-  const featuredPatio = patioService && patioPair ? { service: patioService, pair: patioPair } : null;
-  const otherServices = featuredPatio ? services.filter(s => s !== patioService) : services;
-  const galleryRest = featuredPatio ? galleryPairs.filter(p => p !== patioPair) : galleryPairs;
+  // Pair each service with its matching before/after photo (by the service's
+  // `match` pattern) so it can be featured beside it. Any service without a
+  // matching photo falls back to a plain card, and any leftover photos stay in
+  // the gallery below.
+  type Featured = { service: (typeof services)[number]; pair: GalleryPair };
+  const featured: Featured[] = [];
+  const usedPairs = new Set<GalleryPair>();
+  for (const service of services) {
+    if (!service.match) continue;
+    const pair = galleryPairs.find(p => !usedPairs.has(p) && service.match.test(p.label));
+    if (pair) {
+      usedPairs.add(pair);
+      featured.push({ service, pair });
+    }
+  }
+  const otherServices = services.filter(s => !featured.some(f => f.service === s));
+  const galleryRest = galleryPairs.filter(p => !usedPairs.has(p));
 
   return (
     <div className="min-h-screen bg-slate-50 relative selection:bg-cyan-200 selection:text-cyan-900 font-sans">
@@ -116,29 +134,30 @@ export default async function AdditionalServices() {
       {/* Service List */}
       <section className="py-16 bg-white relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Featured service with its before/after photo beside it */}
-          {featuredPatio && (
-            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-12 bg-white p-6 sm:p-8 rounded-[32px] border border-cyan-100 shadow-[0_10px_25px_-5px_rgba(8,145,178,0.1)]">
-              <div className="w-full max-w-md mx-auto lg:mx-0">
+          {/* Featured services, each with its before/after photo beside it.
+              The image side alternates left/right down the list for variety. */}
+          {featured.map(({ service, pair }, idx) => (
+            <div key={service.href} className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-12 bg-white p-6 sm:p-8 rounded-[32px] border border-cyan-100 shadow-[0_10px_25px_-5px_rgba(8,145,178,0.1)]">
+              <div className={`w-full max-w-md mx-auto lg:mx-0 ${idx % 2 === 1 ? 'lg:order-2 lg:ml-auto' : ''}`}>
                 <BeforeAfterSlider
-                  beforeSrc={featuredPatio.pair.before}
-                  afterSrc={featuredPatio.pair.after}
-                  label={featuredPatio.pair.label}
+                  beforeSrc={pair.before}
+                  afterSrc={pair.after}
+                  label={pair.label}
                   aspectRatio="3 / 4"
                 />
               </div>
-              <div className="flex flex-col items-start">
+              <div className={`flex flex-col items-start ${idx % 2 === 1 ? 'lg:order-1' : ''}`}>
                 <CheckCircle className="w-8 h-8 text-cyan-500 mb-6" />
-                <h3 className="font-display text-2xl font-black text-slate-900 mb-3 tracking-tight">{featuredPatio.service.title}</h3>
+                <h3 className="font-display text-2xl font-black text-slate-900 mb-3 tracking-tight">{service.title}</h3>
                 <p className="text-slate-600 leading-relaxed font-medium mb-6">
-                  {featuredPatio.service.description}
+                  {service.description}
                 </p>
-                <Link href={featuredPatio.service.href} className="inline-flex items-center text-cyan-600 font-bold text-sm tracking-wider uppercase group">
+                <Link href={service.href} className="inline-flex items-center text-cyan-600 font-bold text-sm tracking-wider uppercase group">
                   Learn More <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </div>
             </div>
-          )}
+          ))}
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {otherServices.map((service, idx) => (

@@ -110,7 +110,7 @@ export default function LandingPage() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 z-40 bg-[#F0F9FF] pt-24 px-6 md:hidden"
+            className="fixed inset-0 z-40 bg-[#F0F9FF] pt-32 sm:pt-40 px-6 overflow-y-auto md:hidden"
           >
             <div className="flex flex-col gap-6 text-lg">
               <Link href="/about" className="font-medium text-slate-900 border-b border-cyan-100 pb-4">About Us</Link>
