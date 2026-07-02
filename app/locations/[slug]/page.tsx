@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowLeft, CheckCircle, ShieldCheck, Mail, Phone, MapPin, ArrowRight, Star, Quote, Sparkles, Building2, UserCheck, ShieldAlert } from 'lucide-react';
+import { ArrowLeft, CheckCircle, ShieldCheck, Mail, Phone, MapPin, ArrowRight, Star, Quote, Sparkles, Building2, UserCheck, ShieldAlert, Facebook, Home } from 'lucide-react';
 import { servicesData } from '@/lib/servicesData';
 
 interface LocationInfo {
@@ -381,10 +381,20 @@ export default async function LocationPage({ params }: Props) {
               Funk Away <span className="text-cyan-500">GCS</span>
             </span>
           </div>
-          <p className="text-sm font-medium max-w-md mx-auto mb-10 text-slate-500">
+          <p className="text-sm font-medium max-w-md mx-auto mb-8 text-slate-500">
             Professional high-pressure power washing, delicate soft home exterior washers, gutters, windows, and trash can sanitizers in central Illinois.
           </p>
-          
+
+          <div className="flex justify-center gap-4 mb-10">
+            <a href="https://www.facebook.com/FunkAwayGCS7434" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-[#1877F2] hover:text-white transition-colors" title="Facebook">
+              <Facebook className="w-5 h-5" />
+            </a>
+            <a href="https://nextdoor.com/page/funk-away-garbage-cleaning-service-llc-westville-il?init_source=search&query=funk+away+gcs&referrer=nextdoor" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-[#8ED081] hover:text-white transition-colors" title="Nextdoor">
+              <Home className="w-5 h-5 absolute opacity-20" />
+              <span className="font-bold text-xs z-10 text-slate-400 tracking-tighter">ND</span>
+            </a>
+          </div>
+
           <div className="border-t border-slate-900 my-8 pt-8 max-w-4xl mx-auto text-center">
             <h4 className="font-bold text-slate-400 uppercase tracking-widest text-xs mb-4">Our Complete Central Illinois Service Counties</h4>
             <div className="flex flex-wrap justify-center gap-x-6 gap-y-3 text-xs font-semibold">
