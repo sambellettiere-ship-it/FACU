@@ -9,6 +9,7 @@ import Script from 'next/script';
 
 import { BubbleOverlay } from '@/components/BubbleOverlay';
 import { TiktokCarousel } from '@/components/TiktokCarousel';
+import { SocialLinks } from '@/components/SocialLinks';
 import { BOOKING_URL } from '@/lib/servicesData';
 
 export default function LandingPage() {
@@ -427,6 +428,12 @@ export default function LandingPage() {
                 </div>
                 <span>Find on Nextdoor</span>
               </a>
+              <a href="https://www.tiktok.com/@funk.away.gcs" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-3 px-8 py-4 rounded-2xl bg-slate-950 text-white hover:scale-105 active:scale-95 transition-all font-bold text-lg uppercase tracking-wider shadow-lg shadow-black/30">
+                <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6" aria-hidden="true">
+                  <path d="M16.5 3c.29 2.06 1.44 3.4 3.5 3.6v2.42c-1.19.11-2.24-.28-3.46-1.02v5.9c0 3.62-2.42 5.9-5.5 5.9-2.87 0-5.04-2.02-5.04-4.85 0-3.02 2.19-4.94 5.4-4.6v2.63c-.42-.11-.86-.16-1.28-.16-1.2 0-2.02.79-2.02 1.9 0 1.15.87 1.98 2.08 1.98 1.4 0 2.34-1 2.34-2.93V3h4z" />
+                </svg>
+                <span>Watch on TikTok</span>
+              </a>
             </div>
           </div>
 
@@ -543,15 +550,7 @@ export default function LandingPage() {
             <span className="text-slate-700">|</span>
             <a href="tel:2175526182" className="hover:text-cyan-400 transition-colors">(217) 552-6182</a>
           </div>
-          <div className="flex justify-center gap-4 mb-8">
-            <a href="https://www.facebook.com/FunkAwayGCS7434" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-[#1877F2] hover:text-white transition-colors" title="Facebook">
-              <Facebook className="w-5 h-5" />
-            </a>
-            <a href="https://nextdoor.com/page/funk-away-garbage-cleaning-service-llc-westville-il?init_source=search&query=funk+away+gcs&referrer=nextdoor" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-[#8ED081] hover:text-white transition-colors" title="Nextdoor">
-              <Home className="w-5 h-5 absolute opacity-20" />
-              <span className="font-bold text-xs z-10 text-slate-400 group-hover:text-white tracking-tighter">ND</span>
-            </a>
-          </div>
+          <SocialLinks className="mb-8" />
           <div className="max-w-4xl mx-auto border-t border-slate-800 my-8 pt-8 text-center text-xs text-slate-500">
             <h4 className="font-bold text-slate-400 uppercase tracking-widest mb-4">Service Areas</h4>
             <div className="flex flex-wrap justify-center gap-x-6 gap-y-3">
