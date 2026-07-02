@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState, useCallback } from 'react';
+import { useRef, useState, useCallback, useEffect } from 'react';
 import { MoveHorizontal } from 'lucide-react';
 
 interface BeforeAfterSliderProps {
@@ -14,12 +14,39 @@ interface BeforeAfterSliderProps {
    * image is never cropped regardless.
    */
   aspectRatio?: string;
+  /**
+   * When true the handle starts in the middle and gently sweeps back and forth
+   * on its own to reveal the before/after difference without any interaction.
+   * The animation stops for good the moment the visitor grabs the slider.
+   */
+  autoPlay?: boolean;
 }
 
-export function BeforeAfterSlider({ beforeSrc, afterSrc, label, aspectRatio = '3 / 4' }: BeforeAfterSliderProps) {
+export function BeforeAfterSlider({ beforeSrc, afterSrc, label, aspectRatio = '3 / 4', autoPlay = false }: BeforeAfterSliderProps) {
   const [position, setPosition] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
+  // Once the visitor interacts we hand control over to them and never resume
+  // the automatic sweep.
+  const [userTookOver, setUserTookOver] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  // Auto sweep: start centered (50%) and ease back and forth with a sine wave
+  // so the motion feels smooth and always returns through the middle.
+  useEffect(() => {
+    if (!autoPlay || userTookOver) return;
+    const amplitude = 40; // sweeps between 10% and 90%
+    const period = 5000; // ms for one full back-and-forth cycle
+    let raf = 0;
+    let start = 0;
+    const tick = (now: number) => {
+      if (!start) start = now;
+      const t = (now - start) / period;
+      setPosition(50 + amplitude * Math.sin(t * 2 * Math.PI));
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [autoPlay, userTookOver]);
 
   const updatePosition = useCallback((clientX: number) => {
     const container = containerRef.current;
@@ -34,6 +61,7 @@ export function BeforeAfterSlider({ beforeSrc, afterSrc, label, aspectRatio = '3
     // finger or cursor leaves the element, and so the browser doesn't hand the
     // gesture off to native scrolling mid-drag (the main cause of mobile jitter).
     e.currentTarget.setPointerCapture(e.pointerId);
+    setUserTookOver(true);
     setIsDragging(true);
     updatePosition(e.clientX);
   };
@@ -51,6 +79,9 @@ export function BeforeAfterSlider({ beforeSrc, afterSrc, label, aspectRatio = '3
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+      setUserTookOver(true);
+    }
     if (e.key === 'ArrowLeft') {
       setPosition((p) => Math.max(0, p - 2));
     } else if (e.key === 'ArrowRight') {

@@ -37,6 +37,18 @@ export const servicesData = {
     seoDescription: 'High-quality power washing and soft washing for homes, driveways, and siding in Champaign-Urbana. Get a custom quote today!',
     icon: 'Droplets'
   },
+  'home-siding-cleaning': {
+    title: 'Home Siding Cleaning',
+    description: 'Soft wash away algae, dirt, and grime to make your home\'s siding look brand new.',
+    price: 'Custom Quote',
+    subPrice: 'Based on home size',
+    features: ['Gentle soft-wash method', 'Removes algae, mold & dirt', 'Safe for vinyl & painted siding', 'Restores curb appeal'],
+    url: BOOKING_URL,
+    longDescription: 'Years of rain, dirt, and organic growth can leave your home\'s siding looking dull and streaked. Our gentle soft-wash technique safely lifts away algae, mold, mildew, and grime without damaging your vinyl or painted siding, instantly boosting your home\'s curb appeal and protecting your investment.',
+    seoTitle: 'Home Siding Cleaning & Soft Washing | Funk Away GCS',
+    seoDescription: 'Professional home siding soft washing in Champaign-Urbana. Safely remove algae, mold, and dirt to restore your home\'s curb appeal.',
+    icon: 'Home'
+  },
   'gutter-cleaning': {
     title: 'Gutter Cleaning',
     description: 'Keep your gutters clear of debris to prevent water damage and maintain proper drainage.',
