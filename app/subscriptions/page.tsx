@@ -16,7 +16,6 @@ import {
   Sun,
   Wind,
   Snowflake,
-  UtensilsCrossed,
 } from 'lucide-react';
 import Link from 'next/link';
 import { BOOKING_URL } from '@/lib/servicesData';
@@ -239,7 +238,7 @@ export default function SubscriptionsPage() {
             Never Deal With a <span className="text-cyan-400">Dirty Bin</span> Again
           </h1>
           <p className="max-w-2xl mx-auto text-lg text-cyan-100 font-medium">
-            Set it and forget it. Our subscription plans keep your garbage bins and dumpsters clean, sanitized, and odor-free all year long — plus exclusive loyalty rewards for our members.
+            For less than the cost of one dinner out each month, we keep your bins sanitized, odor-free, pest-free, and bacteria-free year-round.
           </p>
         </div>
       </section>
@@ -320,22 +319,6 @@ export default function SubscriptionsPage() {
               )}
             </motion.div>
           </AnimatePresence>
-
-          {/* Value framing banner */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mt-16 max-w-4xl mx-auto bg-gradient-to-br from-orange-400 to-orange-600 rounded-[40px] p-8 md:p-12 flex flex-col sm:flex-row items-center gap-6 md:gap-8 text-center sm:text-left relative overflow-hidden shadow-xl shadow-orange-500/20"
-          >
-            <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl transform translate-x-1/3 -translate-y-1/3" />
-            <div className="w-16 h-16 flex-shrink-0 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center relative z-10">
-              <UtensilsCrossed className="w-8 h-8 text-white" />
-            </div>
-            <p className="font-display text-xl md:text-2xl font-black text-white tracking-tight leading-snug relative z-10">
-              For less than the cost of one dinner out each month, we keep your bins sanitized, odor-free, pest-free, and bacteria-free year-round.
-            </p>
-          </motion.div>
         </div>
       </section>
 
