@@ -33,7 +33,7 @@ export default function LandingPage() {
       description: 'Disinfect and power wash your home garbage bins to eliminate odors and bacteria.',
       price: '$48 first bin',
       subPrice: '+$14.99 per additional bin',
-      features: ['Deep penetrating vapor wash', 'Odor elimination', 'Bacteria and germ removal', 'Optional pest strips ($10)'],
+      features: ['Deep penetrating vapor wash', 'Odor elimination', 'Bacteria and germ removal', 'Optional pest strips ($12)'],
       url: BOOKING_URL,
       learnMoreUrl: '/services/residential-bin-cleaning'
     },
@@ -344,7 +344,7 @@ export default function LandingPage() {
               </div>
               <div>
                 <h4 className="font-bold text-slate-900 text-lg mb-1">Garbage Guard Pest Strips</h4>
-                <p className="text-slate-600 text-sm">Prevents infestation with a deep penetrating vapor. Add to any bin cleaning for just <strong className="text-slate-900">$10 per bin</strong>.</p>
+                <p className="text-slate-600 text-sm">Prevents infestation with a deep penetrating vapor. Add to any bin cleaning for just <strong className="text-slate-900">$12 per bin</strong>.</p>
               </div>
             </div>
             <a href="#contact" onClick={(e) => scrollToSection(e, 'contact')} className="bg-white border-2 border-orange-200 text-orange-600 hover:bg-orange-100 hover:border-orange-300 px-6 py-3 rounded-2xl font-bold whitespace-nowrap transition-colors">

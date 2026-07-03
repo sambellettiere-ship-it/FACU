@@ -6,7 +6,7 @@ export const servicesData = {
     description: 'Disinfect and power wash your home garbage bins to eliminate odors and bacteria.',
     price: '$48 first bin',
     subPrice: '+$14.99 per additional bin',
-    features: ['Deep penetrating vapor wash', 'Odor elimination', 'Bacteria and germ removal', 'Optional pest strips ($10)'],
+    features: ['Deep penetrating vapor wash', 'Odor elimination', 'Bacteria and germ removal', 'Optional pest strips ($12)'],
     url: BOOKING_URL,
     longDescription: 'Our residential bin cleaning service ensures your home garbage and recycling bins are free from harmful bacteria, maggots, and lingering odors. We use high-pressure, high-temperature water to deep clean the interior and exterior of your bins. Add our Garbage Guard pest strips to keep pests away.',
     seoTitle: 'Residential Garbage Bin Cleaning Service | Funk Away GCS',
