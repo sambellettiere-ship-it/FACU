@@ -8,22 +8,34 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: false,
   },
-  // Allow access to remote image placeholder.
+  // Serve the local brand images as-is instead of running Next.js' on-the-fly
+  // image optimizer (`/_next/image`). That optimizer decodes every requested
+  // image into memory with `sharp` on each unique size/format request, which is
+  // the single biggest RAM/CPU consumer under a traffic burst (e.g. paid ads).
+  // Every <Image> in this site points at a static, already-sized file in
+  // /public, so on-the-fly optimization adds cost without a real benefit.
+  // Disabling it keeps the container's memory footprint flat as traffic scales,
+  // which directly cuts Cloud Run's GB-seconds (memory x time) billing.
   images: {
-    remotePatterns: [
+    unoptimized: true,
+  },
+  // Let browsers and any CDN in front of Cloud Run cache the static image and
+  // font assets so repeat/ad traffic is served from cache instead of waking the
+  // container. Assets are content-stable brand images; a one-day fresh window
+  // with a week of stale-while-revalidate keeps updates flowing without hitting
+  // the origin on every hit.
+  async headers() {
+    return [
       {
-        protocol: 'https',
-        hostname: 'picsum.photos',
-        port: '',
-        pathname: '/**', // This allows any path under the hostname
+        source: '/:path*\\.(jpg|jpeg|png|webp|gif|svg|ico|avif|woff|woff2)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=86400, stale-while-revalidate=604800',
+          },
+        ],
       },
-      {
-        protocol: 'https',
-        hostname: 'images.unsplash.com',
-        port: '',
-        pathname: '/**',
-      }
-    ],
+    ];
   },
   output: 'standalone',
   transpilePackages: ['motion'],
