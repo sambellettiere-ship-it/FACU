@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { ArrowLeft, CheckCircle, ShieldCheck, Mail, Phone, Trash2, Droplets, ArrowRight } from 'lucide-react';
 import { servicesData } from '@/lib/servicesData';
 import { SocialLinks } from '@/components/SocialLinks';
+import { JsonLd } from '@/components/JsonLd';
+import { serviceSchema, breadcrumbSchema } from '@/lib/siteConfig';
 
 type Props = {
   params: Promise<{ slug: string }>
@@ -21,9 +23,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: service.seoTitle,
     description: service.seoDescription,
+    alternates: {
+      canonical: `/services/${slug}`,
+    },
     openGraph: {
       title: service.seoTitle,
       description: service.seoDescription,
+      url: `/services/${slug}`,
       type: 'website',
     }
   }
@@ -52,6 +58,20 @@ export default async function ServicePage({ params }: Props) {
 
   return (
     <div className="min-h-screen bg-slate-50 relative selection:bg-cyan-200 selection:text-cyan-900 font-sans">
+      <JsonLd
+        data={[
+          serviceSchema({
+            name: service.title,
+            description: service.seoDescription,
+            slug,
+            price: service.price,
+          }),
+          breadcrumbSchema([
+            { name: 'Home', path: '/' },
+            { name: service.title, path: `/services/${slug}` },
+          ]),
+        ]}
+      />
       {/* Navigation */}
       <nav className="fixed w-full z-50 transition-all duration-300 bg-white/95 backdrop-blur-md shadow-md py-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center relative">
