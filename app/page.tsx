@@ -11,6 +11,33 @@ import { BubbleOverlay } from '@/components/BubbleOverlay';
 import { TiktokCarousel } from '@/components/TiktokCarousel';
 import { SocialLinks } from '@/components/SocialLinks';
 import { BOOKING_URL } from '@/lib/servicesData';
+import { JsonLd } from '@/components/JsonLd';
+import { faqSchema } from '@/lib/siteConfig';
+
+// Homepage FAQ. Defined once so the visible list and the FAQPage structured
+// data (which can earn an expandable FAQ result on Google) never drift apart.
+const FAQS = [
+  {
+    q: 'Do I need to be home for the cleaning?',
+    a: 'No, you do not need to be home. Just leave your bins or dumpster out and accessible on your scheduled cleaning day.',
+  },
+  {
+    q: 'What if there is trash in my bin on cleaning day?',
+    a: 'Bins must be completely empty of all trash bags and debris before we can clean them. If they are not empty, we may have to reschedule your service.',
+  },
+  {
+    q: 'Do you use eco-friendly products?',
+    a: 'Yes! Our cleaning process uses eco-friendly, biodegradable solutions that are safe for the environment, your family, and pets.',
+  },
+  {
+    q: 'How often should I have my bins cleaned?',
+    a: 'We recommend a monthly cleaning to keep odors, bacteria, and pests away. We offer maintenance plans to make this easy and affordable.',
+  },
+  {
+    q: 'What areas do you serve?',
+    a: 'We serve Champaign County and the surrounding Central Illinois communities, including Champaign, Urbana, Savoy, Mahomet, Rantoul, St. Joseph, Danville, and Westville.',
+  },
+];
 
 export default function LandingPage() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -70,6 +97,7 @@ export default function LandingPage() {
 
   return (
     <div className="min-h-screen bg-[#F0F9FF]">
+      <JsonLd data={faqSchema(FAQS)} />
       <BubbleOverlay />
       {/* Navigation */}
       <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-md shadow-md py-4' : 'bg-white py-6 shadow-sm'}`}>
@@ -160,17 +188,17 @@ export default function LandingPage() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="font-display text-5xl md:text-7xl font-black tracking-tight text-white mb-6 leading-[0.95] uppercase"
           >
-        
-            <span className="text-cyan-400">Commercial & Residential Pressure Washing</span>
+
+            <span className="text-cyan-400">Champaign County Pressure Washing & Garbage Can Cleaning</span>
           </motion.h1>
 
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             className="max-w-2xl mx-auto text-lg md:text-xl text-slate-200 font-medium mb-10"
           >
-            Professional garbage bin, dumpster, and power washing services. We keep your residential and commercial spaces clean, safe, and odor-free in Champaign-Urbana, IL and surrounding areas.
+            Professional garbage bin, dumpster, and power washing services for residential and commercial properties. Rob & Ray keep your space clean, safe, and odor-free across Champaign County — Champaign, Urbana, Savoy, Mahomet, Rantoul, and all of Central Illinois.
           </motion.p>
           
           <motion.div 
@@ -380,24 +408,7 @@ export default function LandingPage() {
             </p>
           </div>
           <div className="space-y-6">
-            {[
-              {
-                q: "Do I need to be home for the cleaning?",
-                a: "No, you do not need to be home. Just leave your bins or dumpster out and accessible on your scheduled cleaning day."
-              },
-              {
-                q: "What if there is trash in my bin on cleaning day?",
-                a: "Bins must be completely empty of all trash bags and debris before we can clean them. If they are not empty, we may have to reschedule your service."
-              },
-              {
-                q: "Do you use eco-friendly products?",
-                a: "Yes! Our cleaning process uses eco-friendly, biodegradable solutions that are safe for the environment, your family, and pets."
-              },
-              {
-                q: "How often should I have my bins cleaned?",
-                a: "We recommend a monthly cleaning to keep odors, bacteria, and pests away. We offer maintenance plans to make this easy and affordable."
-              }
-            ].map((faq, i) => (
+            {FAQS.map((faq, i) => (
               <div key={i} className="bg-[#F0F9FF] rounded-3xl p-8 border border-cyan-100 shadow-sm hover:shadow-md transition-shadow">
                 <h3 className="font-bold text-slate-900 text-lg mb-3">{faq.q}</h3>
                 <p className="text-slate-600">{faq.a}</p>
@@ -544,7 +555,7 @@ export default function LandingPage() {
               Funk Away <span className="text-cyan-500">GCS</span>
             </span>
           </div>
-          <p className="max-w-md mx-auto mb-8 font-medium">Hello, We&apos;re ROB & RAY. Thanks for visiting our booking site. Proudly serving Champaign-Urbana, IL, and the surrounding Central Illinois communities.</p>
+          <p className="max-w-md mx-auto mb-8 font-medium">Hello, We&apos;re ROB & RAY. Thanks for visiting our booking site. Proudly serving all of Champaign County and the surrounding Central Illinois communities with professional pressure washing and garbage can cleaning.</p>
           <div className="flex justify-center gap-6 mb-8 text-sm font-bold tracking-wider">
             <a href="mailto:funkaway_gcs@yahoo.com" className="hover:text-cyan-400 transition-colors">funkaway_gcs@yahoo.com</a>
             <span className="text-slate-700">|</span>

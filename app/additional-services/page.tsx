@@ -8,6 +8,22 @@ import { BeforeAfterSlider } from '@/components/BeforeAfterSlider';
 import { AdditionalServicesCarousel, type CarouselSlide } from '@/components/AdditionalServicesCarousel';
 import { BOOKING_URL } from '@/lib/servicesData';
 
+export const metadata = {
+  title: 'Additional Home Services — Gutters, Windows, Decks & Siding | Funk Away GCS',
+  description:
+    'Beyond bin cleaning, Funk Away GCS offers gutter cleaning, window washing, patio & deck cleaning and staining, siding soft washing, and roof & solar cleaning across Champaign County, IL.',
+  alternates: {
+    canonical: '/additional-services',
+  },
+  openGraph: {
+    title: 'Additional Home Services — Gutters, Windows, Decks & Siding | Funk Away GCS',
+    description:
+      'Beyond bin cleaning, Funk Away GCS offers gutter cleaning, window washing, patio & deck cleaning and staining, siding soft washing, and roof & solar cleaning across Champaign County, IL.',
+    url: '/additional-services',
+    type: 'website',
+  },
+};
+
 export default async function AdditionalServices() {
   // Each service can be paired with a before/after photo. Drop images named like
   // `11-gutter-before.webp` / `12-gutter-after.webp` into `public/addserv/` and the
