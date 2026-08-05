@@ -22,6 +22,12 @@ export const BUSINESS = {
   telephoneDisplay: '(217) 552-6182',
   email: 'funkaway_gcs@yahoo.com',
   priceRange: '$$',
+  // Business hours, surfaced to search engines via `openingHoursSpecification`
+  // so Google can show an "Open now / Closes 7 PM" line and answer "open now"
+  // queries. Open Monday–Friday; closed Saturday & Sunday.
+  hours: [
+    { days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '08:00', closes: '19:00' },
+  ],
   // Mobile, service-area business. Primary market is the Champaign–Urbana metro.
   address: {
     locality: 'Champaign',
@@ -51,10 +57,34 @@ export const BUSINESS = {
     'https://www.facebook.com/FunkAwayGCS7434',
     'https://www.tiktok.com/@funk.away.gcs',
     'https://nextdoor.com/page/funk-away-garbage-cleaning-service-llc-westville-il',
+    'https://www.google.com/maps/place/Funk+Away+Garbage+Cleaning+Service+LLC/data=!4m2!3m1!1s0x2a3bf102be95fea5:0x6036f5eb23767571',
   ],
   logo: `${SITE_URL}/funkawaymascots.png`,
   image: `${SITE_URL}/funkawaymascots.png`,
 } as const;
+
+// Default social-share image (Open Graph / Twitter). 1200×630 is the size
+// Facebook, LinkedIn, and iMessage render without cropping. Used as the
+// fallback share card on every page that doesn't set its own image.
+export const DEFAULT_OG_IMAGE = {
+  url: '/og-default.png',
+  width: 1200,
+  height: 630,
+  alt: 'Funk Away GCS — Champaign County pressure washing & garbage can cleaning',
+} as const;
+
+// Aggregate review data shown as a star rating in Google results. Populate
+// `ratingValue` and `reviewCount` from the business's real Google Business
+// Profile totals — Google's guidelines require ratings to reflect genuine
+// reviews, so this stays `null` until real numbers are filled in. When set,
+// `localBusinessSchema()` automatically emits an `aggregateRating`.
+export const AGGREGATE_RATING: {
+  ratingValue: number;
+  reviewCount: number;
+} | null = {
+  ratingValue: 5.0,
+  reviewCount: 45,
+};
 
 // Stable @id so every schema block can reference the same business node.
 const BUSINESS_ID = `${SITE_URL}/#business`;
@@ -91,6 +121,22 @@ export function localBusinessSchema(): Json {
       latitude: BUSINESS.geo.latitude,
       longitude: BUSINESS.geo.longitude,
     },
+    // Lets search engines surface hours ("Open now / Closes 6 PM").
+    openingHoursSpecification: BUSINESS.hours.map((h) => ({
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: h.days,
+      opens: h.opens,
+      closes: h.closes,
+    })),
+    // Explicit customer-service contact point for the phone number.
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'customer service',
+      telephone: BUSINESS.telephone,
+      email: BUSINESS.email,
+      areaServed: 'US-IL',
+      availableLanguage: ['English'],
+    },
     areaServed: BUSINESS.areaServed.map((name) => ({
       '@type': 'AdministrativeArea',
       name,
@@ -103,6 +149,17 @@ export function localBusinessSchema(): Json {
       'Trash bin sanitization',
       'Commercial dumpster cleaning',
     ],
+    // Star rating in search results — only emitted once real review totals are
+    // set in AGGREGATE_RATING (see note there).
+    ...(AGGREGATE_RATING
+      ? {
+          aggregateRating: {
+            '@type': 'AggregateRating',
+            ratingValue: AGGREGATE_RATING.ratingValue,
+            reviewCount: AGGREGATE_RATING.reviewCount,
+          },
+        }
+      : {}),
     sameAs: BUSINESS.sameAs,
   };
 }

@@ -3,18 +3,30 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { BOOKING_URL } from '@/lib/servicesData';
 import { SocialLinks } from '@/components/SocialLinks';
+import { DEFAULT_OG_IMAGE } from '@/lib/siteConfig';
+
+const aboutTitle = 'Our Story - Rob & Ray | Funk Away GCS';
+const aboutDescription =
+  'Learn how Rob & Ray started Funk Away from the trunk of a sedan with a Sun Joe pressure washer to keeping Champaign County and Central Illinois clean and odor-free.';
 
 export const metadata = {
-  title: 'Our Story - Rob & Ray | Funk Away GCS',
-  description: 'Learn how Rob & Ray started Funk Away from the trunk of a sedan with a Sun Joe pressure washer to keeping Champaign County and Central Illinois clean and odor-free.',
+  title: aboutTitle,
+  description: aboutDescription,
   alternates: {
     canonical: '/about',
   },
   openGraph: {
-    title: 'Our Story - Rob & Ray | Funk Away GCS',
-    description: 'Learn how Rob & Ray started Funk Away from the trunk of a sedan with a Sun Joe pressure washer to keeping Champaign County and Central Illinois clean and odor-free.',
+    title: aboutTitle,
+    description: aboutDescription,
     url: '/about',
     type: 'website',
+    images: [DEFAULT_OG_IMAGE],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: aboutTitle,
+    description: aboutDescription,
+    images: [DEFAULT_OG_IMAGE.url],
   },
 };
 

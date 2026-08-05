@@ -5,7 +5,7 @@ import { SocialLinks } from '@/components/SocialLinks';
 import { servicesData, BOOKING_URL } from '@/lib/servicesData';
 import { locationsData } from '@/lib/locationsData';
 import { JsonLd } from '@/components/JsonLd';
-import { locationBusinessSchema, breadcrumbSchema } from '@/lib/siteConfig';
+import { locationBusinessSchema, breadcrumbSchema, DEFAULT_OG_IMAGE } from '@/lib/siteConfig';
 
 type Props = {
   params: Promise<{ slug: string }>
@@ -36,7 +36,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: seoDescription,
       url: `/locations/${slug}`,
       type: 'website',
-    }
+      images: [DEFAULT_OG_IMAGE],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: seoTitle,
+      description: seoDescription,
+      images: [DEFAULT_OG_IMAGE.url],
+    },
   }
 }
 
