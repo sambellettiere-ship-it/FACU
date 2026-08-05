@@ -23,13 +23,10 @@ export const BUSINESS = {
   email: 'funkaway_gcs@yahoo.com',
   priceRange: '$$',
   // Business hours, surfaced to search engines via `openingHoursSpecification`
-  // so Google can show an "Open now / Closes 6 PM" line and answer
-  // "open now" queries. ⚠️ These are sensible defaults — update them to Rob &
-  // Ray's real hours before relying on them, since wrong hours frustrate
-  // customers and hurt trust.
+  // so Google can show an "Open now / Closes 7 PM" line and answer "open now"
+  // queries. Open Monday–Friday; closed Saturday & Sunday.
   hours: [
-    { days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '08:00', closes: '18:00' },
-    { days: ['Saturday'], opens: '09:00', closes: '16:00' },
+    { days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '08:00', closes: '19:00' },
   ],
   // Mobile, service-area business. Primary market is the Champaign–Urbana metro.
   address: {
@@ -60,6 +57,7 @@ export const BUSINESS = {
     'https://www.facebook.com/FunkAwayGCS7434',
     'https://www.tiktok.com/@funk.away.gcs',
     'https://nextdoor.com/page/funk-away-garbage-cleaning-service-llc-westville-il',
+    'https://www.google.com/maps/place/Funk+Away+Garbage+Cleaning+Service+LLC/data=!4m2!3m1!1s0x2a3bf102be95fea5:0x6036f5eb23767571',
   ],
   logo: `${SITE_URL}/funkawaymascots.png`,
   image: `${SITE_URL}/funkawaymascots.png`,
