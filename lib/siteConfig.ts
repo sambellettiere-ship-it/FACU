@@ -83,7 +83,10 @@ export const DEFAULT_OG_IMAGE = {
 export const AGGREGATE_RATING: {
   ratingValue: number;
   reviewCount: number;
-} | null = null;
+} | null = {
+  ratingValue: 5.0,
+  reviewCount: 45,
+};
 
 // Stable @id so every schema block can reference the same business node.
 const BUSINESS_ID = `${SITE_URL}/#business`;
