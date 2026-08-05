@@ -2,7 +2,7 @@ import type {Metadata} from 'next';
 import { Outfit } from 'next/font/google';
 import Script from 'next/script';
 import './globals.css';
-import { SITE_URL, BUSINESS, localBusinessSchema, websiteSchema } from '@/lib/siteConfig';
+import { SITE_URL, BUSINESS, DEFAULT_OG_IMAGE, localBusinessSchema, websiteSchema } from '@/lib/siteConfig';
 import { JsonLd } from '@/components/JsonLd';
 
 const outfit = Outfit({ subsets: ['latin'], variable: '--font-sans' });
@@ -43,20 +43,13 @@ export const metadata: Metadata = {
     title,
     description,
     locale: 'en_US',
-    images: [
-      {
-        url: '/funkawaymascots.png',
-        width: 2000,
-        height: 2000,
-        alt: 'Funk Away GCS — Rob & Ray, Champaign County pressure washing & garbage can cleaning',
-      },
-    ],
+    images: [DEFAULT_OG_IMAGE],
   },
   twitter: {
     card: 'summary_large_image',
     title,
     description,
-    images: ['/funkawaymascots.png'],
+    images: [DEFAULT_OG_IMAGE.url],
   },
   robots: {
     index: true,

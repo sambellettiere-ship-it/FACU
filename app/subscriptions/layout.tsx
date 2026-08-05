@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { DEFAULT_OG_IMAGE } from '@/lib/siteConfig';
 
 // The subscriptions page itself is a client component (it has interactive plan
 // toggles), so its SEO metadata lives here in a route-level layout instead.
@@ -18,6 +19,13 @@ export const metadata: Metadata = {
     description,
     url: '/subscriptions',
     type: 'website',
+    images: [DEFAULT_OG_IMAGE],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title,
+    description,
+    images: [DEFAULT_OG_IMAGE.url],
   },
 };
 

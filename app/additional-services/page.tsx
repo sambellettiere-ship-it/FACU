@@ -7,20 +7,31 @@ import path from 'path';
 import { BeforeAfterSlider } from '@/components/BeforeAfterSlider';
 import { AdditionalServicesCarousel, type CarouselSlide } from '@/components/AdditionalServicesCarousel';
 import { BOOKING_URL } from '@/lib/servicesData';
+import { DEFAULT_OG_IMAGE } from '@/lib/siteConfig';
+
+const addServTitle =
+  'Additional Home Services — Gutters, Windows, Decks & Siding | Funk Away GCS';
+const addServDescription =
+  'Beyond bin cleaning, Funk Away GCS offers gutter cleaning, window washing, patio & deck cleaning and staining, siding soft washing, and roof & solar cleaning across Champaign County, IL.';
 
 export const metadata = {
-  title: 'Additional Home Services — Gutters, Windows, Decks & Siding | Funk Away GCS',
-  description:
-    'Beyond bin cleaning, Funk Away GCS offers gutter cleaning, window washing, patio & deck cleaning and staining, siding soft washing, and roof & solar cleaning across Champaign County, IL.',
+  title: addServTitle,
+  description: addServDescription,
   alternates: {
     canonical: '/additional-services',
   },
   openGraph: {
-    title: 'Additional Home Services — Gutters, Windows, Decks & Siding | Funk Away GCS',
-    description:
-      'Beyond bin cleaning, Funk Away GCS offers gutter cleaning, window washing, patio & deck cleaning and staining, siding soft washing, and roof & solar cleaning across Champaign County, IL.',
+    title: addServTitle,
+    description: addServDescription,
     url: '/additional-services',
     type: 'website',
+    images: [DEFAULT_OG_IMAGE],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: addServTitle,
+    description: addServDescription,
+    images: [DEFAULT_OG_IMAGE.url],
   },
 };
 

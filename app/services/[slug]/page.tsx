@@ -2,9 +2,10 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft, CheckCircle, ShieldCheck, Mail, Phone, Trash2, Droplets, ArrowRight } from 'lucide-react';
 import { servicesData } from '@/lib/servicesData';
+import { locationsData } from '@/lib/locationsData';
 import { SocialLinks } from '@/components/SocialLinks';
 import { JsonLd } from '@/components/JsonLd';
-import { serviceSchema, breadcrumbSchema } from '@/lib/siteConfig';
+import { serviceSchema, breadcrumbSchema, DEFAULT_OG_IMAGE } from '@/lib/siteConfig';
 
 type Props = {
   params: Promise<{ slug: string }>
@@ -31,7 +32,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: service.seoDescription,
       url: `/services/${slug}`,
       type: 'website',
-    }
+      images: [DEFAULT_OG_IMAGE],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: service.seoTitle,
+      description: service.seoDescription,
+      images: [DEFAULT_OG_IMAGE.url],
+    },
   }
 }
 
@@ -158,6 +166,32 @@ export default async function ServicePage({ params }: Props) {
             </div>
           </div>
           
+        </div>
+      </section>
+
+      {/* Service areas — internal links to every local landing page so ranking
+          authority flows from this service page to the city pages, and visitors
+          can jump straight to "{service} in {their city}". */}
+      <section className="py-16 bg-[#F0F9FF] border-t border-cyan-100">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-2xl font-bold text-slate-900 mb-3">
+            {service.title} Near You
+          </h2>
+          <p className="text-slate-600 font-medium mb-8 max-w-2xl mx-auto">
+            Funk Away GCS brings {service.title.toLowerCase()} to homes and
+            businesses across Champaign County and Central Illinois. Find your city:
+          </p>
+          <div className="flex flex-wrap justify-center gap-3">
+            {Object.entries(locationsData).map(([locSlug, loc]) => (
+              <Link
+                key={locSlug}
+                href={`/locations/${locSlug}`}
+                className="bg-white border border-cyan-100 hover:border-cyan-300 hover:text-cyan-700 text-slate-700 font-semibold text-sm px-5 py-2.5 rounded-xl transition-colors shadow-sm"
+              >
+                {loc.city}, {loc.state}
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
