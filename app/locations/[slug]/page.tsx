@@ -5,7 +5,7 @@ import { SocialLinks } from '@/components/SocialLinks';
 import { servicesData, BOOKING_URL } from '@/lib/servicesData';
 import { locationsData } from '@/lib/locationsData';
 import { JsonLd } from '@/components/JsonLd';
-import { locationBusinessSchema, breadcrumbSchema, DEFAULT_OG_IMAGE } from '@/lib/siteConfig';
+import { locationBusinessSchema, breadcrumbSchema, faqSchema, DEFAULT_OG_IMAGE } from '@/lib/siteConfig';
 
 type Props = {
   params: Promise<{ slug: string }>
@@ -74,6 +74,29 @@ export default async function LocationPage({ params }: Props) {
      ...s
   }));
 
+  // City-specific FAQ. Targets the "{service} {city} IL" long-tail searches
+  // (e.g. "garbage can cleaning champaign", "pressure washing urbana il") and
+  // feeds matching FAQPage structured data so the answers can surface directly
+  // in search. Written from the city name so every location page stays unique.
+  const locationFaqs = [
+    {
+      q: `Do you offer pressure washing and power washing in ${location.city}, ${location.state}?`,
+      a: `Yes. Funk Away GCS provides professional pressure washing and soft washing throughout ${location.city}, ${location.state} — driveways, siding, patios, concrete and dumpster pads. Call (217) 552-6182 or book online for a free quote.`,
+    },
+    {
+      q: `How much does garbage can cleaning cost in ${location.city}?`,
+      a: `Residential bin cleaning in ${location.city} starts at $48 for the first bin and $14.99 for each additional bin, with optional Garbage Guard pest strips for $12 per bin. Subscription plans lower the per-visit cost.`,
+    },
+    {
+      q: `Do you clean gutters and windows in ${location.city}?`,
+      a: `We do. Along with bin and dumpster cleaning, we handle gutter cleaning, window washing, roof soft washing, and deck and siding cleaning for ${location.city} homes and businesses.`,
+    },
+    {
+      q: `What areas around ${location.city} do you serve?`,
+      a: `We serve ${location.city} and the surrounding Champaign County and Central Illinois communities, including Champaign, Urbana, Savoy, Mahomet, Rantoul, St. Joseph, Danville and Westville.`,
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-slate-50 relative selection:bg-cyan-200 selection:text-cyan-900 font-sans flex flex-col">
       <JsonLd
@@ -89,6 +112,7 @@ export default async function LocationPage({ params }: Props) {
             { name: 'Home', path: '/' },
             { name: `${location.city}, ${location.state}`, path: `/locations/${slug}` },
           ]),
+          faqSchema(locationFaqs),
         ]}
       />
       {/* Navigation */}
@@ -239,6 +263,27 @@ export default async function LocationPage({ params }: Props) {
                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                  </div>
               </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* City FAQ — mirrors the FAQPage schema above and targets "{service}
+          {city} IL" long-tail searches with locally worded answers. */}
+      <section className="py-20 bg-white border-t border-cyan-50">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <span className="text-xs uppercase font-bold tracking-widest text-[#0891B2] bg-cyan-100/50 px-3 py-1 rounded-full">Local Questions</span>
+            <h2 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight uppercase mt-3">
+              {location.city} Cleaning FAQ
+            </h2>
+          </div>
+          <div className="space-y-4">
+            {locationFaqs.map((faq, idx) => (
+              <div key={idx} className="bg-[#F0F9FF] rounded-2xl p-6 border border-cyan-100 shadow-sm">
+                <h3 className="font-bold text-slate-900 text-lg mb-2">{faq.q}</h3>
+                <p className="text-slate-600 leading-relaxed">{faq.a}</p>
+              </div>
             ))}
           </div>
         </div>
