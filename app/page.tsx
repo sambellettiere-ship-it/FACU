@@ -10,7 +10,7 @@ import Script from 'next/script';
 import { BubbleOverlay } from '@/components/BubbleOverlay';
 import { TiktokCarousel } from '@/components/TiktokCarousel';
 import { SocialLinks } from '@/components/SocialLinks';
-import { BOOKING_URL } from '@/lib/servicesData';
+import { BOOKING_URL, servicesData } from '@/lib/servicesData';
 import { JsonLd } from '@/components/JsonLd';
 import { faqSchema } from '@/lib/siteConfig';
 
@@ -394,6 +394,29 @@ export default function LandingPage() {
             <Link href="/subscriptions" className="bg-white text-cyan-700 hover:scale-105 active:scale-95 px-8 py-4 rounded-2xl font-black uppercase tracking-wider whitespace-nowrap transition-all shadow-md flex items-center gap-2 relative z-10">
               View Plans <ArrowRight className="w-5 h-5" />
             </Link>
+          </div>
+
+          {/* Full service directory — direct internal links to every service
+              page (gutters, windows, roof, etc.) so ranking authority flows to
+              them from the home page instead of leaving them orphaned. */}
+          <div className="mt-12">
+            <h3 className="text-center font-display text-2xl font-black text-slate-900 uppercase tracking-tight mb-2">
+              More Ways We Keep Your Property <span className="text-cyan-600">Clean</span>
+            </h3>
+            <p className="text-center text-slate-500 font-medium mb-8 max-w-2xl mx-auto">
+              Beyond bin cleaning, Funk Away GCS handles gutter cleaning, window washing, pressure washing, and more across Champaign, Urbana &amp; Central Illinois.
+            </p>
+            <div className="flex flex-wrap justify-center gap-3">
+              {Object.entries(servicesData).map(([slug, s]) => (
+                <Link
+                  key={slug}
+                  href={`/services/${slug}`}
+                  className="bg-white border border-cyan-100 hover:border-cyan-300 hover:text-cyan-700 text-slate-700 font-semibold text-sm px-5 py-2.5 rounded-xl transition-colors shadow-sm"
+                >
+                  {s.title}
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       </section>

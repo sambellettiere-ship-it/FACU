@@ -5,7 +5,7 @@ import { servicesData } from '@/lib/servicesData';
 import { locationsData } from '@/lib/locationsData';
 import { SocialLinks } from '@/components/SocialLinks';
 import { JsonLd } from '@/components/JsonLd';
-import { serviceSchema, breadcrumbSchema, DEFAULT_OG_IMAGE } from '@/lib/siteConfig';
+import { serviceSchema, breadcrumbSchema, faqSchema, DEFAULT_OG_IMAGE } from '@/lib/siteConfig';
 
 type Props = {
   params: Promise<{ slug: string }>
@@ -78,6 +78,7 @@ export default async function ServicePage({ params }: Props) {
             { name: 'Home', path: '/' },
             { name: service.title, path: `/services/${slug}` },
           ]),
+          faqSchema(service.faqs),
         ]}
       />
       {/* Navigation */}
@@ -112,6 +113,9 @@ export default async function ServicePage({ params }: Props) {
           </h1>
           <p className="text-xl text-slate-600 font-medium">
             {service.description}
+          </p>
+          <p className="mt-4 text-base text-slate-500 font-medium max-w-2xl mx-auto">
+            {service.localIntro}
           </p>
         </div>
       </section>
@@ -166,6 +170,25 @@ export default async function ServicePage({ params }: Props) {
             </div>
           </div>
           
+        </div>
+      </section>
+
+      {/* Service FAQ — mirrors the FAQPage structured data above so the visible
+          Q&A and the schema match. Adds the depth and question-matching keywords
+          this page needs to rank for its own service query instead of the home page. */}
+      <section className="py-16 bg-white border-t border-cyan-50">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-bold text-slate-900 mb-8 text-center">
+            {service.title} — Frequently Asked Questions
+          </h2>
+          <div className="space-y-4">
+            {service.faqs.map((faq, idx) => (
+              <div key={idx} className="bg-[#F0F9FF] rounded-2xl p-6 border border-cyan-100 shadow-sm">
+                <h3 className="font-bold text-slate-900 text-lg mb-2">{faq.q}</h3>
+                <p className="text-slate-600 leading-relaxed">{faq.a}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
