@@ -10,7 +10,7 @@ const outfit = Outfit({ subsets: ['latin'], variable: '--font-sans' });
 const title =
   'Pressure Washing & Garbage Can Cleaning in Champaign County, IL | Funk Away GCS';
 const description =
-  'Funk Away GCS is Champaign County’s go-to team for professional pressure washing, power washing, and garbage can & dumpster cleaning. Serving Champaign, Urbana, Savoy, Mahomet, Rantoul & more. Fully insured. Book online or call (217) 552-6182.';
+  'Funk Away GCS is Champaign County’s full-service commercial & residential cleaning team — pressure washing, garbage can & dumpster cleaning, janitorial services, and facility & property maintenance. Serving Champaign, Urbana, Savoy, Mahomet, Rantoul & more. Fully insured. Book online or call (217) 552-6182.';
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -34,6 +34,10 @@ export const metadata: Metadata = {
     'gutter cleaning Urbana IL',
     'window cleaning Champaign IL',
     'construction cleanup Champaign County',
+    'janitorial services Champaign IL',
+    'commercial cleaning Champaign County',
+    'facility maintenance Champaign IL',
+    'property maintenance Champaign Urbana',
     'Central Illinois pressure washing',
     'Funk Away GCS',
   ],
