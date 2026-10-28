@@ -186,10 +186,10 @@ export default function LandingPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="font-display text-3xl sm:text-5xl md:text-7xl font-black tracking-tight text-white mb-6 leading-[1.05] sm:leading-[0.95] uppercase break-words"
+            className="font-display text-2xl min-[400px]:text-3xl sm:text-5xl md:text-7xl font-black tracking-tight text-white mb-6 leading-[1.1] sm:leading-[0.95] uppercase w-full min-w-0 max-w-full [overflow-wrap:anywhere]"
           >
 
-            <span className="text-cyan-400">Mobile Sanitation/Pressure Washing & Property Management</span>
+            <span className="text-cyan-400">Mobile Sanitation/<wbr />Pressure Washing & Property Management</span>
           </motion.h1>
 
           <motion.p
