@@ -19,13 +19,12 @@ export function TiktokCarousel() {
     }
   };
 
-  // Replace these Video IDs with the actual IDs from your TikTok videos
   // You can find the Video ID in the URL of the TikTok video: https://www.tiktok.com/@funk.away.gcs/video/[VIDEO_ID]
   const tiktokVideos = [
-    "7636485891912994062", // Placeholder Video ID 1
-    "7636456827806403853", // Placeholder Video ID 2
-    "7636066688907169037", // Placeholder Video ID 3
-    "7634955908199582989", // Placeholder Video ID 4
+    "7698359779932065038",
+    "7673837513894563086",
+    "7677597178637864206",
+    "7678687801642061069",
   ];
 
   return (
