@@ -17,7 +17,7 @@ export const BUSINESS = {
   shortName: 'Funk Away GCS',
   slogan: 'Let us wash that STANK the FUNK AWAY!',
   description:
-    'Funk Away GCS is a full-service cleaning and property-care company serving commercial and residential clients across Champaign County, IL — pressure washing, garbage can & dumpster cleaning, janitorial services, and facility & property maintenance.',
+    'Funk Away GCS is a full-service cleaning and property-care company serving commercial and residential clients across Champaign County, IL — pressure washing, garbage can & dumpster cleaning, janitorial services, and facility & property management.',
   telephone: '+1-217-552-6182',
   telephoneDisplay: '(217) 552-6182',
   email: 'mean@funkawaygcs.com',
@@ -152,7 +152,7 @@ export function localBusinessSchema(): Json {
       'Residential cleaning services',
       'Janitorial services',
       'Facility maintenance',
-      'Property maintenance',
+      'Property management',
     ],
     // Star rating in search results — only emitted once real review totals are
     // set in AGGREGATE_RATING (see note there).
