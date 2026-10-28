@@ -189,7 +189,7 @@ export default function LandingPage() {
             className="font-display text-5xl md:text-7xl font-black tracking-tight text-white mb-6 leading-[0.95] uppercase"
           >
 
-            <span className="text-cyan-400">Champaign County Pressure Washing & Garbage Can Cleaning</span>
+            <span className="text-cyan-400">Mobile Sanitation/Pressure Washing & Property Maintenance</span>
           </motion.h1>
 
           <motion.p
@@ -541,7 +541,7 @@ export default function LandingPage() {
                   </div>
                   <div>
                     <div className="text-cyan-100 text-xs font-bold uppercase tracking-wider">Email Us</div>
-                    <a href="mailto:funkaway_gcs@yahoo.com" className="text-lg font-bold text-white hover:text-cyan-100 transition-colors">funkaway_gcs@yahoo.com</a>
+                    <a href="mailto:mean@funkawaygcs.com" className="text-lg font-bold text-white hover:text-cyan-100 transition-colors">mean@funkawaygcs.com</a>
                   </div>
                 </div>
               </div>
@@ -618,7 +618,7 @@ export default function LandingPage() {
           </div>
           <p className="max-w-md mx-auto mb-8 font-medium">Hello, We&apos;re ROB & RAY. Thanks for visiting our booking site. Proudly serving all of Champaign County and the surrounding Central Illinois communities with commercial & residential pressure washing, garbage can cleaning, janitorial, and facility & property maintenance.</p>
           <div className="flex justify-center gap-6 mb-8 text-sm font-bold tracking-wider">
-            <a href="mailto:funkaway_gcs@yahoo.com" className="hover:text-cyan-400 transition-colors">funkaway_gcs@yahoo.com</a>
+            <a href="mailto:mean@funkawaygcs.com" className="hover:text-cyan-400 transition-colors">mean@funkawaygcs.com</a>
             <span className="text-slate-700">|</span>
             <a href="tel:2175526182" className="hover:text-cyan-400 transition-colors">(217) 552-6182</a>
           </div>

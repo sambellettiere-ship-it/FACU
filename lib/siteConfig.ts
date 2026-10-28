@@ -20,7 +20,7 @@ export const BUSINESS = {
     'Funk Away GCS is a full-service cleaning and property-care company serving commercial and residential clients across Champaign County, IL — pressure washing, garbage can & dumpster cleaning, janitorial services, and facility & property maintenance.',
   telephone: '+1-217-552-6182',
   telephoneDisplay: '(217) 552-6182',
-  email: 'funkaway_gcs@yahoo.com',
+  email: 'mean@funkawaygcs.com',
   priceRange: '$$',
   // Business hours, surfaced to search engines via `openingHoursSpecification`
   // so Google can show an "Open now / Closes 7 PM" line and answer "open now"
