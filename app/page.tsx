@@ -186,10 +186,10 @@ export default function LandingPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="font-display text-5xl md:text-7xl font-black tracking-tight text-white mb-6 leading-[0.95] uppercase"
+            className="font-display text-3xl sm:text-5xl md:text-7xl font-black tracking-tight text-white mb-6 leading-[1.05] sm:leading-[0.95] uppercase break-words"
           >
 
-            <span className="text-cyan-400">Mobile Sanitation/Pressure Washing & Property Maintenance</span>
+            <span className="text-cyan-400">Mobile Sanitation/Pressure Washing & Property Management</span>
           </motion.h1>
 
           <motion.p
@@ -198,7 +198,7 @@ export default function LandingPage() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="max-w-2xl mx-auto text-lg md:text-xl text-slate-200 font-medium mb-10"
           >
-            Full-service cleaning and property care for homes and businesses — pressure washing, garbage bin & dumpster cleaning, janitorial, and facility & property maintenance. Rob & Ray keep your space clean, safe, and odor-free across Champaign County — Champaign, Urbana, Savoy, Mahomet, Rantoul, and all of Central Illinois.
+            Full-service cleaning and property care for homes and businesses — pressure washing, garbage bin & dumpster cleaning, janitorial, and facility & property management. Rob & Ray keep your space clean, safe, and odor-free across Champaign County — Champaign, Urbana, Savoy, Mahomet, Rantoul, and all of Central Illinois.
           </motion.p>
           
           <motion.div 
@@ -223,7 +223,7 @@ export default function LandingPage() {
       {/* Capabilities band — leads with the full scope of what Funk Away GCS
           does so visitors immediately see it's more than bins & dumpster pads:
           Commercial, Residential, Janitorial, Pressure Washing, and
-          Facility/Property Maintenance. */}
+          Facility/Property Management. */}
       <section className="bg-white border-b border-cyan-100">
         <div className="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-10">
@@ -242,7 +242,7 @@ export default function LandingPage() {
               { label: 'Residential', icon: <Home className="w-7 h-7" /> },
               { label: 'Janitorial', icon: <Sparkles className="w-7 h-7" /> },
               { label: 'Pressure Washing', icon: <Droplets className="w-7 h-7" /> },
-              { label: 'Facility & Property Maintenance', icon: <Wrench className="w-7 h-7" /> },
+              { label: 'Facility & Property Management', icon: <Wrench className="w-7 h-7" /> },
             ].map((pillar, idx) => (
               <div
                 key={idx}
@@ -348,7 +348,7 @@ export default function LandingPage() {
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="font-display text-4xl md:text-6xl font-black text-slate-900 mb-6 tracking-tight uppercase">Our <span className="text-cyan-600">Services</span></h2>
             <p className="text-lg text-slate-500 font-medium">
-              At Funk Away Garbage Cleaning Service, we provide a full range of cleaning and property-care solutions for commercial and residential clients — from bin and dumpster sanitizing to pressure washing, janitorial, and facility & property maintenance. Our team is committed to making your space clean, safe, and odor-free.
+              At Funk Away Garbage Cleaning Service, we provide a full range of cleaning and property-care solutions for commercial and residential clients — from bin and dumpster sanitizing to pressure washing, janitorial, and facility & property management. Our team is committed to making your space clean, safe, and odor-free.
             </p>
           </div>
 
@@ -616,7 +616,7 @@ export default function LandingPage() {
               Funk Away <span className="text-cyan-500">GCS</span>
             </span>
           </div>
-          <p className="max-w-md mx-auto mb-8 font-medium">Hello, We&apos;re ROB & RAY. Thanks for visiting our booking site. Proudly serving all of Champaign County and the surrounding Central Illinois communities with commercial & residential pressure washing, garbage can cleaning, janitorial, and facility & property maintenance.</p>
+          <p className="max-w-md mx-auto mb-8 font-medium">Hello, We&apos;re ROB & RAY. Thanks for visiting our booking site. Proudly serving all of Champaign County and the surrounding Central Illinois communities with commercial & residential pressure washing, garbage can cleaning, janitorial, and facility & property management.</p>
           <div className="flex justify-center gap-6 mb-8 text-sm font-bold tracking-wider">
             <a href="mailto:mean@funkawaygcs.com" className="hover:text-cyan-400 transition-colors">mean@funkawaygcs.com</a>
             <span className="text-slate-700">|</span>
