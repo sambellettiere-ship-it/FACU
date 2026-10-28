@@ -308,7 +308,7 @@ export default async function LocationPage({ params }: Props) {
                 <a href="tel:2175526182" className="flex items-center justify-center gap-3 bg-white hover:bg-slate-50 text-slate-950 font-black uppercase text-sm tracking-wider py-4 rounded-xl transition-all shadow-md">
                   <Phone className="w-5 h-5 text-cyan-600" /> (217) 552-6182
                 </a>
-                <a href="mailto:funkaway_gcs@yahoo.com" className="flex items-center justify-center gap-3 bg-slate-800 hover:bg-slate-700 text-white font-black uppercase text-sm tracking-wider py-4 rounded-xl transition-all border border-slate-700">
+                <a href="mailto:mean@funkawaygcs.com" className="flex items-center justify-center gap-3 bg-slate-800 hover:bg-slate-700 text-white font-black uppercase text-sm tracking-wider py-4 rounded-xl transition-all border border-slate-700">
                   <Mail className="w-5 h-5 text-cyan-400" /> Mail Rob & Ray
                 </a>
               </div>

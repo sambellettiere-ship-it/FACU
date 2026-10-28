@@ -164,7 +164,7 @@ export default async function ServicePage({ params }: Props) {
                   <Phone className="w-5 h-5 text-cyan-500" /> Need Help? (217) 552-6182
                 </p>
                 <p className="text-sm text-slate-600 font-medium flex items-center gap-2">
-                  <Mail className="w-5 h-5 text-cyan-500" /> funkaway_gcs@yahoo.com
+                  <Mail className="w-5 h-5 text-cyan-500" /> mean@funkawaygcs.com
                 </p>
               </div>
             </div>
