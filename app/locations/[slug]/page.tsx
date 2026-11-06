@@ -1,11 +1,11 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowLeft, CheckCircle, ShieldCheck, Mail, Phone, MapPin, ArrowRight, Star, Quote, Sparkles, Building2, UserCheck, ShieldAlert } from 'lucide-react';
+import { ArrowLeft, CheckCircle, ShieldCheck, Mail, Phone, MapPin, ArrowRight, Star, Sparkles, Building2, UserCheck, ShieldAlert } from 'lucide-react';
 import { SocialLinks } from '@/components/SocialLinks';
 import { servicesData, BOOKING_URL } from '@/lib/servicesData';
 import { locationsData } from '@/lib/locationsData';
 import { JsonLd } from '@/components/JsonLd';
-import { locationBusinessSchema, breadcrumbSchema, faqSchema, DEFAULT_OG_IMAGE } from '@/lib/siteConfig';
+import { locationServiceSchema, breadcrumbSchema, faqSchema, DEFAULT_OG_IMAGE, AGGREGATE_RATING, GOOGLE_PROFILE_URL } from '@/lib/siteConfig';
 
 type Props = {
   params: Promise<{ slug: string }>
@@ -101,7 +101,7 @@ export default async function LocationPage({ params }: Props) {
     <div className="min-h-screen bg-slate-50 relative selection:bg-cyan-200 selection:text-cyan-900 font-sans flex flex-col">
       <JsonLd
         data={[
-          locationBusinessSchema({
+          locationServiceSchema({
             city: location.city,
             region: location.state,
             title: location.title,
@@ -221,16 +221,22 @@ export default async function LocationPage({ params }: Props) {
                 </ul>
               </div>
 
-              <div className="p-4 bg-white/80 rounded-2xl border border-cyan-100/50">
-                <Quote className="w-5 h-5 text-cyan-500 mb-2" />
-                <p className="text-xs text-slate-600 font-medium italic">
-                  "No more flies, maggots or persistent rancid odor. Rob & Ray disinfected our trash bins in no time. Amazing service in {location.city}!"
-                </p>
-                <div className="mt-2 flex items-center justify-between">
-                   <span className="text-[10px] font-bold text-slate-500">— Happy Local Customer</span>
-                   <div className="flex text-amber-400 gap-0.5"><Star className="w-3 h-3 fill-current" /><Star className="w-3 h-3 fill-current" /><Star className="w-3 h-3 fill-current" /><Star className="w-3 h-3 fill-current" /><Star className="w-3 h-3 fill-current" /></div>
-                </div>
-              </div>
+              {/* Real, verifiable rating from the Google Business Profile —
+                  no made-up testimonials (Google & FTC review guidelines). */}
+              {AGGREGATE_RATING && (
+                <a
+                  href={GOOGLE_PROFILE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block p-4 bg-white/80 rounded-2xl border border-cyan-100/50 hover:border-cyan-300 transition-colors"
+                >
+                  <div className="flex text-amber-400 gap-0.5 mb-2"><Star className="w-4 h-4 fill-current" /><Star className="w-4 h-4 fill-current" /><Star className="w-4 h-4 fill-current" /><Star className="w-4 h-4 fill-current" /><Star className="w-4 h-4 fill-current" /></div>
+                  <p className="text-sm text-slate-700 font-bold">
+                    Rated {AGGREGATE_RATING.ratingValue.toFixed(1)} on Google from {AGGREGATE_RATING.reviewCount} reviews
+                  </p>
+                  <span className="text-xs font-bold text-cyan-600 uppercase tracking-wider">Read our reviews &rarr;</span>
+                </a>
+              )}
             </div>
 
           </div>

@@ -10,6 +10,10 @@ export const SITE_URL = (
   process.env.NEXT_PUBLIC_SITE_URL || 'https://funkawaygcs.com'
 ).replace(/\/$/, '');
 
+// Google Business Profile (Maps listing) — where the real reviews live.
+export const GOOGLE_PROFILE_URL =
+  'https://www.google.com/maps/place/Funk+Away+Garbage+Cleaning+Service+LLC/data=!4m2!3m1!1s0x2a3bf102be95fea5:0x6036f5eb23767571';
+
 // Core business facts, reused across metadata and structured data.
 export const BUSINESS = {
   name: 'Funk Away Garbage Cleaning Service',
@@ -57,7 +61,7 @@ export const BUSINESS = {
     'https://www.facebook.com/FunkAwayGCS7434',
     'https://www.tiktok.com/@funk.away.gcs',
     'https://nextdoor.com/page/funk-away-garbage-cleaning-service-llc-westville-il',
-    'https://www.google.com/maps/place/Funk+Away+Garbage+Cleaning+Service+LLC/data=!4m2!3m1!1s0x2a3bf102be95fea5:0x6036f5eb23767571',
+    GOOGLE_PROFILE_URL,
   ],
   logo: `${SITE_URL}/funkawaymascots.png`,
   image: `${SITE_URL}/funkawaymascots.png`,
@@ -229,8 +233,12 @@ export function serviceSchema(input: {
   };
 }
 
-// Location landing pages describe the same business serving one specific city.
-export function locationBusinessSchema(input: {
+// Location landing pages describe the services the one Champaign-based business
+// provides in a specific city. Funk Away is a service-area business with a single
+// location, so these pages must NOT claim a separate business/address per city
+// (Google treats that as misrepresenting locations). Instead each page emits a
+// Service node provided by the main business, with the city as its areaServed.
+export function locationServiceSchema(input: {
   city: string;
   region: string;
   title: string;
@@ -239,26 +247,16 @@ export function locationBusinessSchema(input: {
 }): Json {
   return {
     '@context': 'https://schema.org',
-    '@type': 'HomeAndConstructionBusiness',
-    name: `${BUSINESS.shortName} — ${input.city}, ${input.region}`,
+    '@type': 'Service',
+    name: input.title,
     description: input.description,
     url: `${SITE_URL}/locations/${input.slug}`,
-    telephone: BUSINESS.telephone,
-    email: BUSINESS.email,
-    priceRange: BUSINESS.priceRange,
-    image: BUSINESS.image,
-    parentOrganization: { '@id': BUSINESS_ID },
-    address: {
-      '@type': 'PostalAddress',
-      addressLocality: input.city,
-      addressRegion: input.region,
-      addressCountry: 'US',
-    },
+    serviceType: 'Garbage can cleaning, pressure washing & property cleaning',
+    provider: { '@id': BUSINESS_ID },
     areaServed: {
       '@type': 'City',
       name: `${input.city}, ${input.region}`,
     },
-    sameAs: BUSINESS.sameAs,
   };
 }
 

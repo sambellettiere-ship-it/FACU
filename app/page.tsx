@@ -189,7 +189,7 @@ export default function LandingPage() {
             className="font-display text-2xl min-[400px]:text-3xl sm:text-5xl md:text-7xl font-black tracking-tight text-white mb-6 leading-[1.1] sm:leading-[0.95] uppercase w-full min-w-0 max-w-full [overflow-wrap:anywhere]"
           >
 
-            <span className="text-cyan-400">Mobile Sanitation/<wbr />Pressure Washing & Property Management</span>
+            <span className="text-cyan-400">Garbage Can Cleaning/<wbr />Pressure Washing & Property Management</span>
           </motion.h1>
 
           <motion.p
@@ -198,7 +198,7 @@ export default function LandingPage() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="max-w-2xl mx-auto text-lg md:text-xl text-slate-200 font-medium mb-10"
           >
-            Full-service cleaning and property care for homes and businesses — pressure washing, garbage bin & dumpster cleaning, janitorial, and facility & property management. Rob & Ray keep your space clean, safe, and odor-free across Champaign County — Champaign, Urbana, Savoy, Mahomet, Rantoul, and all of Central Illinois.
+            Garbage can &amp; trash bin cleaning right at your curb — plus pressure washing, dumpster cleaning, janitorial, and facility &amp; property management for homes and businesses. Rob & Ray keep your space clean, safe, and odor-free across Champaign County — Champaign, Urbana, Savoy, Mahomet, Rantoul, and all of Central Illinois.
           </motion.p>
           
           <motion.div 
@@ -238,22 +238,31 @@ export default function LandingPage() {
 
           <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
             {[
-              { label: 'Commercial', icon: <Building2 className="w-7 h-7" /> },
-              { label: 'Residential', icon: <Home className="w-7 h-7" /> },
-              { label: 'Janitorial', icon: <Sparkles className="w-7 h-7" /> },
-              { label: 'Pressure Washing', icon: <Droplets className="w-7 h-7" /> },
+              { label: 'Commercial', icon: <Building2 className="w-7 h-7" />, href: '/services/commercial-dumpsters' },
+              { label: 'Residential', icon: <Home className="w-7 h-7" />, href: '/services/residential-bin-cleaning' },
+              { label: 'Janitorial', icon: <Sparkles className="w-7 h-7" />, href: '/services/janitorial-commercial-cleaning' },
+              { label: 'Pressure Washing', icon: <Droplets className="w-7 h-7" />, href: '/services/power-washing' },
               { label: 'Facility & Property Management', icon: <Wrench className="w-7 h-7" /> },
-            ].map((pillar, idx) => (
-              <div
-                key={idx}
-                className="flex flex-col items-center text-center gap-3 p-5 rounded-3xl bg-[#F0F9FF] border border-cyan-100 last:col-span-2 md:last:col-span-1"
-              >
-                <div className="w-14 h-14 rounded-2xl bg-white text-cyan-600 flex items-center justify-center shadow-sm border border-cyan-100">
-                  {pillar.icon}
+            ].map((pillar: { label: string; icon: React.ReactNode; href?: string }, idx) => {
+              const inner = (
+                <>
+                  <div className="w-14 h-14 rounded-2xl bg-white text-cyan-600 flex items-center justify-center shadow-sm border border-cyan-100">
+                    {pillar.icon}
+                  </div>
+                  <span className="font-bold text-slate-800 text-sm leading-tight uppercase tracking-tight">{pillar.label}</span>
+                </>
+              );
+              const cls = 'flex flex-col items-center text-center gap-3 p-5 rounded-3xl bg-[#F0F9FF] border border-cyan-100 last:col-span-2 md:last:col-span-1';
+              return pillar.href ? (
+                <Link key={idx} href={pillar.href} className={`${cls} hover:border-cyan-300 transition-colors`}>
+                  {inner}
+                </Link>
+              ) : (
+                <div key={idx} className={cls}>
+                  {inner}
                 </div>
-                <span className="font-bold text-slate-800 text-sm leading-tight uppercase tracking-tight">{pillar.label}</span>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
