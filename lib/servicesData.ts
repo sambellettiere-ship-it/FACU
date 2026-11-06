@@ -24,6 +24,9 @@ export interface ServiceInfo {
   // 3–4 questions real searchers ask about this service. Feeds both the on-page
   // FAQ block and the page's FAQPage JSON-LD (eligible for an expandable result).
   faqs: ServiceFaq[];
+  // Optional real before/after job photos (paths under /public). Rendered as a
+  // drag-to-compare gallery on the service page.
+  gallery?: { before: string; after: string; label: string }[];
 }
 
 export const servicesData: Record<string, ServiceInfo> = {
@@ -32,27 +35,49 @@ export const servicesData: Record<string, ServiceInfo> = {
     description: 'Disinfect and power wash your home garbage bins to eliminate odors and bacteria.',
     price: '$48 first bin',
     subPrice: '+$14.99 per additional bin',
-    features: ['Deep penetrating vapor wash', 'Odor elimination', 'Bacteria and germ removal', 'Optional pest strips ($12)'],
+    features: [
+      'Deep penetrating vapor wash',
+      'Odor elimination',
+      'Bacteria and germ removal',
+      'Inside & outside cleaned',
+      'Eco-friendly, biodegradable solutions',
+      'Optional pest strips ($12)',
+    ],
     url: BOOKING_URL,
-    longDescription: 'Our residential bin cleaning service ensures your home garbage and recycling bins are free from harmful bacteria, maggots, and lingering odors. We use high-pressure, high-temperature water to deep clean the interior and exterior of your bins. Add our Garbage Guard pest strips to keep pests away.',
-    seoTitle: 'Garbage Can & Trash Bin Cleaning, Champaign-Urbana IL | Funk Away GCS',
-    seoDescription: 'Local trash can & garbage bin cleaning near you in Champaign, Urbana & Central IL. High-heat vapor wash kills bacteria, maggots & odor. From $48 — book online today.',
+    longDescription: 'Our residential garbage can cleaning service ensures your home trash and recycling bins are free from harmful bacteria, maggots, and lingering odors. Rob & Ray come right to your curb and use high-pressure, high-temperature water to deep clean the inside and outside of every bin. You don\'t need to be home: just leave your empty bins out on your scheduled day. Add our Garbage Guard pest strips to keep flies and pests away between cleanings, or join a subscription plan so your cans stay clean all year without having to think about it.',
+    seoTitle: 'Garbage Can Cleaning Service in Champaign-Urbana, IL | Funk Away GCS',
+    seoDescription: 'Garbage can & trash bin cleaning service in Champaign, Urbana & Central IL. We come to your curb — high-heat vapor wash kills bacteria, maggots & odor. From $48. Book online.',
     icon: 'Trash2',
     localIntro:
-      'Professional trash can and garbage bin cleaning for homes across Champaign, Urbana, Savoy, Mahomet and all of Champaign County, IL.',
+      'Professional garbage can and trash bin cleaning at your curb for homes across Champaign, Urbana, Savoy, Mahomet and all of Champaign County, IL.',
     faqs: [
       {
         q: 'How much does garbage can cleaning cost near me?',
-        a: 'Residential bin cleaning starts at $48 for your first bin and $14.99 for each additional bin, anywhere in the Champaign-Urbana area. Add Garbage Guard pest strips for $12 per bin.',
+        a: 'Residential bin cleaning starts at $48 for your first bin and $14.99 for each additional bin, anywhere in the Champaign-Urbana area. Add Garbage Guard pest strips for $12 per bin. Subscription plans start at $39/month and lower the per-visit cost.',
       },
       {
         q: 'How does the trash can cleaning process work?',
         a: 'We come to your home and deep-clean the inside and outside of each bin with high-pressure, high-temperature vapor. This kills bacteria and germs, flushes out maggots, and removes the odor — not just masks it.',
       },
       {
+        q: 'Do I need to be home for my bin cleaning?',
+        a: 'No. Just leave your bins out and accessible on your scheduled cleaning day. They must be completely empty of trash bags and debris — if a bin still has trash in it, we may need to reschedule.',
+      },
+      {
+        q: 'Do you clean recycling bins too?',
+        a: 'Yes. We clean garbage, trash and recycling cans the same way. The first bin is $48 and every additional bin at the same address is $14.99.',
+      },
+      {
+        q: 'Are your cleaning products safe for kids and pets?',
+        a: 'Yes. Our process relies on high-heat water and eco-friendly, biodegradable solutions that are safe for your family, your pets and the environment.',
+      },
+      {
         q: 'How often should I get my garbage bins cleaned?',
         a: 'Most Champaign County households book a monthly cleaning to stay ahead of flies, maggots and summer odor. We also offer subscription plans that schedule it automatically.',
       },
+    ],
+    gallery: [
+      { before: '/addserv/3-bin-before.webp', after: '/addserv/4-bin-after.webp', label: 'Garbage Can Cleaning' },
     ],
   },
   'commercial-dumpsters': {
@@ -280,6 +305,44 @@ export const servicesData: Record<string, ServiceInfo> = {
       {
         q: 'What causes the black streaks on my roof?',
         a: 'Those streaks are usually a hardy algae (Gloeocapsa magma) that feeds on shingles. Our soft wash kills and removes it, restoring the roof\'s appearance and extending its lifespan.',
+      },
+    ],
+  },
+  'janitorial-commercial-cleaning': {
+    title: 'Janitorial & Commercial Cleaning',
+    description: 'Recurring janitorial and commercial cleaning for offices, storefronts, and facilities across Champaign County.',
+    price: 'Custom Quote',
+    subPrice: 'Based on space size & frequency',
+    features: [
+      'Recurring janitorial schedules',
+      'Offices, storefronts & common areas',
+      'Restroom & break room sanitizing',
+      'Floors, trash removal & touch points',
+      'One vendor for interior, exterior & bins',
+    ],
+    url: BOOKING_URL,
+    longDescription: 'Funk Away GCS provides janitorial and commercial cleaning for businesses, offices, and facilities across Champaign County. We build a cleaning schedule around your space and hours — daily, weekly, or as-needed — covering restrooms, break rooms, floors, trash removal, and high-touch surfaces. Because we also handle dumpster sanitizing, dumpster pad and sidewalk pressure washing, and facility & property management, you can hand your whole property to one local, fully insured team instead of juggling several vendors.',
+    seoTitle: 'Janitorial & Commercial Cleaning Services, Champaign IL | Funk Away GCS',
+    seoDescription: 'Local janitorial & commercial cleaning for offices, storefronts & facilities in Champaign, Urbana & Champaign County, IL. Recurring or one-time. Fully insured — get a free quote.',
+    icon: 'Sparkles',
+    localIntro:
+      'Janitorial, office, and commercial cleaning for businesses in Champaign, Urbana, Savoy, Mahomet, Rantoul and across Champaign County, IL.',
+    faqs: [
+      {
+        q: 'What types of businesses do you clean?',
+        a: 'We clean offices, storefronts, common areas and other commercial facilities across Champaign County. Tell us about your space and we\'ll put together a plan that fits it.',
+      },
+      {
+        q: 'How much do janitorial services cost in Champaign?',
+        a: 'Janitorial pricing depends on the size of your space, what needs cleaning and how often, so every business gets a free custom quote. Call (217) 552-6182 or book a walkthrough online.',
+      },
+      {
+        q: 'Can you clean on a recurring schedule?',
+        a: 'Yes. We offer daily, weekly and as-needed schedules, and can work around your business hours so cleaning doesn\'t get in the way of customers or staff.',
+      },
+      {
+        q: 'Can you also handle our dumpsters and exterior?',
+        a: 'Yes — that\'s our specialty. We sanitize commercial dumpsters, pressure wash dumpster pads, sidewalks and storefronts, and offer facility & property management, so one team can keep your whole property clean.',
       },
     ],
   },

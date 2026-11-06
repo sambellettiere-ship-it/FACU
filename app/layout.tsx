@@ -8,9 +8,9 @@ import { JsonLd } from '@/components/JsonLd';
 const outfit = Outfit({ subsets: ['latin'], variable: '--font-sans' });
 
 const title =
-  'Pressure Washing & Garbage Can Cleaning in Champaign County, IL | Funk Away GCS';
+  'Garbage Can Cleaning & Pressure Washing in Champaign, IL | Funk Away GCS';
 const description =
-  'Funk Away GCS is Champaign County’s full-service commercial & residential cleaning team — pressure washing, garbage can & dumpster cleaning, janitorial services, and facility & property management. Serving Champaign, Urbana, Savoy, Mahomet, Rantoul & more. Fully insured. Book online or call (217) 552-6182.';
+  'Garbage can & trash bin cleaning at your curb in Champaign-Urbana, IL — from $48, no need to be home. Funk Away GCS also does pressure washing, dumpster cleaning, janitorial & property management across Champaign County. Call (217) 552-6182.';
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -19,6 +19,7 @@ export const metadata: Metadata = {
   applicationName: BUSINESS.shortName,
   authors: [{ name: BUSINESS.name }],
   keywords: [
+    'garbage can cleaning service Champaign IL',
     'pressure washing Champaign County',
     'pressure washing Champaign IL',
     'power washing Champaign Urbana',

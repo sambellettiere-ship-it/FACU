@@ -5,6 +5,7 @@ import { servicesData } from '@/lib/servicesData';
 import { locationsData } from '@/lib/locationsData';
 import { SocialLinks } from '@/components/SocialLinks';
 import { JsonLd } from '@/components/JsonLd';
+import { BeforeAfterSlider } from '@/components/BeforeAfterSlider';
 import { serviceSchema, breadcrumbSchema, faqSchema, DEFAULT_OG_IMAGE } from '@/lib/siteConfig';
 
 type Props = {
@@ -172,6 +173,40 @@ export default async function ServicePage({ params }: Props) {
           
         </div>
       </section>
+
+      {/* Real before/after job photos, when this service has them. */}
+      {service.gallery && service.gallery.length > 0 && (
+        <section className="py-16 bg-[#F0F9FF] border-t border-cyan-100">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="text-2xl font-bold text-slate-900 mb-3">
+              {service.title}: Before &amp; After
+            </h2>
+            <p className="text-slate-600 font-medium mb-8">
+              Drag the slider to see a real job from our crew.
+            </p>
+            <div className="flex flex-wrap justify-center gap-6">
+              {service.gallery.map((pair) => (
+                <div key={pair.before} className="w-full max-w-xs">
+                  <BeforeAfterSlider
+                    beforeSrc={pair.before}
+                    afterSrc={pair.after}
+                    label={pair.label}
+                    aspectRatio="9 / 16"
+                  />
+                </div>
+              ))}
+            </div>
+            {slug === 'residential-bin-cleaning' && (
+              <Link
+                href="/subscriptions"
+                className="inline-flex items-center gap-2 mt-10 bg-cyan-600 hover:bg-cyan-700 text-white font-bold px-6 py-3 rounded-xl uppercase tracking-wider text-sm transition-colors"
+              >
+                Keep bins clean all year — see subscription plans <ArrowRight className="w-4 h-4" />
+              </Link>
+            )}
+          </div>
+        </section>
+      )}
 
       {/* Service FAQ — mirrors the FAQPage structured data above so the visible
           Q&A and the schema match. Adds the depth and question-matching keywords
